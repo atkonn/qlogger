@@ -1,4 +1,4 @@
-This is a simple, stupid, and a little log viewer, so typical.
+This is an useless, simple, stupid, and a little log viewer, so typical.
 If you want a detailed log viewer, please use the other.
 but in environments without adb, you may be able to use this application as a basic tool during a small development.
 

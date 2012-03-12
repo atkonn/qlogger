@@ -8,7 +8,7 @@
 
   <string name="menu_logcat">Logcat</string>
   <string name="copyright">\nCopyright(C) 2012 QSDN,Inc. \nCopyright(C) 2012 A.Konno\nAll rights reserved.</string>
-  <string name="about__description">This is a simple, stupid, and a little log viewer, so typical.
+  <string name="about__description">This is an useless, simple, stupid, and a little log viewer, so typical.
   If you want more detailed or more powerful log viewer, please use the other.
   But in environments without adb, you may be able to use this application as a basic tool during a small development.\n
      \n

@@ -2,7 +2,7 @@
 
 <resources>
   <string name="copyright">\nCopyright(C) 2012 株式会社QSDN\nCopyright(C) 2012 A.Konno\nAll rights reserved.</string>
-  <string name="about__description">このアプリケーションは、既によくある、ありきたりなLogcatビューワーにちょっとした記録機能を付けたものです。
+  <string name="about__description">このアプリケーションは、既によくある、そしてあまり使えない、logcatビューワーです。
      もし、より詳細な、そしてよりパワフルなログビューワーが欲しいのであれば、既に良いアプリがあるかと思いますのでそちらをご使用ください。
      もしかすると、adbに接続できない環境で、そしてちょっとした開発で、基本的な開発ツールとして利用することができるかもしれません。\n
      \n
