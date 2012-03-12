@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"  
+  android:orientation="horizontal"
+  android:layout_width="fill_parent"
+  android:layout_height="wrap_content"  
+  android:padding="6dip">  
+  <LinearLayout
+    android:id="@+id/batterylog_row_layout"
+    android:orientation="horizontal"  
+    android:layout_width="fill_parent"
+    android:layout_height="@dimen/height_of_batterylog_list"
+    >
+    <TextView
+      android:id="@+id/timestamp" 
+      android:layout_width="0dip"  
+      android:layout_height="wrap_content"
+      android:layout_weight="1"  
+      android:singleLine="true" 
+      android:ellipsize="marquee"
+      style="@style/text_bold"
+      />  
+    <TextView
+      android:id="@+id/level"  
+      android:layout_width="0dip"  
+      android:layout_height="wrap_content" 
+      android:layout_weight="0.3"  
+      android:singleLine="true" 
+      android:ellipsize="marquee"
+      style="@style/text_sub"
+      />  
+  </LinearLayout>
+</LinearLayout>  

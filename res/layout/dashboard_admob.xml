@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads"
+  android:orientation="vertical"
+  android:layout_width="fill_parent"
+  android:layout_height="wrap_content"
+  >
+  <FrameLayout
+    android:layout_gravity="fill"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:foregroundGravity="fill"
+    >
+    <TextView
+      android:text="Advertisement will be displayed here."
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content" />
+    <LinearLayout
+      android:id="@+id/ad_area"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      >
+      <com.google.ads.AdView
+        android:id="@+id/adView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        ads:adUnitId="@string/admob_pub_id"
+        ads:adSize="BANNER"
+        ads:testDevices="@string/admob__devices"
+        ads:loadAdOnCreate="true"/>
+    </LinearLayout>
+  </FrameLayout>
+</LinearLayout>

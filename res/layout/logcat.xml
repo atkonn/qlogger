@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+  <LinearLayout
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_weight="1">
+    <jp.co.qsdn.android.qlogger.view.flipper.ViewFlipper
+      android:id="@+id/flipper"
+      android:layout_width="fill_parent"
+      android:layout_height="fill_parent"
+      android:inAnimation="@android:anim/fade_in"
+      android:outAnimation="@android:anim/fade_out">
+      <LinearLayout
+        android:id="@+id/wait_view"
+        android:orientation="vertical"
+        android:layout_height="fill_parent"
+        android:layout_width="fill_parent"
+        android:background="#FFaeaeae"
+        android:layout_gravity="center_vertical"
+        >
+        <LinearLayout
+          android:orientation="horizontal"
+          android:layout_height="fill_parent"
+          android:layout_width="wrap_content"
+          android:background="#FFaeaeae"
+          android:layout_gravity="center"
+          >
+          <ProgressBar
+            android:id="@+id/progressbar_large"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true" 
+            android:layout_gravity="center_vertical"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            style="?android:attr/progressBarStyle" />
+        </LinearLayout>
+      </LinearLayout>
+      <ListView
+        android:id="@+id/main_view"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" 
+        />
+      <LinearLayout
+        android:id="@+id/notfound_view"
+        android:orientation="vertical"
+        android:layout_height="fill_parent"
+        android:layout_width="fill_parent"
+        android:background="#FFFFFFFF"
+        android:layout_gravity="center_vertical"
+        >
+        <TextView
+          android:layout_height="wrap_content"
+          android:layout_width="wrap_content"
+          android:layout_gravity="center|center"
+          android:textColor="#FF0000FF"
+          android:text="@string/logcat__notfound_label"
+          />
+      </LinearLayout>
+    </jp.co.qsdn.android.qlogger.view.flipper.ViewFlipper>
+  </LinearLayout>
+  <include layout="@layout/logcat__footer_bar" />
+</LinearLayout>
+

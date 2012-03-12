@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<PreferenceScreen
+  xmlns:android="http://schemas.android.com/apk/res/android">
+  <PreferenceCategory
+    android:title="@string/logcat_setting__title_filter_setting">
+    <jp.co.qsdn.android.qlogger.view.prefs.EditTextPreference
+      android:key="@string/logcat_setting__key_pref_filter_keyword"
+      android:title="@string/logcat_setting__title_pref_filter_keyword"
+      android:summary="@string/logcat_setting__summary_pref_filter_keyword"
+      android:dialogTitle="@string/logcat_setting__title_pref_filter_keyword"
+      android:dialogMessage="@string/logcat_setting__message_pref_filter_keyword"
+    />
+    <jp.co.qsdn.android.qlogger.view.prefs.ListPreference
+      android:key="@string/logcat_setting__key_pref_filter_loglevel"
+      android:title="@string/logcat_setting__title_pref_filter_loglevel"
+      android:summary="@string/logcat_setting__summary_pref_filter_loglevel"
+      android:dialogTitle="@string/logcat_setting__dialog_title_pref_filter_loglevel"
+      android:entries="@array/logcat_setting__entries_loglevel"
+      android:entryValues="@array/logcat_setting__entryvalues_loglevel"
+      default="V"
+      />
+  </PreferenceCategory>
+</PreferenceScreen>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<LinearLayout 
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="fill_parent"
+  android:layout_height="@dimen/height_of_footer_bar"
+  android:paddingLeft="5dip"
+  android:paddingRight="5dip"
+  style="@style/CustomWindowTitleBackground"
+  >
+  <ImageView
+    android:src="@drawable/vertical_line"
+    android:layout_width="wrap_content"
+    android:layout_marginRight="5dip"
+    android:layout_height="fill_parent" />
+  <ImageView
+    android:id="@+id/action_bar_clear"
+    android:layout_width="fill_parent"
+    android:layout_height="40dip"
+    android:layout_weight="1"
+    android:gravity="center_vertical"
+    android:layout_gravity="center"
+    android:layout_marginRight="5dip"
+    android:onClick="gotoClear"
+    />
+  <ImageView
+    android:src="@drawable/vertical_line"
+    android:layout_width="wrap_content"
+    android:layout_marginRight="5dip"
+    android:layout_height="fill_parent" />
+  <ImageView
+    android:id="@+id/action_bar_send"
+    android:layout_width="fill_parent"
+    android:layout_height="40dip"
+    android:layout_weight="1"
+    android:gravity="center_vertical"
+    android:layout_gravity="center"
+    android:layout_marginRight="5dip"
+    android:onClick="gotoSend"
+    />
+  <ImageView
+    android:src="@drawable/vertical_line"
+    android:layout_width="wrap_content"
+    android:layout_height="fill_parent" />
+</LinearLayout>

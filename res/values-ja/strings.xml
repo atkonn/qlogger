@@ -1,0 +1,641 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+  <string name="copyright">\nCopyright(C) 2012 株式会社QSDN\nCopyright(C) 2012 A.Konno\nAll rights reserved.</string>
+  <string name="about__description">このアプリケーションは、既によくある、ありきたりなLogcatビューワーにちょっとした記録機能を付けたものです。
+     もし、より詳細な、そしてよりパワフルなログビューワーが欲しいのであれば、既に良いアプリがあるかと思いますのでそちらをご使用ください。
+     もしかすると、adbに接続できない環境で、そしてちょっとした開発で、基本的な開発ツールとして利用することができるかもしれません。\n
+     \n
+     特徴:\n
+     ======\n
+     1) ただのLogcatViewer。\n
+     2) 自動・手動のリブートを記録。\n
+     3) StackTraceなどのエラーログを記録。\n
+     4) バッテリー使用状況を記録。\n
+     5) スクリーンのOn/Off時間を記録。\n
+     6) 負荷状況(Load Avarage)を記録。\n
+     7) CPU使用状況を記録。\n
+     8) メモリ使用状況を記録。\n
+     9) ネットワーク使用状況を記録。\n
+     10) 上記について、グラフ表示。\n
+     11) 上記ログやグラフを添付ファイルとして他アプリへ送信。(SDCARD必須)\n
+     \n
+     Credits:\n
+     =========\n
+     1) DB icon\n
+     By: http://www.addictedtocoffee.de/\n
+     License: Free for commercial use (Include link to package)\n
+     \n
+     2) aChartEngine\n
+     By: http://code.google.com/p/achartengine/\n
+     License: Apache Software License 2.0\n
+     \n
+     3) NumberPicker\n
+     By: Mike Novak(http://www.quietlycoding.com/?p=5)\n
+     License: Apache Software License 2.0\n
+     \n
+     4) ColorPicker\n
+     By: Android Open Source Project ( in examples )\n
+     License: Apache Software License 2.0\n
+     \n
+     5) DialogPreference\n
+     By: IoriAYANE(http://code.google.com/p/relog/)\n
+     License: Apache Software License 2.0\n
+     \n
+     License:\n
+     =========\n
+     Apache Software License 2.0の元、以下の場所に公開されています。\n
+     \n
+     Source Code:\n 
+     =============\n
+     https://github.com/atkonn/qlogger\n
+     or\n
+     https://gitorious.org/qlogger\n
+     </string>
+  <string name="about__button_ok">OK</string>
+  <string name="about__text_of_title">このアプリケーションについて</string>
+
+  <!-- Logcat Setting Activity -->
+  <string name="logcat_setting__title">Logcat設定</string>
+  <string name="logcat_setting__ok_button">閉じる</string>
+
+
+  <string name="logcat_setting__title_pref">Logcat設定</string>
+  <string name="logcat_setting__title_color_setting">色設定</string>
+  <string name="logcat_setting__summary_color_setting">色を設定します。</string>
+
+  <string name="logcat_setting__title_filter_setting">フィルタ設定</string>
+  <string name="logcat_setting__summary_filter_setting">フィルタ設定</string>
+
+  <string name="logcat_setting__key_pref_fatal_color">logcat_setting__key_pref_fatal_color</string>
+  <string name="logcat_setting__title_pref_fatal_color">Fatal LOGの色</string>
+  <string name="logcat_setting__summary_pref_fatal_color">Fatal Logの色を設定します(now: %06x)</string>
+  <string name="logcat_setting__message_pref_fatal_color">Fatal Logの色を選択してください。</string>
+
+  <string name="logcat_setting__key_pref_error_color">logcat_setting__key_pref_error_color</string>
+  <string name="logcat_setting__title_pref_error_color">Error LOGの色</string>
+  <string name="logcat_setting__summary_pref_error_color">Error Logの色を設定します(now: %06x)</string>
+  <string name="logcat_setting__message_pref_error_color">Error Logの色を選択してください。</string>
+
+  <string name="logcat_setting__key_pref_warning_color">logcat_setting__key_pref_warning_color</string>
+  <string name="logcat_setting__title_pref_warning_color">Warning LOGの色</string>
+  <string name="logcat_setting__summary_pref_warning_color">Warning Logの色を設定します(now: %06x)</string>
+  <string name="logcat_setting__message_pref_warning_color">Warning Logの色を選択してください。</string>
+
+  <string name="logcat_setting__key_pref_info_color">logcat_setting__key_pref_info_color</string>
+  <string name="logcat_setting__title_pref_info_color">Info LOGの色</string>
+  <string name="logcat_setting__summary_pref_info_color">Info Logの色を設定します(now: %06x)</string>
+  <string name="logcat_setting__message_pref_info_color">Info Logの色を選択してください。</string>
+
+  <string name="logcat_setting__key_pref_verbose_color">logcat_setting__key_pref_verbose_color</string>
+  <string name="logcat_setting__title_pref_verbose_color">Verbose LOGの色</string>
+  <string name="logcat_setting__summary_pref_verbose_color">Verbose Logの色を設定します(now: %06x)</string>
+  <string name="logcat_setting__message_pref_verbose_color">Verbose Logの色を選択してください。</string>
+
+  <string name="logcat_setting__key_pref_debug_color">logcat_setting__key_pref_debug_color</string>
+  <string name="logcat_setting__title_pref_debug_color">Debug LOGの色</string>
+  <string name="logcat_setting__summary_pref_debug_color">Debug Logの色を選択します(now: %06x)</string>
+  <string name="logcat_setting__message_pref_debug_color">Debug Logの色を選択してください。</string>
+
+  <string name="logcat_setting__title_buffer_size">Bufferサイズ</string>
+  <string name="logcat_setting__summary_buffer_size">Logcatの出力を一時的に保存しておくBuffer領域のサイズを設定します</string>
+
+  <string name="logcat_setting__key_pref_buffer_size">logcat_setting__key_pref_buffer_size</string>
+  <string name="logcat_setting__title_pref_buffer_size">Bufferサイズ</string>
+  <string name="logcat_setting__summary_pref_buffer_size">Bufferサイズを設定します(now: %d)</string>
+  <string name="logcat_setting__message_pref_buffer_size">Bufferサイズを入力してください。</string>
+
+  <string name="logcat_filter__keyword_label">キーワード</string>
+  <string name="logcat_filter__keyword_input_hint">キーワードを入力してください(正規表現等)</string>
+
+  <string name="logcat__notfound_label">表示できるものは見つかりませんでした</string>
+  <string name="logcat_filter__loglevel_label">Logレベル</string>
+
+  <string name="logcat_setting__key_pref_filter_loglevel">logcat_setting__key_pref_filter_loglevel</string>
+  <string name="logcat_setting__title_pref_filter_loglevel">Logレベル</string>
+  <string name="logcat_setting__summary_pref_filter_loglevel">Logレベル</string>
+  <string name="logcat_setting__dialog_title_pref_filter_loglevel">Logレベル</string>
+
+  <string name="logcat_setting__key_pref_filter_keyword">logcat_setting__key_pref_filter_keyword</string>
+  <string name="logcat_setting__title_pref_filter_keyword">フィルターキーワード</string>
+  <string name="logcat_setting__summary_pref_filter_keyword">フィルターキーワード</string>
+  <string name="logcat_setting__dialog_title_pref_filter_keyword">フィルターキーワード</string>
+  <string name="logcat_setting__message_pref_filter_keyword">フィルターキーワード( 正規表現が使えます )</string>
+
+  <string name="rebootlog__title_of_delete_dialog">確認！</string>
+  <string name="rebootlog__message_of_delete_dialog">全件削除します。よろしいですか？</string>
+  <string name="rebootlog__button_of_delete_dialog_positive">OK</string>
+  <string name="rebootlog__button_of_delete_dialog_negative">キャンセル</string>
+  <string name="rebootlog__message_of_delete_completion">%d 件削除しました。</string>
+
+  <string name="rebootlog__text_of_title">リブートログ</string>
+  <string name="logcat__text_of_title">Logcat</string>
+  <string name="errorlog__text_of_title">エラーログ</string>
+
+  <string name="errorlog__title_of_delete_dialog">確認！</string>
+  <string name="errorlog__message_of_delete_dialog">全件削除します。よろしいですか？</string>
+  <string name="errorlog__button_of_delete_dialog_positive">OK</string>
+  <string name="errorlog__button_of_delete_dialog_negative">キャンセル</string>
+  <string name="errorlog__message_of_delete_completion">%d 件削除しました。</string>
+
+  <string name="errorlog_detail__label_of_timestamp">発生時刻</string>
+  <string name="errorlog_detail__label_of_tag">タグ</string>
+  <string name="errorlog_detail__label_of_message">メッセージ</string>
+  <string name="errorlog_detail__label_of_stacktrace">StackTrace</string>
+  <string name="errorlog_detail__text_of_title">エラーログ詳細</string>
+
+  <string name="errorlog_setting__ok_button">閉じる</string>
+
+  <!-- errorlog setting -->
+  <string name="errorlog_setting__title">エラーログ設定</string>
+  <string name="errorlog_setting__title_pref">エラーログ設定</string>
+  <string name="errorlog_setting__key_pref_retention_period">errorlog_setting__key_pref_retention_period</string>
+  <string name="errorlog_setting__title_pref_retention_period">エラーログ保有期間</string>
+  <string name="errorlog_setting__summary_pref_retention_period">現在の保有期間は、%d 日間です。</string>
+  <string name="errorlog_setting__message_pref_retention_period">保有期間を過ぎたエラーログは自動的に削除されます。</string>
+
+  <string name="errorlog_detail__title_of_delete_dialog">確認!</string>
+  <string name="errorlog_detail__message_of_delete_dialog">このエラーログを削除します。よろしいですか？</string>
+  <string name="errorlog_detail__button_of_delete_dialog_positive">OK</string>
+  <string name="errorlog_detail__button_of_delete_dialog_negative">キャンセル</string>
+  <string name="errorlog_detail__message_of_delete_completion">%d 件削除しました。</string>
+
+  <string name="errorlog_detail__title_of_mail">エラーログ</string>
+  <string name="errorlog_detail__text_of_mail">発生時刻:\n%1$s\n\nタグ:\n%2$s\n\nメッセージ:\n%3$s\n\nStackTrace:\n%4$s\n\n</string>
+  <string name="errorlog_detail__message_of_mail_client_chooser">Emailクライアントを選択してください。</string>
+
+  <string name="rebootlog__message_of_boot_completed">起動</string>
+  <string name="rebootlog__message_of_reboot">再起動</string>
+  <string name="rebootlog__message_of_shutdown">シャットダウン</string>
+
+  <string name="rebootlog__downtime_message">停止時間は %1$f 秒です。</string>
+
+  <string name="rebootlog_setting__key_pref_retention_period">rebootlog_setting__key_pref_retention_period</string>
+
+  <string name="rebootlog__notification_message">%1$sに再起動しました。</string>
+
+  <string name="rebootlog_setting__key_pref_notification">rebootlog_setting__key_pref_notification</string>
+  <string name="rebootlog_setting__title_pref_notification">再起動通知設定</string>
+  <string name="rebootlog_setting__summary_on_pref_notification">現在再起動通知機能は有効です。</string>
+  <string name="rebootlog_setting__summary_off_pref_notification">現在再起動通知機能は無効です。</string>
+
+  <string name="rebootlog_setting__title">再起動ログ設定</string>
+  <string name="rebootlog_setting__ok_button">閉じる</string>
+  <string name="rebootlog_setting__title_pref">再起動ログ設定</string>
+  <string name="rebootlog_setting__title_pref_retention_period">保有期間</string>
+  <string name="rebootlog_setting__summary_pref_retention_period">現在の保有期間は %d 日です。</string>
+  <string name="rebootlog_setting__message_pref_retention_period">保有期間の過ぎた再起動ログは自動的に削除されます。</string>
+
+  <string name="batterylog__text_of_title">バッテリー使用状況ログ</string>
+  <string name="batterylog__title_of_delete_dialog">確認!</string>
+  <string name="batterylog__message_of_delete_dialog">全件削除します。よろしいですか？</string>
+  <string name="batterylog__button_of_delete_dialog_positive">OK</string>
+  <string name="batterylog__button_of_delete_dialog_negative">キャンセル</string>
+  <string name="batterylog__message_of_delete_completion">%d 件削除しました。</string>
+
+  <string name="batterylog_setting__ok_button">閉じる</string>
+  <string name="batterylog_setting__title_pref">バッテリー使用状況ログ設定</string>
+
+  <string name="batterylog_setting__title">バッテリー使用状況ログ設定</string>
+  <string name="batterylog_setting__key_pref_retention_period">batterylog_setting__key_pref_retention_period</string>
+  <string name="batterylog_setting__title_pref_retention_period">保有期間</string>
+  <string name="batterylog_setting__summary_pref_retention_period">現在の保有期間は %d 日です。</string>
+  <string name="batterylog_setting__message_pref_retention_period">保有期間の過ぎたバッテリー使用状況ログは自動的に削除されます。</string>
+
+  <string name="batterylog__column_title">%1$s年%2$s月%3$s日</string>
+
+  <string name="batterylog__title_of_mail">バッテリー使用状況ログ</string>
+  <string name="batterylog__text_of_mail">バッテリー使用状況ログ %s 分</string>
+  <string name="batterylog__message_of_mail_client_chooser">Emailクライアントを選択してください。</string>
+  <string name="batterylog__message_of_client_chooser">クライアントを選択してください。</string>
+
+  <string name="__title_of_sdcard_error">SDCARDは必須です。</string>
+  <string name="__message_of_sdcard_error">SDCARDをセットしてください。</string>
+  <string name="__button_of_sdcard_error_ok">OK</string>
+  <string name="__button_of_sdcard_error_negative">キャンセル</string>
+
+  <string name="__title_of_file_output_error">ファイル出力に失敗しました。</string>
+  <string name="__message_of_file_output_error">SDCARDの残容量を確認してください。</string>
+  <string name="__button_of_file_output_error">OK</string>
+
+  <string name="__title_of_zip_error">Zip出力に失敗しました。</string>
+  <string name="__message_of_zip_error">SDCARDの残容量を確認してください。</string>
+  <string name="__button_of_zip_error">OK</string>
+
+  <string name="__title_of_be_not_drawn_graph_yet">出力用イメージはまだ用意されていません。</string>
+  <string name="__message_of_be_not_drawn_graph_yet">数分後改めてお試しください。</string>
+  <string name="__button_of_be_not_drawn_graph_yet">OK</string>
+
+  <string name="batterylog__title_of_sdcard_error">@string/__title_of_sdcard_error</string>
+  <string name="batterylog__message_of_sdcard_error">@string/__message_of_sdcard_error</string>
+  <string name="batterylog__button_of_sdcard_error_ok">@string/__button_of_sdcard_error_ok</string>
+  <string name="batterylog__button_of_sdcard_error_negative">@string/__button_of_sdcard_error_negative</string>
+
+  <string name="batterylog__title_of_file_output_error">@string/__title_of_file_output_error</string>
+  <string name="batterylog__message_of_file_output_error">@string/__message_of_file_output_error</string>
+  <string name="batterylog__button_of_file_output_error">@string/__button_of_file_output_error</string>
+
+  <string name="batterylog__title_of_zip_error">@string/__title_of_zip_error</string>
+  <string name="batterylog__message_of_zip_error">@string/__message_of_zip_error</string>
+  <string name="batterylog__button_of_zip_error">@string/__button_of_zip_error</string>
+
+  <string name="rebootlog__title_of_sdcard_error">@string/__title_of_sdcard_error</string>
+  <string name="rebootlog__message_of_sdcard_error">@string/__message_of_sdcard_error</string>
+  <string name="rebootlog__button_of_sdcard_error_ok">@string/__button_of_sdcard_error_ok</string>
+  <string name="rebootlog__button_of_sdcard_error_negative">@string/__button_of_sdcard_error_negative</string>
+
+  <string name="rebootlog__title_of_file_output_error">@string/__title_of_file_output_error</string>
+  <string name="rebootlog__message_of_file_output_error">@string/__message_of_file_output_error</string>
+  <string name="rebootlog__button_of_file_output_error">@string/__button_of_file_output_error</string>
+
+  <string name="rebootlog__title_of_zip_error">@string/__title_of_zip_error</string>
+  <string name="rebootlog__message_of_zip_error">@string/__message_of_zip_error</string>
+  <string name="rebootlog__button_of_zip_error">@string/__button_of_zip_error</string>
+
+  <string name="screenlog__title_of_sdcard_error">@string/__title_of_sdcard_error</string>
+  <string name="screenlog__message_of_sdcard_error">@string/__message_of_sdcard_error</string>
+  <string name="screenlog__button_of_sdcard_error_ok">@string/__button_of_sdcard_error_ok</string>
+  <string name="screenlog__button_of_sdcard_error_negative">@string/__button_of_sdcard_error_negative</string>
+
+  <string name="screenlog__title_of_file_output_error">@string/__title_of_file_output_error</string>
+  <string name="screenlog__message_of_file_output_error">@string/__message_of_file_output_error</string>
+  <string name="screenlog__button_of_file_output_error">@string/__button_of_file_output_error</string>
+
+  <string name="screenlog__title_of_zip_error">@string/__title_of_zip_error</string>
+  <string name="screenlog__message_of_zip_error">@string/__message_of_zip_error</string>
+  <string name="screenlog__button_of_zip_error">@string/__button_of_zip_error</string>
+
+  <string name="screenhourlylog__title_of_sdcard_error">@string/__title_of_sdcard_error</string>
+  <string name="screenhourlylog__message_of_sdcard_error">@string/__message_of_sdcard_error</string>
+  <string name="screenhourlylog__button_of_sdcard_error_ok">@string/__button_of_sdcard_error_ok</string>
+  <string name="screenhourlylog__button_of_sdcard_error_negative">@string/__button_of_sdcard_error_negative</string>
+
+  <string name="screenhourlylog__title_of_file_output_error">@string/__title_of_file_output_error</string>
+  <string name="screenhourlylog__message_of_file_output_error">@string/__message_of_file_output_error</string>
+  <string name="screenhourlylog__button_of_file_output_error">@string/__button_of_file_output_error</string>
+
+  <string name="screenhourlylog__title_of_zip_error">@string/__title_of_zip_error</string>
+  <string name="screenhourlylog__message_of_zip_error">@string/__message_of_zip_error</string>
+  <string name="screenhourlylog__button_of_zip_error">@string/__button_of_zip_error</string>
+
+  <string name="screendailylog__title_of_sdcard_error">@string/__title_of_sdcard_error</string>
+  <string name="screendailylog__message_of_sdcard_error">@string/__message_of_sdcard_error</string>
+  <string name="screendailylog__button_of_sdcard_error_ok">@string/__button_of_sdcard_error_ok</string>
+  <string name="screendailylog__button_of_sdcard_error_negative">@string/__button_of_sdcard_error_negative</string>
+
+  <string name="screendailylog__title_of_file_output_error">@string/__title_of_file_output_error</string>
+  <string name="screendailylog__message_of_file_output_error">@string/__message_of_file_output_error</string>
+  <string name="screendailylog__button_of_file_output_error">@string/__button_of_file_output_error</string>
+
+  <string name="screendailylog__title_of_zip_error">@string/__title_of_zip_error</string>
+  <string name="screendailylog__message_of_zip_error">@string/__message_of_zip_error</string>
+  <string name="screendailylog__button_of_zip_error">@string/__button_of_zip_error</string>
+
+  <string name="screenmonthlylog__title_of_sdcard_error">@string/__title_of_sdcard_error</string>
+  <string name="screenmonthlylog__message_of_sdcard_error">@string/__message_of_sdcard_error</string>
+  <string name="screenmonthlylog__button_of_sdcard_error_ok">@string/__button_of_sdcard_error_ok</string>
+  <string name="screenmonthlylog__button_of_sdcard_error_negative">@string/__button_of_sdcard_error_negative</string>
+
+  <string name="screenmonthlylog__title_of_file_output_error">@string/__title_of_file_output_error</string>
+  <string name="screenmonthlylog__message_of_file_output_error">@string/__message_of_file_output_error</string>
+  <string name="screenmonthlylog__button_of_file_output_error">@string/__button_of_file_output_error</string>
+
+  <string name="screenmonthlylog__title_of_zip_error">@string/__title_of_zip_error</string>
+  <string name="screenmonthlylog__message_of_zip_error">@string/__message_of_zip_error</string>
+  <string name="screenmonthlylog__button_of_zip_error">@string/__button_of_zip_error</string>
+
+  <string name="loadavglog__title_of_sdcard_error">@string/__title_of_sdcard_error</string>
+  <string name="loadavglog__message_of_sdcard_error">@string/__message_of_sdcard_error</string>
+  <string name="loadavglog__button_of_sdcard_error_ok">@string/__button_of_sdcard_error_ok</string>
+  <string name="loadavglog__button_of_sdcard_error_negative">@string/__button_of_sdcard_error_negative</string>
+
+  <string name="loadavglog__title_of_file_output_error">@string/__title_of_file_output_error</string>
+  <string name="loadavglog__message_of_file_output_error">@string/__message_of_file_output_error</string>
+  <string name="loadavglog__button_of_file_output_error">@string/__button_of_file_output_error</string>
+
+  <string name="loadavglog__title_of_zip_error">@string/__title_of_zip_error</string>
+  <string name="loadavglog__message_of_zip_error">@string/__message_of_zip_error</string>
+  <string name="loadavglog__button_of_zip_error">@string/__button_of_zip_error</string>
+
+  <string name="cpuutilizationlog__title_of_sdcard_error">@string/__title_of_sdcard_error</string>
+  <string name="cpuutilizationlog__message_of_sdcard_error">@string/__message_of_sdcard_error</string>
+  <string name="cpuutilizationlog__button_of_sdcard_error_ok">@string/__button_of_sdcard_error_ok</string>
+  <string name="cpuutilizationlog__button_of_sdcard_error_negative">@string/__button_of_sdcard_error_negative</string>
+
+  <string name="cpuutilizationlog__title_of_file_output_error">@string/__title_of_file_output_error</string>
+  <string name="cpuutilizationlog__message_of_file_output_error">@string/__message_of_file_output_error</string>
+  <string name="cpuutilizationlog__button_of_file_output_error">@string/__button_of_file_output_error</string>
+
+  <string name="cpuutilizationlog__title_of_zip_error">@string/__title_of_zip_error</string>
+  <string name="cpuutilizationlog__message_of_zip_error">@string/__message_of_zip_error</string>
+  <string name="cpuutilizationlog__button_of_zip_error">@string/__button_of_zip_error</string>
+
+  <string name="memutilizationlog__title_of_sdcard_error">@string/__title_of_sdcard_error</string>
+  <string name="memutilizationlog__message_of_sdcard_error">@string/__message_of_sdcard_error</string>
+  <string name="memutilizationlog__button_of_sdcard_error_ok">@string/__button_of_sdcard_error_ok</string>
+  <string name="memutilizationlog__button_of_sdcard_error_negative">@string/__button_of_sdcard_error_negative</string>
+
+  <string name="memutilizationlog__title_of_file_output_error">@string/__title_of_file_output_error</string>
+  <string name="memutilizationlog__message_of_file_output_error">@string/__message_of_file_output_error</string>
+  <string name="memutilizationlog__button_of_file_output_error">@string/__button_of_file_output_error</string>
+
+  <string name="memutilizationlog__title_of_zip_error">@string/__title_of_zip_error</string>
+  <string name="memutilizationlog__message_of_zip_error">@string/__message_of_zip_error</string>
+  <string name="memutilizationlog__button_of_zip_error">@string/__button_of_zip_error</string>
+
+  <string name="netstatlog__title_of_sdcard_error">@string/__title_of_sdcard_error</string>
+  <string name="netstatlog__message_of_sdcard_error">@string/__message_of_sdcard_error</string>
+  <string name="netstatlog__button_of_sdcard_error_ok">@string/__button_of_sdcard_error_ok</string>
+  <string name="netstatlog__button_of_sdcard_error_negative">@string/__button_of_sdcard_error_negative</string>
+
+  <string name="netstatlog__title_of_file_output_error">@string/__title_of_file_output_error</string>
+  <string name="netstatlog__message_of_file_output_error">@string/__message_of_file_output_error</string>
+  <string name="netstatlog__button_of_file_output_error">@string/__button_of_file_output_error</string>
+
+  <string name="netstatlog__title_of_zip_error">@string/__title_of_zip_error</string>
+  <string name="netstatlog__message_of_zip_error">@string/__message_of_zip_error</string>
+  <string name="netstatlog__button_of_zip_error">@string/__button_of_zip_error</string>
+
+  <string name="batterylog_graph__title_of_be_not_drawn_graph_yet">@string/__title_of_be_not_drawn_graph_yet</string>
+  <string name="batterylog_graph__message_of_be_not_drawn_graph_yet">@string/__message_of_be_not_drawn_graph_yet</string>
+  <string name="batterylog_graph__button_of_be_not_drawn_graph_yet">@string/__button_of_be_not_drawn_graph_yet</string>
+
+  <string name="rebootlog__title_of_mail">再起動ログ</string>
+  <string name="rebootlog__text_of_mail">再起動ログ</string>
+  <string name="rebootlog__message_of_client_chooser">クライアントを選択してください。</string>
+
+  <string name="screenlog__on_time_message">スクリーンは%1$f 秒間ONでした。</string>
+  <string name="screenlog__message_of_screen_off">スクリーンをOffしました。</string>
+  <string name="screenlog__message_of_screen_on">スクリーンをOnしました。</string>
+  <string name="screenlog__message_of_client_chooser">クライアントを選択してください。</string>
+  <string name="screenlog__title_of_mail">スクリーンOn/Offログ</string>
+  <string name="screenlog__text_of_mail">スクリーンOn/Offログ %1$s分</string>
+
+  <string name="screenlog__title_of_delete_dialog">確認!</string>
+  <string name="screenlog__message_of_delete_dialog">全件削除します。よろしいですか？</string>
+  <string name="screenlog__button_of_delete_dialog_positive">OK</string>
+  <string name="screenlog__button_of_delete_dialog_negative">キャンセル</string>
+  <string name="screenlog__message_of_delete_completion">%d 件削除しました。</string>
+  <string name="screenlog__column_title">%1$s年%2$s月%3$s日</string>
+  <string name="screenlog__text_of_title">スクリーンOn/Offログ</string>
+
+  <string name="screenhourlylog__on_time_message">スクリーンは %1$f 秒間ONでした。</string>
+  <string name="screenhourlylog_setting__key_pref_retention_period">screenhourlylog_setting__key_pref_retention_period</string>
+  <string name="screenhourlylog__message_of_screen_off">スクリーンをOffしました。</string>
+  <string name="screenhourlylog__message_of_screen_on">スクリーンをOnしました。</string>
+  <string name="screenhourlylog__message_of_client_chooser">クライアントを選択してください。</string>
+  <string name="screenhourlylog__title_of_mail">時次スクリーンログ (%1$s) </string>
+  <string name="screenhourlylog__text_of_mail">時次スクリーンログ (%1$s) </string>
+
+  <string name="screenhourlylog__title_of_delete_dialog">確認!</string>
+  <string name="screenhourlylog__message_of_delete_dialog">全件削除します。よろしいですか？</string>
+  <string name="screenhourlylog__button_of_delete_dialog_positive">OK</string>
+  <string name="screenhourlylog__button_of_delete_dialog_negative">キャンセル</string>
+  <string name="screenhourlylog__message_of_delete_completion">%d 件削除しました。</string>
+  <string name="screenhourlylog__column_title">%1$s年%2$s月%3$s日</string>
+  <string name="screenhourlylog__text_of_title">時次スクリーンログ</string>
+
+  <string name="screenhourlylog__time">%1$s:00</string>
+  <string name="screenhourlylog__minutes">%1$.2f 分</string>
+
+  <string name="screenhourlylog_graph__title_of_be_not_drawn_graph_yet">@string/__title_of_be_not_drawn_graph_yet</string>
+  <string name="screenhourlylog_graph__message_of_be_not_drawn_graph_yet">@string/__message_of_be_not_drawn_graph_yet</string>
+  <string name="screenhourlylog_graph__button_of_be_not_drawn_graph_yet">@string/__button_of_be_not_drawn_graph_yet</string>
+
+  <string name="screendailylog_graph__title_of_be_not_drawn_graph_yet">@string/__title_of_be_not_drawn_graph_yet</string>
+  <string name="screendailylog_graph__message_of_be_not_drawn_graph_yet">@string/__message_of_be_not_drawn_graph_yet</string>
+  <string name="screendailylog_graph__button_of_be_not_drawn_graph_yet">@string/__button_of_be_not_drawn_graph_yet</string>
+
+  <string name="screenmonthlylog_graph__title_of_be_not_drawn_graph_yet">@string/__title_of_be_not_drawn_graph_yet</string>
+  <string name="screenmonthlylog_graph__message_of_be_not_drawn_graph_yet">@string/__message_of_be_not_drawn_graph_yet</string>
+  <string name="screenmonthlylog_graph__button_of_be_not_drawn_graph_yet">@string/__button_of_be_not_drawn_graph_yet</string>
+
+  <string name="loadavglog_graph__title_of_be_not_drawn_graph_yet">@string/__title_of_be_not_drawn_graph_yet</string>
+  <string name="loadavglog_graph__message_of_be_not_drawn_graph_yet">@string/__message_of_be_not_drawn_graph_yet</string>
+  <string name="loadavglog_graph__button_of_be_not_drawn_graph_yet">@string/__button_of_be_not_drawn_graph_yet</string>
+
+  <string name="cpuutilizationlog_graph__title_of_be_not_drawn_graph_yet">@string/__title_of_be_not_drawn_graph_yet</string>
+  <string name="cpuutilizationlog_graph__message_of_be_not_drawn_graph_yet">@string/__message_of_be_not_drawn_graph_yet</string>
+  <string name="cpuutilizationlog_graph__button_of_be_not_drawn_graph_yet">@string/__button_of_be_not_drawn_graph_yet</string>
+
+  <string name="memutilizationlog_graph__title_of_be_not_drawn_graph_yet">@string/__title_of_be_not_drawn_graph_yet</string>
+  <string name="memutilizationlog_graph__message_of_be_not_drawn_graph_yet">@string/__message_of_be_not_drawn_graph_yet</string>
+  <string name="memutilizationlog_graph__button_of_be_not_drawn_graph_yet">@string/__button_of_be_not_drawn_graph_yet</string>
+
+  <string name="netstatlog_graph__title_of_be_not_drawn_graph_yet">@string/__title_of_be_not_drawn_graph_yet</string>
+  <string name="netstatlog_graph__message_of_be_not_drawn_graph_yet">@string/__message_of_be_not_drawn_graph_yet</string>
+  <string name="netstatlog_graph__button_of_be_not_drawn_graph_yet">@string/__button_of_be_not_drawn_graph_yet</string>
+
+  <string name="screenhourlylog_graph__xtitle">時</string>
+  <string name="screenhourlylog_graph__ytitle">分</string>
+
+  <!-- settings -->
+  <string name="screenhourlylog_setting__ok_button">閉じる</string>
+  <string name="screenhourlylog_setting__title_pref">時次スクリーンログ設定</string>
+  <string name="screenhourlylog_setting__title">時次スクリーンログ設定</string>
+  <string name="screenhourlylog_setting__title_pref_retention_period">時次スクリーンログ保有期間</string>
+  <string name="screenhourlylog_setting__summary_pref_retention_period">現在の保有期間は %d 日です。</string>
+  <string name="screenhourlylog_setting__message_pref_retention_period">保有期間の過ぎた時次スクリーンログは自動的に削除されます。</string>
+
+  <string name="screenlog_history__hourly_tab_label">時次</string>
+  <string name="screenlog_history__daily_tab_label">日次</string>
+  <string name="screenlog_history__monthly_tab_label">月次</string>
+
+  <string name="screenlog_setting__ok_button">閉じる</string>
+  <string name="screenlog_setting__title_pref">スクリーンOn/Offログ設定</string>
+
+  <string name="screenlog_setting__key_pref_retention_period">screenlog_setting__key_pref_retention_period</string>
+  <string name="screenlog_setting__title">スクリーンOn/Offログ設定</string>
+  <string name="screenlog_setting__title_pref_retention_period">スクリーンOn/Offログ保有期間</string>
+  <string name="screenlog_setting__summary_pref_retention_period">現在の保有期間は %d 日です。</string>
+  <string name="screenlog_setting__message_pref_retention_period">保有期間の過ぎたスクリーンOn/Offログは自動的に削除されます。1日より短くすると日次スクリーンログの集計に影響します。</string>
+
+
+  <!-- Screen Daily Log -->
+  <string name="screendailylog_setting__key_pref_retention_period">screendailylog_setting__key_pref_retention_period</string>
+  <string name="screendailylog__message_of_client_chooser">クライアントを選択してください</string>
+  <string name="screendailylog__title_of_mail">日次スクリーンログ (%1$s) </string>
+  <string name="screendailylog__text_of_mail">日次スクリーンログ (%1$s) </string>
+
+  <string name="screendailylog__title_of_delete_dialog">確認!</string>
+  <string name="screendailylog__message_of_delete_dialog">全件削除します。よろしいですか？</string>
+  <string name="screendailylog__button_of_delete_dialog_positive">OK</string>
+  <string name="screendailylog__button_of_delete_dialog_negative">キャンセル</string>
+  <string name="screendailylog__message_of_delete_completion">%d 件削除しました。</string>
+  <string name="screendailylog__column_title">%1$s年%2$s日</string>
+
+  <string name="screendailylog__time">%1$s</string>
+  <string name="screendailylog__minutes">%1$.2f 時間</string>
+
+  <string name="screendailylog_graph__xtitle">日</string>
+  <string name="screendailylog_graph__ytitle">時</string>
+
+  <!-- settings -->
+  <string name="screendailylog_setting__ok_button">閉じる</string>
+  <string name="screendailylog_setting__title_pref">日次スクリーンログ設定</string>
+  <string name="screendailylog_setting__title">日次スクリーンログ設定</string>
+  <string name="screendailylog_setting__title_pref_retention_period">日次スクリーンログ保有期間</string>
+  <string name="screendailylog_setting__summary_pref_retention_period">現在の保有期間は %d 日です。</string>
+  <string name="screendailylog_setting__message_pref_retention_period">保有期間の過ぎた日次スクリーンログは自動的に削除されます。31日より短くすると月次スクリーンログの集計に影響します。</string>
+
+  <!-- Screen Monthly Log -->
+  <string name="screenmonthlylog_setting__key_pref_retention_period">screenmonthlylog_setting__key_pref_retention_period</string>
+  <string name="screenmonthlylog__message_of_client_chooser">クライアントを選択してください。</string>
+  <string name="screenmonthlylog__title_of_mail">月次スクリーンログ (%1$s) </string>
+  <string name="screenmonthlylog__text_of_mail">月次スクリーンログ (%1$s) </string>
+
+  <string name="screenmonthlylog__title_of_delete_dialog">確認!</string>
+  <string name="screenmonthlylog__message_of_delete_dialog">全件削除します。よろしいですか？</string>
+  <string name="screenmonthlylog__button_of_delete_dialog_positive">OK</string>
+  <string name="screenmonthlylog__button_of_delete_dialog_negative">キャンセル</string>
+  <string name="screenmonthlylog__message_of_delete_completion">%d 件削除しました。</string>
+  <string name="screenmonthlylog__column_title">%1$s年</string>
+
+  <string name="screenmonthlylog__time">%1$s</string>
+  <string name="screenmonthlylog__minutes">%1$.2f 時間</string>
+
+
+  <string name="screenmonthlylog_graph__xtitle">月</string>
+  <string name="screenmonthlylog_graph__ytitle">時間</string>
+
+  <!-- settings -->
+  <string name="screenmonthlylog_setting__ok_button">閉じる</string>
+  <string name="screenmonthlylog_setting__title_pref">月次スクリーンログ設定</string>
+  <string name="screenmonthlylog_setting__title">月次スクリーンログ設定</string>
+  <string name="screenmonthlylog_setting__title_pref_retention_period">月次スクリーンログ保有期間</string>
+  <string name="screenmonthlylog_setting__summary_pref_retention_period">現在の保有期間は %d 年です。</string>
+  <string name="screenmonthlylog_setting__message_pref_retention_period">保有期間の過ぎた月次スクリーンログは自動的に削除されます。</string>
+
+
+  <!-- loadAvgLog -->
+  <string name="loadavglog__text_of_title">CPU負荷状況ログ</string>
+  <string name="loadavglog__title_of_delete_dialog">確認!</string>
+  <string name="loadavglog__message_of_delete_dialog">全件削除します。よろしいですか？</string>
+  <string name="loadavglog__button_of_delete_dialog_positive">OK</string>
+  <string name="loadavglog__button_of_delete_dialog_negative">キャンセル</string>
+  <string name="loadavglog__message_of_delete_completion">%d 件削除しました。</string>
+
+  <string name="loadavglog_setting__ok_button">閉じる</string>
+  <string name="loadavglog_setting__title_pref">CPU負荷状況ログ設定</string>
+  <string name="loadavglog_setting__title">CPU負荷状況ログ設定</string>
+  <string name="loadavglog_setting__key_pref_retention_period">loadavglog_setting__key_pref_retention_period</string>
+  <string name="loadavglog_setting__title_pref_retention_period">CPU負荷状況ログ保有期間</string>
+  <string name="loadavglog_setting__summary_pref_retention_period">現在の保有期間は %d 日です。</string>
+  <string name="loadavglog_setting__message_pref_retention_period">保有期間の過ぎたCPU負荷状況ログは自動的に削除されます。</string>
+
+  <string name="loadavglog__column_title">%1$s年%2$s月%3$s日</string>
+
+  <string name="loadavglog__title_of_mail">CPU負荷状況ログ</string>
+  <string name="loadavglog__text_of_mail">CPU負荷状況ログ %s 日分</string>
+  <string name="loadavglog__message_of_mail_client_chooser">クライアントを選択してください。</string>
+  <string name="loadavglog__message_of_client_chooser">クライアントを選択してください。</string>
+
+  <string name="loadavglog__per_one_minute">1分平均</string>
+  <string name="loadavglog__per_five_minute">5分平均</string>
+  <string name="loadavglog__per_ten_minute">10分平均</string>
+
+  <!-- cpuUtilizationLog -->
+  <string name="cpuutilizationlog__text_of_title">CPU使用状況ログ</string>
+  <string name="cpuutilizationlog__title_of_delete_dialog">確認!</string>
+  <string name="cpuutilizationlog__message_of_delete_dialog">全件削除します。よろしいですか？</string>
+  <string name="cpuutilizationlog__button_of_delete_dialog_positive">OK</string>
+  <string name="cpuutilizationlog__button_of_delete_dialog_negative">キャンセル</string>
+  <string name="cpuutilizationlog__message_of_delete_completion">%d 件削除しました。</string>
+
+  <string name="cpuutilizationlog_setting__ok_button">閉じる</string>
+  <string name="cpuutilizationlog_setting__title_pref">CPU使用状況ログ設定</string>
+
+  <string name="cpuutilizationlog_setting__title">CPU使用状況ログ設定</string>
+  <string name="cpuutilizationlog_setting__key_pref_retention_period">cpuutilizationlog_setting__key_pref_retention_period</string>
+  <string name="cpuutilizationlog_setting__title_pref_retention_period">CPU使用状況ログ保有期間</string>
+  <string name="cpuutilizationlog_setting__summary_pref_retention_period">現在の保有期間は %d 日です。</string>
+  <string name="cpuutilizationlog_setting__message_pref_retention_period">保有期間の過ぎたCPU使用状況ログは自動的に削除されます。</string>
+
+  <string name="cpuutilizationlog__column_title">%1$s年%2$s月%3$s日</string>
+
+  <string name="cpuutilizationlog__title_of_mail">CPU使用状況ログ</string>
+  <string name="cpuutilizationlog__text_of_mail">CPU使用状況ログ %s 日分</string>
+  <string name="cpuutilizationlog__message_of_mail_client_chooser">クライアントを選択してください。</string>
+  <string name="cpuutilizationlog__message_of_client_chooser">クライアントを選択してください。</string>
+
+
+  <!-- memUtilizationLog -->
+  <string name="memutilizationlog__text_of_title">メモリ使用状況ログ</string>
+  <string name="memutilizationlog__title_of_delete_dialog">確認!</string>
+  <string name="memutilizationlog__message_of_delete_dialog">全件削除します。よろしいですか？</string>
+  <string name="memutilizationlog__button_of_delete_dialog_positive">OK</string>
+  <string name="memutilizationlog__button_of_delete_dialog_negative">キャンセル</string>
+  <string name="memutilizationlog__message_of_delete_completion">%d 件削除しました。</string>
+
+  <string name="memutilizationlog_setting__ok_button">閉じる</string>
+  <string name="memutilizationlog_setting__title_pref">メモリ使用状況ログ設定</string>
+
+  <string name="memutilizationlog_setting__title">メモリ使用状況ログ設定</string>
+  <string name="memutilizationlog_setting__key_pref_retention_period">memutilizationlog_setting__key_pref_retention_period</string>
+  <string name="memutilizationlog_setting__title_pref_retention_period">メモリ使用状況ログ保有期間</string>
+  <string name="memutilizationlog_setting__summary_pref_retention_period">現在の保有期間 %d 日です。</string>
+  <string name="memutilizationlog_setting__message_pref_retention_period">保有期間の過ぎたメモリ使用状況ログは自動的に削除されます。</string>
+
+  <string name="memutilizationlog__column_title">%1$s年%2$s月%3$s日</string>
+
+  <string name="memutilizationlog__title_of_mail">メモリ使用状況ログ</string>
+  <string name="memutilizationlog__text_of_mail">メモリ使用状況ログ %s 日分</string>
+  <string name="memutilizationlog__message_of_mail_client_chooser">クライアントを選択してください。</string>
+  <string name="memutilizationlog__message_of_client_chooser">クライアントを選択してください。</string>
+
+  <string name="memutilizationlog__row_total">総容量</string>
+  <string name="memutilizationlog__row_free">空き容量</string>
+  <string name="memutilizationlog__row_cache">キャッシュ</string>
+
+
+  <!-- netStatLog -->
+  <string name="netstatlog__text_of_title">ネットワーク使用状況ログ</string>
+  <string name="netstatlog__title_of_delete_dialog">確認!</string>
+  <string name="netstatlog__message_of_delete_dialog">全件削除します。よろしいですか？</string>
+  <string name="netstatlog__button_of_delete_dialog_positive">OK</string>
+  <string name="netstatlog__button_of_delete_dialog_negative">キャンセル</string>
+  <string name="netstatlog__message_of_delete_completion">%d 件削除しました。</string>
+
+  <string name="netstatlog_setting__ok_button">閉じる</string>
+  <string name="netstatlog_setting__title_pref">ネットワーク使用状況ログ設定</string>
+  <string name="netstatlog_setting__title">ネットワーク使用状況ログ設定</string>
+  <string name="netstatlog_setting__key_pref_retention_period">netstatlog_setting__key_pref_retention_period</string>
+  <string name="netstatlog_setting__title_pref_retention_period">ネットワーク使用状況ログ保有期間</string>
+  <string name="netstatlog_setting__summary_pref_retention_period">現在の保有期間は %d 日です。</string>
+  <string name="netstatlog_setting__message_pref_retention_period">保有期間の過ぎたネットワーク使用状況ログは自動的に削除されます。</string>
+
+  <string name="netstatlog__column_title">%1$s年%2$s月%3$s日</string>
+
+  <string name="netstatlog__title_of_mail">ネットワーク使用状況ログ</string>
+  <string name="netstatlog__text_of_mail">ネットワーク使用状況ログ %s 日分</string>
+  <string name="netstatlog__message_of_mail_client_chooser">クライアントを選択してください。</string>
+  <string name="netstatlog__message_of_client_chooser">クライアントを選択してください。</string>
+
+  <string name="admob__devices">TEST_EMULATOR,5BFE28B404218D908E6F404836E090E1,B3EEABB8EE11C2BE770B684D95219ECB,D40156E4AA76D5D10C59928F248C1908</string>
+
+  <string name="dashboard_item_rebootlog_title">再起動ログ</string>
+  <string name="dashboard_item_logcat_title">Logcat</string>
+  <string name="dashboard_item_errorlog_title">エラーログ</string>
+  <string name="dashboard_item_batterylog_title">バッテリー\n使用状況ログ</string>
+  <string name="dashboard_item_screenlog_title">スクリーン\nOn/Offログ</string>
+  <string name="dashboard_item_screenhourlylog_title">時次スクリーン\nOn/Off集計ログ</string>
+  <string name="dashboard_item_screendailylog_title">日次スクリーン\nOn/Off集計ログ</string>
+  <string name="dashboard_item_screenmonthlylog_title">月次スクリーン\nOn/Off集計ログ</string>
+  <string name="dashboard_item_loadavglog_title">CPU\n負荷状況ログ</string>
+  <string name="dashboard_item_cpuutilization_title">CPU\n使用状況ログ</string>
+  <string name="dashboard_item_memutilization_title">MEM\n使用状況ログ</string>
+  <string name="dashboard_item_netstat_title">ネットワーク\n使用状況ログ</string>
+
+  <string name="memutilizationlog_graph__legend_used">使用中</string>
+  <string name="memutilizationlog_graph__legend_total">総容量</string>
+
+  <string name="netstatlog_graph__legend_recv">受信</string>
+  <string name="netstatlog_graph__legend_send">送信</string>
+
+  <string name="netstatlog__recv_byte_fmt">%.02f MB 受信</string>
+  <string name="netstatlog__recv_packet_fmt">%d パケット</string>
+  <string name="netstatlog__recv_err_fmt">%d エラー</string>
+  <string name="netstatlog__send_byte_fmt">%.02f MB 送信</string>
+  <string name="netstatlog__send_packet_fmt">%d パケット</string>
+  <string name="netstatlog__send_err_fmt">%d エラー</string>
+</resources>

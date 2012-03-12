@@ -1,0 +1,629 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="app_name">QLogger</string>
+  <string name="version">1.0.0</string>
+
+  <string name="admob_pub_id">a14f4ad1d26fd23</string>
+
+
+  <string name="menu_logcat">Logcat</string>
+  <string name="copyright">\nCopyright(C) 2012 QSDN,Inc. \nCopyright(C) 2012 A.Konno\nAll rights reserved.</string>
+  <string name="about__description">This is a simple, stupid, and a little log viewer, so typical.
+  If you want more detailed or more powerful log viewer, please use the other.
+  But in environments without adb, you may be able to use this application as a basic tool during a small development.\n
+     \n
+     Features:\n
+     1) Logcat viewer.\n
+     2) Record auto/manual reboot .\n
+     3) Record error (stack trace and so on).\n
+     4) Record battery utilization.\n
+     5) Record On/Off time.\n
+     6) Record load average.\n
+     7) Record cpu utilization.\n
+     8) Record mem utilization.\n
+     9) Record network utilization.\n
+     10) View above in graph.\n
+     11) Send above data as an attached zipped file.(NEED SDCARD)\n
+     \n
+     Credits:\n
+     1) DB icon\n
+     By: http://www.addictedtocoffee.de/\n
+     License: Free for commercial use (Include link to package)\n
+     \n
+     2) aChartEngine\n
+     By: http://code.google.com/p/achartengine/\n
+     License: Apache Software License 2.0\n
+     \n
+     3) NumberPicker\n
+     By: Mike Novak(http://www.quietlycoding.com/?p=5)\n
+     License: Apache Software License 2.0\n
+     \n
+     4) ColorPicker\n
+     By: Android Open Source Project ( in examples )\n
+     License: Apache Software License 2.0\n
+     \n
+     5) DialogPreference\n
+     By: IoriAYANE(http://code.google.com/p/relog/)\n
+     License: Apache Software License 2.0\n
+     \n
+     License:
+     Released under the Apache Software License 2.0.\n
+     \n
+     Source Code:
+     https://github.com/atkonn/qlogger\n
+     or\n
+     https://gitorious.org/qlogger\n
+     </string>
+  <string name="about__button_ok">OK</string>
+  <string name="about__text_of_title">About this application</string>
+
+  <!-- Logcat Setting Activity -->
+  <string name="logcat_setting__title">Logcat Settings</string>
+  <string name="logcat_setting__ok_button">Close</string>
+
+
+  <string name="logcat_setting__title_pref">Logcat Settings</string>
+  <string name="logcat_setting__title_color_setting">Logcat Color Settings</string>
+  <string name="logcat_setting__summary_color_setting">logcat colors settings</string>
+
+  <string name="logcat_setting__title_filter_setting">Logcat Filter Settings</string>
+  <string name="logcat_setting__summary_filter_setting">logcat filter settings</string>
+
+  <string name="logcat_setting__key_pref_fatal_color">logcat_setting__key_pref_fatal_color</string>
+  <string name="logcat_setting__title_pref_fatal_color">Fatal LOG Color</string>
+  <string name="logcat_setting__summary_pref_fatal_color">change color of fatallog(now: %06x)</string>
+  <string name="logcat_setting__message_pref_fatal_color">Please pick a new color of fatallog</string>
+
+  <string name="logcat_setting__key_pref_error_color">logcat_setting__key_pref_error_color</string>
+  <string name="logcat_setting__title_pref_error_color">Error LOG Color</string>
+  <string name="logcat_setting__summary_pref_error_color">change color of errorlog(now: %06x)</string>
+  <string name="logcat_setting__message_pref_error_color">Please pick a new color of errorlog</string>
+
+  <string name="logcat_setting__key_pref_warning_color">logcat_setting__key_pref_warning_color</string>
+  <string name="logcat_setting__title_pref_warning_color">Warning LOG Color</string>
+  <string name="logcat_setting__summary_pref_warning_color">change color of warning log(now: %06x)</string>
+  <string name="logcat_setting__message_pref_warning_color">Please pick a new color of warninglog</string>
+
+  <string name="logcat_setting__key_pref_info_color">logcat_setting__key_pref_info_color</string>
+  <string name="logcat_setting__title_pref_info_color">Info LOG Color</string>
+  <string name="logcat_setting__summary_pref_info_color">change color of information log(now: %06x)</string>
+  <string name="logcat_setting__message_pref_info_color">Please pick a new color of infolog</string>
+
+  <string name="logcat_setting__key_pref_verbose_color">logcat_setting__key_pref_verbose_color</string>
+  <string name="logcat_setting__title_pref_verbose_color">Verbose LOG Color</string>
+  <string name="logcat_setting__summary_pref_verbose_color">change color of verbose log(now: %06x)</string>
+  <string name="logcat_setting__message_pref_verbose_color">Please pick a new color of verboselog</string>
+
+  <string name="logcat_setting__key_pref_debug_color">logcat_setting__key_pref_debug_color</string>
+  <string name="logcat_setting__title_pref_debug_color">Debug LOG Color</string>
+  <string name="logcat_setting__summary_pref_debug_color">change color of debug log(now: %06x)</string>
+  <string name="logcat_setting__message_pref_debug_color">Please pick a new color of debuglog</string>
+
+  <string name="logcat_setting__title_buffer_size">Buffer Size</string>
+  <string name="logcat_setting__summary_buffer_size">Buffer size of logcat</string>
+
+  <string name="logcat_setting__key_pref_buffer_size">logcat_setting__key_pref_buffer_size</string>
+  <string name="logcat_setting__title_pref_buffer_size">Buffer Size</string>
+  <string name="logcat_setting__summary_pref_buffer_size">Setup Buffer Size(now: %d)</string>
+  <string name="logcat_setting__message_pref_buffer_size">Please input a new Buffer Size</string>
+
+  <string name="logcat_filter__keyword_label">Keyword</string>
+  <string name="logcat_filter__keyword_input_hint">Please input a keyword(regex etc...)</string>
+
+  <string name="logcat__notfound_label">Not Found</string>
+  <string name="logcat_filter__loglevel_label">Log Level</string>
+
+  <string name="logcat_setting__key_pref_filter_loglevel">logcat_setting__key_pref_filter_loglevel</string>
+  <string name="logcat_setting__title_pref_filter_loglevel">Log LEVEL</string>
+  <string name="logcat_setting__summary_pref_filter_loglevel">Log LEVEL</string>
+  <string name="logcat_setting__dialog_title_pref_filter_loglevel">Log LEVEL</string>
+
+  <string name="logcat_setting__key_pref_filter_keyword">logcat_setting__key_pref_filter_keyword</string>
+  <string name="logcat_setting__title_pref_filter_keyword">Filter Keyword</string>
+  <string name="logcat_setting__summary_pref_filter_keyword">Filter Keyword</string>
+  <string name="logcat_setting__dialog_title_pref_filter_keyword">Filter Keyword</string>
+  <string name="logcat_setting__message_pref_filter_keyword">Filter Keyword ( You may use regex expression )</string>
+
+  <string name="rebootlog__title_of_delete_dialog">Delete Confirmation</string>
+  <string name="rebootlog__message_of_delete_dialog">Delete all. Are you sure?</string>
+  <string name="rebootlog__button_of_delete_dialog_positive">OK</string>
+  <string name="rebootlog__button_of_delete_dialog_negative">cancel</string>
+  <string name="rebootlog__message_of_delete_completion">%d has been deleted.</string>
+
+  <string name="rebootlog__text_of_title">RebootLog</string>
+  <string name="logcat__text_of_title">Logcat</string>
+  <string name="errorlog__text_of_title">ErrorLog</string>
+
+  <string name="errorlog__title_of_delete_dialog">Delete Confirmation</string>
+  <string name="errorlog__message_of_delete_dialog">Delete all. Are you sure?</string>
+  <string name="errorlog__button_of_delete_dialog_positive">OK</string>
+  <string name="errorlog__button_of_delete_dialog_negative">cancel</string>
+  <string name="errorlog__message_of_delete_completion">%d has been deleted.</string>
+
+  <string name="errorlog_detail__label_of_timestamp">Time</string>
+  <string name="errorlog_detail__label_of_tag">TAG</string>
+  <string name="errorlog_detail__label_of_message">message</string>
+  <string name="errorlog_detail__label_of_stacktrace">StackTrace</string>
+  <string name="errorlog_detail__text_of_title">Detail of ErrorLog</string>
+
+  <string name="errorlog_setting__ok_button">Close</string>
+
+  <!-- errorlog setting -->
+  <string name="errorlog_setting__title">ErrorLog Settings</string>
+  <string name="errorlog_setting__title_pref">ErrorLog Settings</string>
+  <string name="errorlog_setting__key_pref_retention_period">errorlog_setting__key_pref_retention_period</string>
+  <string name="errorlog_setting__title_pref_retention_period">Retention Period</string>
+  <string name="errorlog_setting__summary_pref_retention_period">Currently, the retention period is set to %d days.</string>
+  <string name="errorlog_setting__message_pref_retention_period">After a period of retention, ErrorLog will be automatically deleted.</string>
+
+  <string name="errorlog_detail__title_of_delete_dialog">Delete Confirmation</string>
+  <string name="errorlog_detail__message_of_delete_dialog">Delete this errorlog. Are you sure?</string>
+  <string name="errorlog_detail__button_of_delete_dialog_positive">OK</string>
+  <string name="errorlog_detail__button_of_delete_dialog_negative">cancel</string>
+  <string name="errorlog_detail__message_of_delete_completion">%d has been deleted.</string>
+
+  <string name="errorlog_detail__title_of_mail">ErrorLog</string>
+  <string name="errorlog_detail__text_of_mail">Timestamp:\n%1$s\n\nTag:\n%2$s\n\nMessage:\n%3$s\n\nStackTrace:\n%4$s\n\n</string>
+  <string name="errorlog_detail__message_of_mail_client_chooser">Choose Email Client</string>
+
+  <string name="rebootlog__message_of_boot_completed">BOOT</string>
+  <string name="rebootlog__message_of_reboot">REBOOT</string>
+  <string name="rebootlog__message_of_shutdown">SHUTDOWN</string>
+
+  <string name="rebootlog__downtime_message">Downtime is %1$f sec.</string>
+
+  <string name="rebootlog_setting__key_pref_retention_period">rebootlog_setting__key_pref_retention_period</string>
+
+  <string name="rebootlog__notification_message">Android was rebooted at \n%1$s.</string>
+
+  <string name="rebootlog_setting__key_pref_notification">rebootlog_setting__key_pref_notification</string>
+  <string name="rebootlog_setting__title_pref_notification">Reboot Notification Setting</string>
+  <string name="rebootlog_setting__summary_on_pref_notification">Reboot Notification is ON</string>
+  <string name="rebootlog_setting__summary_off_pref_notification">Reboot Notification is OFF</string>
+
+  <string name="rebootlog_setting__title">RebootLog Settings</string>
+  <string name="rebootlog_setting__ok_button">Close</string>
+  <string name="rebootlog_setting__title_pref">RebootLog Settings</string>
+  <string name="rebootlog_setting__title_pref_retention_period">Retention Period</string>
+  <string name="rebootlog_setting__summary_pref_retention_period">Currently, the retention period is set to %d days.</string>
+  <string name="rebootlog_setting__message_pref_retention_period">After a period of retention, RebootLog will be automatically deleted.</string>
+
+  <string name="batterylog__text_of_title">BatteryLog</string>
+  <string name="batterylog__title_of_delete_dialog">Delete Confirmation</string>
+  <string name="batterylog__message_of_delete_dialog">Delete all. Are you sure?</string>
+  <string name="batterylog__button_of_delete_dialog_positive">OK</string>
+  <string name="batterylog__button_of_delete_dialog_negative">cancel</string>
+  <string name="batterylog__message_of_delete_completion">%d has been deleted.</string>
+
+  <string name="batterylog_setting__ok_button">Close</string>
+  <string name="batterylog_setting__title_pref">BatteryLog Settings</string>
+
+  <string name="batterylog_setting__title">BatteryLog Settings</string>
+  <string name="batterylog_setting__key_pref_retention_period">batterylog_setting__key_pref_retention_period</string>
+  <string name="batterylog_setting__title_pref_retention_period">Retention Period</string>
+  <string name="batterylog_setting__summary_pref_retention_period">Currently, the retention period is set to %d days.</string>
+  <string name="batterylog_setting__message_pref_retention_period">After a period of retention, BatteryLog will be automatically deleted.</string>
+
+  <string name="batterylog__column_title">%1$s-%2$s-%3$s</string>
+
+  <string name="batterylog__title_of_mail">BatteryLog</string>
+  <string name="batterylog__text_of_mail">BatteryLog %s data.</string>
+  <string name="batterylog__message_of_mail_client_chooser">Choose Email Client</string>
+  <string name="batterylog__message_of_client_chooser">Choose Client</string>
+
+  <string name="__title_of_sdcard_error">SDCARD is required.</string>
+  <string name="__message_of_sdcard_error">Please insert your sdcard</string>
+  <string name="__button_of_sdcard_error_ok">OK</string>
+  <string name="__button_of_sdcard_error_negative">Cancel</string>
+
+  <string name="__title_of_file_output_error">File output failure.</string>
+  <string name="__message_of_file_output_error">Please check amount of sdcard</string>
+  <string name="__button_of_file_output_error">OK</string>
+
+  <string name="__title_of_zip_error">Zip failure.</string>
+  <string name="__message_of_zip_error">Please check amount of sdcard</string>
+  <string name="__button_of_zip_error">OK</string>
+
+  <string name="__title_of_be_not_drawn_graph_yet">Image is not drawn yet</string>
+  <string name="__message_of_be_not_drawn_graph_yet">Please retry after a few minutes.</string>
+  <string name="__button_of_be_not_drawn_graph_yet">OK</string>
+
+  <string name="batterylog__title_of_sdcard_error">@string/__title_of_sdcard_error</string>
+  <string name="batterylog__message_of_sdcard_error">@string/__message_of_sdcard_error</string>
+  <string name="batterylog__button_of_sdcard_error_ok">@string/__button_of_sdcard_error_ok</string>
+  <string name="batterylog__button_of_sdcard_error_negative">@string/__button_of_sdcard_error_negative</string>
+
+  <string name="batterylog__title_of_file_output_error">@string/__title_of_file_output_error</string>
+  <string name="batterylog__message_of_file_output_error">@string/__message_of_file_output_error</string>
+  <string name="batterylog__button_of_file_output_error">@string/__button_of_file_output_error</string>
+
+  <string name="batterylog__title_of_zip_error">@string/__title_of_zip_error</string>
+  <string name="batterylog__message_of_zip_error">@string/__message_of_zip_error</string>
+  <string name="batterylog__button_of_zip_error">@string/__button_of_zip_error</string>
+
+  <string name="rebootlog__title_of_sdcard_error">@string/__title_of_sdcard_error</string>
+  <string name="rebootlog__message_of_sdcard_error">@string/__message_of_sdcard_error</string>
+  <string name="rebootlog__button_of_sdcard_error_ok">@string/__button_of_sdcard_error_ok</string>
+  <string name="rebootlog__button_of_sdcard_error_negative">@string/__button_of_sdcard_error_negative</string>
+
+  <string name="rebootlog__title_of_file_output_error">@string/__title_of_file_output_error</string>
+  <string name="rebootlog__message_of_file_output_error">@string/__message_of_file_output_error</string>
+  <string name="rebootlog__button_of_file_output_error">@string/__button_of_file_output_error</string>
+
+  <string name="rebootlog__title_of_zip_error">@string/__title_of_zip_error</string>
+  <string name="rebootlog__message_of_zip_error">@string/__message_of_zip_error</string>
+  <string name="rebootlog__button_of_zip_error">@string/__button_of_zip_error</string>
+
+  <string name="batterylog_graph__title_of_be_not_drawn_graph_yet">@string/__title_of_be_not_drawn_graph_yet</string>
+  <string name="batterylog_graph__message_of_be_not_drawn_graph_yet">@string/__message_of_be_not_drawn_graph_yet</string>
+  <string name="batterylog_graph__button_of_be_not_drawn_graph_yet">@string/__button_of_be_not_drawn_graph_yet</string>
+
+  <string name="rebootlog__title_of_mail">RebootLog</string>
+  <string name="rebootlog__text_of_mail">RebootLog</string>
+  <string name="rebootlog__message_of_client_chooser">Choose Client</string>
+
+  <string name="screenlog__on_time_message">onTime is %1$f sec.</string>
+  <string name="screenlog__message_of_screen_off">Screen Off</string>
+  <string name="screenlog__message_of_screen_on">Screen On</string>
+  <string name="screenlog__message_of_client_chooser">Choose Client</string>
+  <string name="screenlog__title_of_mail">Screen Raw Log</string>
+  <string name="screenlog__text_of_mail">Screen Raw Log %1$s</string>
+  <string name="screenlog__title_of_sdcard_error">SDCARD is required.</string>
+  <string name="screenlog__message_of_sdcard_error">Please insert your sdcard</string>
+  <string name="screenlog__button_of_sdcard_error_ok">OK</string>
+  <string name="screenlog__button_of_sdcard_error_negative">Cancel</string>
+  <string name="screenlog__title_of_file_output_error">File output failure.</string>
+  <string name="screenlog__message_of_file_output_error">Please check amount of sdcard</string>
+  <string name="screenlog__button_of_file_output_error">OK</string>
+  <string name="screenlog__title_of_zip_error">Zip failure.</string>
+  <string name="screenlog__message_of_zip_error">Please check amount of sdcard</string>
+  <string name="screenlog__button_of_zip_error">OK</string>
+
+  <string name="screenlog__title_of_delete_dialog">Delete Confirmation</string>
+  <string name="screenlog__message_of_delete_dialog">Delete all. Are you sure?</string>
+  <string name="screenlog__button_of_delete_dialog_positive">OK</string>
+  <string name="screenlog__button_of_delete_dialog_negative">cancel</string>
+  <string name="screenlog__message_of_delete_completion">%d has been deleted.</string>
+  <string name="screenlog__column_title">%1$s-%2$s-%3$s</string>
+  <string name="screenlog__text_of_title">ScreenLog</string>
+
+  <string name="screenhourlylog__on_time_message">onTime is %1$f sec.</string>
+  <string name="screenhourlylog_setting__key_pref_retention_period">screenhourlylog_setting__key_pref_retention_period</string>
+  <string name="screenhourlylog__message_of_screen_off">Screen Off</string>
+  <string name="screenhourlylog__message_of_screen_on">Screen On</string>
+  <string name="screenhourlylog__message_of_client_chooser">Choose Client</string>
+  <string name="screenhourlylog__title_of_mail">Screen Hourly Log (%1$s) </string>
+  <string name="screenhourlylog__text_of_mail">Screen Hourly Log (%1$s) </string>
+  <string name="screenhourlylog__title_of_sdcard_error">SDCARD is required.</string>
+  <string name="screenhourlylog__message_of_sdcard_error">Please insert your sdcard</string>
+  <string name="screenhourlylog__button_of_sdcard_error_ok">OK</string>
+  <string name="screenhourlylog__button_of_sdcard_error_negative">Cancel</string>
+  <string name="screenhourlylog__title_of_file_output_error">File output failure.</string>
+  <string name="screenhourlylog__message_of_file_output_error">Please check amount of sdcard</string>
+  <string name="screenhourlylog__button_of_file_output_error">OK</string>
+  <string name="screenhourlylog__title_of_zip_error">Zip failure.</string>
+  <string name="screenhourlylog__message_of_zip_error">Please check amount of sdcard</string>
+  <string name="screenhourlylog__button_of_zip_error">OK</string>
+
+  <string name="screenhourlylog__title_of_delete_dialog">Delete Confirmation</string>
+  <string name="screenhourlylog__message_of_delete_dialog">Delete all. Are you sure?</string>
+  <string name="screenhourlylog__button_of_delete_dialog_positive">OK</string>
+  <string name="screenhourlylog__button_of_delete_dialog_negative">cancel</string>
+  <string name="screenhourlylog__message_of_delete_completion">%d has been deleted.</string>
+  <string name="screenhourlylog__column_title">%1$s-%2$s-%3$s</string>
+  <string name="screenhourlylog__text_of_title">ErrorLog</string>
+
+  <string name="screenhourlylog__time">%1$s:00</string>
+  <string name="screenhourlylog__minutes">%1$.2f minutes.</string>
+
+  <string name="screenhourlylog_graph__title_of_be_not_drawn_graph_yet">@string/__title_of_be_not_drawn_graph_yet</string>
+  <string name="screenhourlylog_graph__message_of_be_not_drawn_graph_yet">@string/__message_of_be_not_drawn_graph_yet</string>
+  <string name="screenhourlylog_graph__button_of_be_not_drawn_graph_yet">@string/__button_of_be_not_drawn_graph_yet</string>
+  <string name="screenhourlylog_graph__xtitle">Hour</string>
+  <string name="screenhourlylog_graph__ytitle">Minutes</string>
+
+  <!-- settings -->
+  <string name="screenhourlylog_setting__ok_button">Close</string>
+  <string name="screenhourlylog_setting__title_pref">Screen Hourly Log Settings</string>
+  <string name="screenhourlylog_setting__title">Screen Hourly Log Settings</string>
+  <string name="screenhourlylog_setting__title_pref_retention_period">Screen Hourly Log Retention Period</string>
+  <string name="screenhourlylog_setting__summary_pref_retention_period">Currently, the retention period is set to %d days.</string>
+  <string name="screenhourlylog_setting__message_pref_retention_period">After a period of retention, Screen Hourly Log will be automatically deleted.</string>
+
+  <string name="screenlog_history__hourly_tab_label">Hourly</string>
+  <string name="screenlog_history__daily_tab_label">Daily</string>
+  <string name="screenlog_history__monthly_tab_label">Monthly</string>
+
+  <string name="screenlog_setting__ok_button">Close</string>
+  <string name="screenlog_setting__title_pref">ScreenLog Settings</string>
+
+  <string name="screenlog_setting__key_pref_retention_period">screenlog_setting__key_pref_retention_period</string>
+  <string name="screenlog_setting__title">Screen Log Settings</string>
+  <string name="screenlog_setting__title_pref_retention_period">Screen Raw Log Retention Period</string>
+  <string name="screenlog_setting__summary_pref_retention_period">Currently, the retention period is set to %d days.</string>
+  <string name="screenlog_setting__message_pref_retention_period">After a period of retention, Screen Raw Log will be automatically deleted.</string>
+
+
+  <!-- Screen Daily Log -->
+  <string name="screendailylog_setting__key_pref_retention_period">screendailylog_setting__key_pref_retention_period</string>
+  <string name="screendailylog__message_of_client_chooser">Choose Client</string>
+  <string name="screendailylog__title_of_mail">Screen Daily Log (%1$s) </string>
+  <string name="screendailylog__text_of_mail">Screen Daily Log (%1$s) </string>
+  <string name="screendailylog__title_of_sdcard_error">SDCARD is required.</string>
+  <string name="screendailylog__message_of_sdcard_error">Please insert your sdcard</string>
+  <string name="screendailylog__button_of_sdcard_error_ok">OK</string>
+  <string name="screendailylog__button_of_sdcard_error_negative">Cancel</string>
+  <string name="screendailylog__title_of_file_output_error">File output failure.</string>
+  <string name="screendailylog__message_of_file_output_error">Please check amount of sdcard</string>
+  <string name="screendailylog__button_of_file_output_error">OK</string>
+  <string name="screendailylog__title_of_zip_error">Zip failure.</string>
+  <string name="screendailylog__message_of_zip_error">Please check amount of sdcard</string>
+  <string name="screendailylog__button_of_zip_error">OK</string>
+
+  <string name="screendailylog__title_of_delete_dialog">Delete Confirmation</string>
+  <string name="screendailylog__message_of_delete_dialog">Delete all. Are you sure?</string>
+  <string name="screendailylog__button_of_delete_dialog_positive">OK</string>
+  <string name="screendailylog__button_of_delete_dialog_negative">cancel</string>
+  <string name="screendailylog__message_of_delete_completion">%d has been deleted.</string>
+  <string name="screendailylog__column_title">%1$s-%2$s</string>
+
+  <string name="screendailylog__time">%1$s</string>
+  <string name="screendailylog__minutes">%1$.2f hours.</string>
+
+  <string name="screendailylog_graph__title_of_be_not_drawn_graph_yet">@string/__title_of_be_not_drawn_graph_yet</string>
+  <string name="screendailylog_graph__message_of_be_not_drawn_graph_yet">@string/__message_of_be_not_drawn_graph_yet</string>
+  <string name="screendailylog_graph__button_of_be_not_drawn_graph_yet">@string/__button_of_be_not_drawn_graph_yet</string>
+  <string name="screendailylog_graph__xtitle">Day</string>
+  <string name="screendailylog_graph__ytitle">Hours</string>
+
+  <!-- settings -->
+  <string name="screendailylog_setting__ok_button">Close</string>
+  <string name="screendailylog_setting__title_pref">Screen Daily Log Settings</string>
+  <string name="screendailylog_setting__title">Screen Daily Log Settings</string>
+  <string name="screendailylog_setting__title_pref_retention_period">Screen Daily Log Retention Period</string>
+  <string name="screendailylog_setting__summary_pref_retention_period">Currently, the retention period is set to %d days.</string>
+  <string name="screendailylog_setting__message_pref_retention_period">After a period of retention, Screen Daily Log will be automatically deleted.</string>
+
+  <!-- Screen Monthly Log -->
+  <string name="screenmonthlylog_setting__key_pref_retention_period">screenmonthlylog_setting__key_pref_retention_period</string>
+  <string name="screenmonthlylog__message_of_client_chooser">Choose Client</string>
+  <string name="screenmonthlylog__title_of_mail">Screen Monthly Log (%1$s) </string>
+  <string name="screenmonthlylog__text_of_mail">Screen Monthly Log (%1$s) </string>
+  <string name="screenmonthlylog__title_of_sdcard_error">SDCARD is required.</string>
+  <string name="screenmonthlylog__message_of_sdcard_error">Please insert your sdcard</string>
+  <string name="screenmonthlylog__button_of_sdcard_error_ok">OK</string>
+  <string name="screenmonthlylog__button_of_sdcard_error_negative">Cancel</string>
+  <string name="screenmonthlylog__title_of_file_output_error">File output failure.</string>
+  <string name="screenmonthlylog__message_of_file_output_error">Please check amount of sdcard</string>
+  <string name="screenmonthlylog__button_of_file_output_error">OK</string>
+  <string name="screenmonthlylog__title_of_zip_error">Zip failure.</string>
+  <string name="screenmonthlylog__message_of_zip_error">Please check amount of sdcard</string>
+  <string name="screenmonthlylog__button_of_zip_error">OK</string>
+
+  <string name="screenmonthlylog__title_of_delete_dialog">Delete Confirmation</string>
+  <string name="screenmonthlylog__message_of_delete_dialog">Delete all. Are you sure?</string>
+  <string name="screenmonthlylog__button_of_delete_dialog_positive">OK</string>
+  <string name="screenmonthlylog__button_of_delete_dialog_negative">cancel</string>
+  <string name="screenmonthlylog__message_of_delete_completion">%d has been deleted.</string>
+  <string name="screenmonthlylog__column_title">%1$s</string>
+
+  <string name="screenmonthlylog__time">%1$s</string>
+  <string name="screenmonthlylog__minutes">%1$.2f hours.</string>
+
+  <string name="screenmonthlylog_graph__title_of_be_not_drawn_graph_yet">@string/__title_of_be_not_drawn_graph_yet</string>
+  <string name="screenmonthlylog_graph__message_of_be_not_drawn_graph_yet">@string/__message_of_be_not_drawn_graph_yet</string>
+  <string name="screenmonthlylog_graph__button_of_be_not_drawn_graph_yet">@string/__button_of_be_not_drawn_graph_yet</string>
+  <string name="screenmonthlylog_graph__xtitle">Month</string>
+  <string name="screenmonthlylog_graph__ytitle">Hours</string>
+
+  <!-- settings -->
+  <string name="screenmonthlylog_setting__ok_button">Close</string>
+  <string name="screenmonthlylog_setting__title_pref">Screen MonthLog Settings</string>
+  <string name="screenmonthlylog_setting__title">Screen Monthly Log Settings</string>
+  <string name="screenmonthlylog_setting__title_pref_retention_period">Screen Monthly Log Retention Period</string>
+  <string name="screenmonthlylog_setting__summary_pref_retention_period">Currently, the retention period is set to %d years.</string>
+  <string name="screenmonthlylog_setting__message_pref_retention_period">After a period of retention, Screen Monthly Log will be automatically deleted.</string>
+
+
+  <!-- loadAvgLog -->
+  <string name="loadavglog__text_of_title">LoadAvgLog</string>
+  <string name="loadavglog__title_of_delete_dialog">Delete Confirmation</string>
+  <string name="loadavglog__message_of_delete_dialog">Delete all. Are you sure?</string>
+  <string name="loadavglog__button_of_delete_dialog_positive">OK</string>
+  <string name="loadavglog__button_of_delete_dialog_negative">cancel</string>
+  <string name="loadavglog__message_of_delete_completion">%d has been deleted.</string>
+
+  <string name="loadavglog_setting__ok_button">Close</string>
+  <string name="loadavglog_setting__title_pref">LoadAvgLog Settings</string>
+
+  <string name="loadavglog_setting__title">LoadAvgLog Settings</string>
+  <string name="loadavglog_setting__key_pref_retention_period">loadavglog_setting__key_pref_retention_period</string>
+  <string name="loadavglog_setting__title_pref_retention_period">Retention Period</string>
+  <string name="loadavglog_setting__summary_pref_retention_period">Currently, the retention period is set to %d days.</string>
+  <string name="loadavglog_setting__message_pref_retention_period">After a period of retention, LoadAvgLog will be automatically deleted.</string>
+
+  <string name="loadavglog__column_title">%1$s-%2$s-%3$s</string>
+
+  <string name="loadavglog__title_of_mail">LoadAvgLog</string>
+  <string name="loadavglog__text_of_mail">LoadAvgLog %s data.</string>
+  <string name="loadavglog__message_of_mail_client_chooser">Choose Email Client</string>
+  <string name="loadavglog__message_of_client_chooser">Choose Client</string>
+
+  <string name="loadavglog__title_of_sdcard_error">SDCARD is required.</string>
+  <string name="loadavglog__message_of_sdcard_error">Please insert your sdcard</string>
+  <string name="loadavglog__button_of_sdcard_error_ok">OK</string>
+  <string name="loadavglog__button_of_sdcard_error_negative">Cancel</string>
+
+  <string name="loadavglog__title_of_file_output_error">File output failure.</string>
+  <string name="loadavglog__message_of_file_output_error">Please check amount of sdcard</string>
+  <string name="loadavglog__button_of_file_output_error">OK</string>
+
+  <string name="loadavglog__title_of_zip_error">Zip failure.</string>
+  <string name="loadavglog__message_of_zip_error">Please check amount of sdcard</string>
+  <string name="loadavglog__button_of_zip_error">OK</string>
+
+  <string name="loadavglog_graph__title_of_be_not_drawn_graph_yet">@string/__title_of_be_not_drawn_graph_yet</string>
+  <string name="loadavglog_graph__message_of_be_not_drawn_graph_yet">@string/__message_of_be_not_drawn_graph_yet</string>
+  <string name="loadavglog_graph__button_of_be_not_drawn_graph_yet">@string/__button_of_be_not_drawn_graph_yet</string>
+
+  <string name="loadavglog__per_one_minute">per 1 minute.</string>
+  <string name="loadavglog__per_five_minute">per 5 minutes.</string>
+  <string name="loadavglog__per_ten_minute">per 10 minutes.</string>
+
+  <!-- cpuUtilizationLog -->
+  <string name="cpuutilizationlog__text_of_title">CpuUtilizationLog</string>
+  <string name="cpuutilizationlog__title_of_delete_dialog">Delete Confirmation</string>
+  <string name="cpuutilizationlog__message_of_delete_dialog">Delete all. Are you sure?</string>
+  <string name="cpuutilizationlog__button_of_delete_dialog_positive">OK</string>
+  <string name="cpuutilizationlog__button_of_delete_dialog_negative">cancel</string>
+  <string name="cpuutilizationlog__message_of_delete_completion">%d has been deleted.</string>
+
+  <string name="cpuutilizationlog_setting__ok_button">Close</string>
+  <string name="cpuutilizationlog_setting__title_pref">CpuUtilizationLog Settings</string>
+
+  <string name="cpuutilizationlog_setting__title">CpuUtilizationLog Settings</string>
+  <string name="cpuutilizationlog_setting__key_pref_retention_period">cpuutilizationlog_setting__key_pref_retention_period</string>
+  <string name="cpuutilizationlog_setting__title_pref_retention_period">Retention Period</string>
+  <string name="cpuutilizationlog_setting__summary_pref_retention_period">Currently, the retention period is set to %d days.</string>
+  <string name="cpuutilizationlog_setting__message_pref_retention_period">After a period of retention, CpuUtilizationLog will be automatically deleted.</string>
+
+  <string name="cpuutilizationlog__column_title">%1$s-%2$s-%3$s</string>
+
+  <string name="cpuutilizationlog__title_of_mail">CpuUtilizationLog</string>
+  <string name="cpuutilizationlog__text_of_mail">CpuUtilizationLog %s data.</string>
+  <string name="cpuutilizationlog__message_of_mail_client_chooser">Choose Email Client</string>
+  <string name="cpuutilizationlog__message_of_client_chooser">Choose Client</string>
+
+  <string name="cpuutilizationlog__title_of_sdcard_error">SDCARD is required.</string>
+  <string name="cpuutilizationlog__message_of_sdcard_error">Please insert your sdcard</string>
+  <string name="cpuutilizationlog__button_of_sdcard_error_ok">OK</string>
+  <string name="cpuutilizationlog__button_of_sdcard_error_negative">Cancel</string>
+
+  <string name="cpuutilizationlog__title_of_file_output_error">File output failure.</string>
+  <string name="cpuutilizationlog__message_of_file_output_error">Please check amount of sdcard</string>
+  <string name="cpuutilizationlog__button_of_file_output_error">OK</string>
+
+  <string name="cpuutilizationlog__title_of_zip_error">Zip failure.</string>
+  <string name="cpuutilizationlog__message_of_zip_error">Please check amount of sdcard</string>
+  <string name="cpuutilizationlog__button_of_zip_error">OK</string>
+
+  <string name="cpuutilizationlog_graph__title_of_be_not_drawn_graph_yet">@string/__title_of_be_not_drawn_graph_yet</string>
+  <string name="cpuutilizationlog_graph__message_of_be_not_drawn_graph_yet">@string/__message_of_be_not_drawn_graph_yet</string>
+  <string name="cpuutilizationlog_graph__button_of_be_not_drawn_graph_yet">@string/__button_of_be_not_drawn_graph_yet</string>
+
+
+  <!-- memUtilizationLog -->
+  <string name="memutilizationlog__text_of_title">MemUtilizationLog</string>
+  <string name="memutilizationlog__title_of_delete_dialog">Delete Confirmation</string>
+  <string name="memutilizationlog__message_of_delete_dialog">Delete all. Are you sure?</string>
+  <string name="memutilizationlog__button_of_delete_dialog_positive">OK</string>
+  <string name="memutilizationlog__button_of_delete_dialog_negative">cancel</string>
+  <string name="memutilizationlog__message_of_delete_completion">%d has been deleted.</string>
+
+  <string name="memutilizationlog_setting__ok_button">Close</string>
+  <string name="memutilizationlog_setting__title_pref">MemUtilizationLog Settings</string>
+
+  <string name="memutilizationlog_setting__title">MemUtilizationLog Settings</string>
+  <string name="memutilizationlog_setting__key_pref_retention_period">memutilizationlog_setting__key_pref_retention_period</string>
+  <string name="memutilizationlog_setting__title_pref_retention_period">Retention Period</string>
+  <string name="memutilizationlog_setting__summary_pref_retention_period">Currently, the retention period is set to %d days.</string>
+  <string name="memutilizationlog_setting__message_pref_retention_period">After a period of retention, MemUtilizationLog will be automatically deleted.</string>
+
+  <string name="memutilizationlog__column_title">%1$s-%2$s-%3$s</string>
+
+  <string name="memutilizationlog__title_of_mail">MemUtilizationLog</string>
+  <string name="memutilizationlog__text_of_mail">MemUtilizationLog %s data.</string>
+  <string name="memutilizationlog__message_of_mail_client_chooser">Choose Email Client</string>
+  <string name="memutilizationlog__message_of_client_chooser">Choose Client</string>
+
+  <string name="memutilizationlog__title_of_sdcard_error">SDCARD is required.</string>
+  <string name="memutilizationlog__message_of_sdcard_error">Please insert your sdcard</string>
+  <string name="memutilizationlog__button_of_sdcard_error_ok">OK</string>
+  <string name="memutilizationlog__button_of_sdcard_error_negative">Cancel</string>
+
+  <string name="memutilizationlog__title_of_file_output_error">File output failure.</string>
+  <string name="memutilizationlog__message_of_file_output_error">Please check amount of sdcard</string>
+  <string name="memutilizationlog__button_of_file_output_error">OK</string>
+
+  <string name="memutilizationlog__title_of_zip_error">Zip failure.</string>
+  <string name="memutilizationlog__message_of_zip_error">Please check amount of sdcard</string>
+  <string name="memutilizationlog__button_of_zip_error">OK</string>
+
+  <string name="memutilizationlog_graph__title_of_be_not_drawn_graph_yet">@string/__title_of_be_not_drawn_graph_yet</string>
+  <string name="memutilizationlog_graph__message_of_be_not_drawn_graph_yet">@string/__message_of_be_not_drawn_graph_yet</string>
+  <string name="memutilizationlog_graph__button_of_be_not_drawn_graph_yet">@string/__button_of_be_not_drawn_graph_yet</string>
+
+  <string name="memutilizationlog__row_total">Total</string>
+  <string name="memutilizationlog__row_free">Free</string>
+  <string name="memutilizationlog__row_cache">Cache</string>
+
+
+  <!-- netStatLog -->
+  <string name="netstatlog__text_of_title">NetStatLog</string>
+  <string name="netstatlog__title_of_delete_dialog">Delete Confirmation</string>
+  <string name="netstatlog__message_of_delete_dialog">Delete all. Are you sure?</string>
+  <string name="netstatlog__button_of_delete_dialog_positive">OK</string>
+  <string name="netstatlog__button_of_delete_dialog_negative">cancel</string>
+  <string name="netstatlog__message_of_delete_completion">%d has been deleted.</string>
+
+  <string name="netstatlog_setting__ok_button">Close</string>
+  <string name="netstatlog_setting__title_pref">NetStatLog Settings</string>
+
+  <string name="netstatlog_setting__title">NetStatLog Settings</string>
+  <string name="netstatlog_setting__key_pref_retention_period">netstatlog_setting__key_pref_retention_period</string>
+  <string name="netstatlog_setting__title_pref_retention_period">Retention Period</string>
+  <string name="netstatlog_setting__summary_pref_retention_period">Currently, the retention period is set to %d days.</string>
+  <string name="netstatlog_setting__message_pref_retention_period">After a period of retention, NetStatLog will be automatically deleted.</string>
+
+  <string name="netstatlog__column_title">%1$s-%2$s-%3$s</string>
+
+  <string name="netstatlog__title_of_mail">NetStatLog</string>
+  <string name="netstatlog__text_of_mail">NetStatLog %s data.</string>
+  <string name="netstatlog__message_of_mail_client_chooser">Choose Email Client</string>
+  <string name="netstatlog__message_of_client_chooser">Choose Client</string>
+
+  <string name="netstatlog__title_of_sdcard_error">SDCARD is required.</string>
+  <string name="netstatlog__message_of_sdcard_error">Please insert your sdcard</string>
+  <string name="netstatlog__button_of_sdcard_error_ok">OK</string>
+  <string name="netstatlog__button_of_sdcard_error_negative">Cancel</string>
+
+  <string name="netstatlog__title_of_file_output_error">File output failure.</string>
+  <string name="netstatlog__message_of_file_output_error">Please check amount of sdcard</string>
+  <string name="netstatlog__button_of_file_output_error">OK</string>
+
+  <string name="netstatlog__title_of_zip_error">Zip failure.</string>
+  <string name="netstatlog__message_of_zip_error">Please check amount of sdcard</string>
+  <string name="netstatlog__button_of_zip_error">OK</string>
+
+  <string name="netstatlog_graph__title_of_be_not_drawn_graph_yet">@string/__title_of_be_not_drawn_graph_yet</string>
+  <string name="netstatlog_graph__message_of_be_not_drawn_graph_yet">@string/__message_of_be_not_drawn_graph_yet</string>
+  <string name="netstatlog_graph__button_of_be_not_drawn_graph_yet">@string/__button_of_be_not_drawn_graph_yet</string>
+
+  <string name="admob__devices">TEST_EMULATOR,5BFE28B404218D908E6F404836E090E1,B3EEABB8EE11C2BE770B684D95219ECB,D40156E4AA76D5D10C59928F248C1908</string>
+
+  <string name="dashboard_item_rebootlog_title">Reboot Log</string>
+  <string name="dashboard_item_logcat_title">Logcat</string>
+  <string name="dashboard_item_errorlog_title">Error Log</string>
+  <string name="dashboard_item_batterylog_title">Battery Log</string>
+  <string name="dashboard_item_screenlog_title">Screen On/Off Log</string>
+  <string name="dashboard_item_screenhourlylog_title">Screen On/Off\nHourly Summary</string>
+  <string name="dashboard_item_screendailylog_title">Screen On/Off\nDaily Summary</string>
+  <string name="dashboard_item_screenmonthlylog_title">Screen On/Off\nMonthly Summary</string>
+  <string name="dashboard_item_loadavglog_title">Load Avg</string>
+  <string name="dashboard_item_cpuutilization_title">Cpu Utilization</string>
+  <string name="dashboard_item_memutilization_title">Mem Utilization</string>
+  <string name="dashboard_item_netstat_title">Net Utilization</string>
+
+  <string name="memutilizationlog_graph__legend_used">Used</string>
+  <string name="memutilizationlog_graph__legend_total">Total</string>
+
+  <string name="netstatlog_graph__legend_recv">Receive Bytes</string>
+  <string name="netstatlog_graph__legend_send">Send Bytes</string>
+
+  <string name="netstatlog__recv_byte_fmt">%.02f MB recv</string>
+  <string name="netstatlog__recv_packet_fmt">%d packets</string>
+  <string name="netstatlog__recv_err_fmt">%d errors</string>
+  <string name="netstatlog__send_byte_fmt">%.02f MB send</string>
+  <string name="netstatlog__send_packet_fmt">%d packets</string>
+  <string name="netstatlog__send_err_fmt">%d errors</string>
+</resources>

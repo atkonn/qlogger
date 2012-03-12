@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<PreferenceScreen 
+  xmlns:android="http://schemas.android.com/apk/res/android">
+  <PreferenceCategory
+    android:title="@string/screenlog_setting__title_pref">
+    <jp.co.qsdn.android.qlogger.view.prefs.NumberPickerPreference
+      android:key="@string/screenlog_setting__key_pref_retention_period"
+      android:title="@string/screenlog_setting__title_pref_retention_period"
+      android:summary="@string/screenlog_setting__summary_pref_retention_period"
+      android:dialogTitle="@string/screenlog_setting__title_pref_retention_period"
+      android:dialogMessage="@string/screenlog_setting__message_pref_retention_period"
+      defaultNumber="30"
+    />
+    <jp.co.qsdn.android.qlogger.view.prefs.NumberPickerPreference
+      android:key="@string/screenhourlylog_setting__key_pref_retention_period"
+      android:title="@string/screenhourlylog_setting__title_pref_retention_period"
+      android:summary="@string/screenhourlylog_setting__summary_pref_retention_period"
+      android:dialogTitle="@string/screenhourlylog_setting__title_pref_retention_period"
+      android:dialogMessage="@string/screenhourlylog_setting__message_pref_retention_period"
+      defaultNumber="30"
+    />
+    <jp.co.qsdn.android.qlogger.view.prefs.NumberPickerPreference
+      android:key="@string/screendailylog_setting__key_pref_retention_period"
+      android:title="@string/screendailylog_setting__title_pref_retention_period"
+      android:summary="@string/screendailylog_setting__summary_pref_retention_period"
+      android:dialogTitle="@string/screendailylog_setting__title_pref_retention_period"
+      android:dialogMessage="@string/screendailylog_setting__message_pref_retention_period"
+      defaultNumber="92"
+    />
+    <jp.co.qsdn.android.qlogger.view.prefs.NumberPickerPreference
+      android:key="@string/screenmonthlylog_setting__key_pref_retention_period"
+      android:title="@string/screenmonthlylog_setting__title_pref_retention_period"
+      android:summary="@string/screenmonthlylog_setting__summary_pref_retention_period"
+      android:dialogTitle="@string/screenmonthlylog_setting__title_pref_retention_period"
+      android:dialogMessage="@string/screenmonthlylog_setting__message_pref_retention_period"
+      defaultNumber="3"
+    />
+  </PreferenceCategory>
+</PreferenceScreen>

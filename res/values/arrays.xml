@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+  <string-array name="logcat_setting__entries_loglevel">
+    <item>Verbose</item>
+    <item>Debug</item>
+    <item>Info</item>
+    <item>Warning</item>
+    <item>Error</item>
+    <item>Fatal</item>
+  </string-array>
+  <string-array name="logcat_setting__entryvalues_loglevel">
+    <item>V</item>
+    <item>D</item>
+    <item>I</item>
+    <item>W</item>
+    <item>E</item>
+    <item>F</item>
+  </string-array>
+</resources>

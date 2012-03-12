@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>  
+<resources>  
+  <dimen name="height_of_errorlog_list">80dip</dimen>  
+  <dimen name="height_of_batterylog_list">40dip</dimen>  
+  <dimen name="height_of_loadavglog_list">50dip</dimen>  
+  <dimen name="height_of_memutilizationlog_list">60dip</dimen>  
+  <dimen name="height_of_netstatlog_list">70dip</dimen>  
+  <dimen name="height_of_footer_bar">50dip</dimen>
+  <dimen name="height_of_graph">600dip</dimen>
+  <dimen name="height_of_about_header">170dip</dimen>
+</resources> 

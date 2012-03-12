@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<resources>
+  <color name="edit_text_frame">#ffeca14f</color>
+  <color name="feature_text_bg">#77fdf4da</color>
+  <color name="about_bg">#77fdf4da</color>
+  <color name="basic1">#FFAE00</color>
+  <color name="basic2">#F5E1B5</color>
+
+  <color name="text_color_normal">#ff333333</color>
+  <color name="text_color_sub">#ff666666</color>
+  <color name="text_color_hint">#ffb5b5b5</color>
+</resources>

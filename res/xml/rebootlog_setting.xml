@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<PreferenceScreen 
+  xmlns:android="http://schemas.android.com/apk/res/android">
+  <PreferenceCategory
+    android:title="@string/rebootlog_setting__title_pref">
+    <jp.co.qsdn.android.qlogger.view.prefs.NumberPickerPreference
+      android:key="@string/rebootlog_setting__key_pref_retention_period"
+      android:title="@string/rebootlog_setting__title_pref_retention_period"
+      android:summary="@string/rebootlog_setting__summary_pref_retention_period"
+      android:dialogTitle="@string/rebootlog_setting__title_pref_retention_period"
+      android:dialogMessage="@string/rebootlog_setting__message_pref_retention_period"
+      defaultNumber="3"
+    />
+    <CheckBoxPreference
+      android:key="@string/rebootlog_setting__key_pref_notification"
+      android:title="@string/rebootlog_setting__title_pref_notification"
+      android:summaryOn="@string/rebootlog_setting__summary_on_pref_notification"
+      android:summaryOff="@string/rebootlog_setting__summary_off_pref_notification"
+      android:defaultValue="true"
+    />
+  </PreferenceCategory>
+</PreferenceScreen>

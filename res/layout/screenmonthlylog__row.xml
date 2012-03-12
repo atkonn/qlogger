@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"  
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent"  
+  android:padding="6dip">  
+  <LinearLayout
+    android:orientation="horizontal"  
+    android:layout_width="fill_parent"
+    android:layout_height="@dimen/height_of_errorlog_list" 
+    >  
+    <TextView
+      android:id="@+id/mm" 
+      android:layout_width="0dip"  
+      android:layout_height="wrap_content"
+      android:layout_weight="1"  
+      android:gravity="center_vertical"  
+      style="@style/text_bold"
+      />  
+    <TextView
+      android:id="@+id/on_time"  
+      android:layout_width="0dip"  
+      android:layout_height="wrap_content" 
+      android:layout_weight="1"
+      android:singleLine="true" 
+      android:ellipsize="marquee"
+      style="@style/text_sub"
+      />  
+  </LinearLayout>  
+</LinearLayout>  

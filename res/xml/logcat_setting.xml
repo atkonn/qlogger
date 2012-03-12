@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<PreferenceScreen 
+  xmlns:android="http://schemas.android.com/apk/res/android">
+  <PreferenceCategory
+    android:title="@string/logcat_setting__title_pref">
+    <Preference
+      android:key="key_color_setting_activity"
+      android:title="@string/logcat_setting__title_color_setting"
+      android:summary="@string/logcat_setting__summary_color_setting"
+    />
+    <jp.co.qsdn.android.qlogger.view.prefs.NumberPickerPreference
+      android:key="@string/logcat_setting__key_pref_buffer_size"
+      android:title="@string/logcat_setting__title_pref_buffer_size"
+      android:summary="@string/logcat_setting__summary_pref_buffer_size"
+      android:dialogTitle="@string/logcat_setting__title_pref_buffer_size"
+      android:dialogMessage="@string/logcat_setting__message_pref_buffer_size"
+      defaultNumber="300"
+    />
+    <Preference
+      android:key="key_filter_setting_activity"
+      android:title="@string/logcat_setting__title_filter_setting"
+      android:summary="@string/logcat_setting__summary_filter_setting"
+    />
+  </PreferenceCategory>
+</PreferenceScreen>

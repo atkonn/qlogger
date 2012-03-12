@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<resources>
+  <style
+    name="DashboardTheme.Light"
+    parent="@android:style/Theme.Light">
+    <!-- ウィンドウタイトル属性 -->
+    <item name="android:windowTitleSize">50dip</item>
+    <item name="android:windowTitleBackgroundStyle">@style/CustomWindowTitleBackground</item>
+    <item name="android:windowContentOverlay">@null</item>
+    <item name="android:windowTitleStyle">@style/CustomWindowTitle</item>
+
+    <!-- ウィンドウ属性 -->
+    <item name="android:windowBackground">@drawable/title_bg</item>
+    <!-- listViewも設定 -->
+    <item name="android:listViewStyle">@style/CustomListView</item>
+  </style>
+
+  <style
+    name="CustomTheme.Light"
+    parent="@android:style/Theme.Light">
+    <!-- ウィンドウタイトル属性 -->
+    <item name="android:windowTitleSize">50dip</item>
+    <item name="android:windowTitleBackgroundStyle">@style/CustomWindowTitleBackground</item>
+    <item name="android:windowContentOverlay">@null</item>
+    <item name="android:windowTitleStyle">@style/CustomWindowTitle</item>
+
+    <!-- listViewも設定 -->
+<!--
+    <item name="android:listViewStyle">@style/CustomListView</item>
+-->
+  </style>
+
+  <style
+    name="CustomWindowTitleBackground">
+    <item name="android:background">@drawable/title_bar</item>
+  </style>
+
+  <style
+    name="CustomWindowTitle">
+    <item name="android:singleLine">true</item>
+    <item name="android:textAppearance">@style/TextAppearance.WindowTitle</item>
+    <item name="android:shadowColor">#BB000000</item>
+    <item name="android:shadowRadius">2.75</item>
+  </style>
+
+  <style
+    name="TextAppearance.WindowTitle"
+    parent="@android:style/TextAppearance.WindowTitle">
+    <item name="android:textColor">#fff</item>
+    <item name="android:textSize">16sp</item>
+    <item name="android:textStyle">bold</item>
+  </style>
+
+  <style
+    name="CustomTheme2.Light"
+    parent="@style/CustomTheme.Light">
+
+    <!-- ウィンドウ属性 -->
+<!--
+    <item name="android:windowBackground">@drawable/title_bg_light</item>
+-->
+  </style>
+
+  <!-- PreferenceScreenの背景が変わらないため、PreferenceActivityの親クラスListActivityの背景を設定 -->
+  <style name="CustomListView" parent="@android:style/Widget.ListView">  
+<!--
+    <item name="android:background">@drawable/tartan_light</item>  
+-->
+    <!-- cacheColorHintも設定しておかないと悲しいことになる、とのこと -->
+    <item name="android:cacheColorHint">@android:color/transparent</item>  
+  </style> 
+
+  <style name="text_bold">
+    <item name="android:textSize">14.0sp</item>
+    <item name="android:typeface">monospace</item>
+    <item name="android:textStyle">bold</item>
+    <item name="android:textColor">@color/text_color_normal</item>
+  </style>
+  <style name="text_sub">
+    <item name="android:textSize">11.0sp</item>
+    <item name="android:typeface">monospace</item>
+    <item name="android:textColor">@color/text_color_sub</item>
+  </style>
+
+</resources>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<PreferenceScreen 
+  xmlns:android="http://schemas.android.com/apk/res/android">
+  <PreferenceCategory
+    android:title="@string/batterylog_setting__title_pref">
+    <jp.co.qsdn.android.qlogger.view.prefs.NumberPickerPreference
+      android:key="@string/batterylog_setting__key_pref_retention_period"
+      android:title="@string/batterylog_setting__title_pref_retention_period"
+      android:summary="@string/batterylog_setting__summary_pref_retention_period"
+      android:dialogTitle="@string/batterylog_setting__title_pref_retention_period"
+      android:dialogMessage="@string/batterylog_setting__message_pref_retention_period"
+      defaultNumber="7"
+    />
+  </PreferenceCategory>
+</PreferenceScreen>

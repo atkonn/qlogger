@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:orientation="vertical"
+  android:gravity="center"
+  android:background="@drawable/button_stateful"
+  android:focusable="false" >
+  <ImageView
+    android:src="@drawable/ic_menu_dummy"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" />
+  <TextView
+    android:background="@color/feature_text_bg"
+    android:text=""
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" />
+</LinearLayout>
+   
+  

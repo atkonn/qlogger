@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:orientation="vertical"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent"
+  >
+  <ScrollView
+    android:id="@+id/scrollview"
+    android:fillViewport="true"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+    <LinearLayout
+      android:orientation="vertical"
+      android:layout_width="fill_parent"
+      android:layout_height="@dimen/height_of_graph"
+      android:id="@+id/graph"
+      >
+    </LinearLayout>
+  </ScrollView>
+</LinearLayout>
+
