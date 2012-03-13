@@ -204,7 +204,7 @@ public class ActivityNetStatLogGraph
 
   protected XYMultipleSeriesDataset getCurrentData(int startpos) {
     String yyyymmdd = (String)dateList.get(startpos);
-    Log.d(TAG, "yyyymmdd:[" + yyyymmdd + "]");
+    if (Constant.DEBUG)Log.d(TAG, "yyyymmdd:[" + yyyymmdd + "]");
 
     Cursor cur = null;
     List<NetStatLog> list = new ArrayList<NetStatLog>();
@@ -254,16 +254,27 @@ public class ActivityNetStatLogGraph
     cal.add(java.util.Calendar.DATE, 1);
     xAxisMax = 24.5;
     yAxisMax = 0;
+    long[] recvCount = new long[24];
+    long[] sendCount = new long[24];
+    for (int ii=0; ii<24; ii++) {
+      recvCount[ii] = 0;
+      sendCount[ii] = 0;
+    }
     for (int ii=0; ii<netStatLogs.length; ii++) {
       long val = netStatLogs[ii].getRecvByte() / 1024;
-      recvByteSeries.add(Double.parseDouble(hh24Format.format(netStatLogs[ii].getCreatedOn().getTime())), val);
-      if (val > yAxisMax) {
-        yAxisMax = val;
+      String hh24 = hh24Format.format(netStatLogs[ii].getCreatedOn().getTime());
+      int idx = Integer.parseInt(hh24);
+      recvCount[idx] += netStatLogs[ii].getRecvByte() / 1024;
+      sendCount[idx] += netStatLogs[ii].getSendByte() / 1024;
+    }
+    for (int ii=0; ii<24; ii++) {
+      recvByteSeries.add((double)ii, recvCount[ii]);
+      if (recvCount[ii] > yAxisMax) {
+        yAxisMax = recvCount[ii];
       }
-      val = netStatLogs[ii].getSendByte() / 1024;
-      sendByteSeries.add(Double.parseDouble(hh24Format.format(netStatLogs[ii].getCreatedOn().getTime())), val);
-      if (val > yAxisMax) {
-        yAxisMax = val;
+      sendByteSeries.add((double)ii, sendCount[ii]);
+      if (sendCount[ii] > yAxisMax) {
+        yAxisMax = sendCount[ii];
       }
     }
     data.addSeries(recvByteSeries);
