@@ -462,7 +462,7 @@
   <string name="screendailylog__button_of_delete_dialog_positive">OK</string>
   <string name="screendailylog__button_of_delete_dialog_negative">キャンセル</string>
   <string name="screendailylog__message_of_delete_completion">%d 件削除しました。</string>
-  <string name="screendailylog__column_title">%1$s年%2$s日</string>
+  <string name="screendailylog__column_title">%1$s年%2$s月</string>
 
   <string name="screendailylog__time">%1$s</string>
   <string name="screendailylog__minutes">%1$.2f 時間</string>
