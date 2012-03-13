@@ -1,2 +1,2 @@
-ant clean debug &&  adb install -r bin/QLogger-debug.apk
+ant clean debug &&  adb install -r bin/qlogger-debug.apk
 
