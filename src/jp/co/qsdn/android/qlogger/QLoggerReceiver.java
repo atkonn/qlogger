@@ -44,26 +44,32 @@ import jp.co.qsdn.android.qlogger.util.Util;
 
 
 public class QLoggerReceiver
-  extends BroadcastReceiver {
+  extends AbstractExecutableReceiver {
   private final String TAG = getClass().getName();
   private ContentResolver resolver;
   private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSSSSSSSS");
 
   @Override
-  public void onReceive(Context context, Intent intent) {
-    String action = intent.getAction();
-    if ((action.equals("android.intent.action.ACTION_SHUTDOWN"))||
-        (action.equals("android.intent.action.REBOOT"))) {
-      recordRebootLogOnDb(context, action);
-    }
-    else
-    if (Constant.ACTION.SCREEN_ON.equals(action)) {
-      recordScreenOnLogOnDb(context, action);
-    }
-    else
-    if (Constant.ACTION.SCREEN_OFF.equals(action)) {
-      recordScreenOffLogOnDb(context, action);
-    }
+  public void onReceive(final Context context, final Intent intent) {
+    doExecute(new Runnable() {
+      @Override
+      public void run() {
+        String action = intent.getAction();
+        if ((action.equals("android.intent.action.ACTION_SHUTDOWN"))||
+            (action.equals("android.intent.action.REBOOT"))) {
+          recordRebootLogOnDb(context, action);
+        }
+        else
+        if (Constant.ACTION.SCREEN_ON.equals(action)) {
+          recordScreenOnLogOnDb(context, action);
+        }
+        else
+        if (Constant.ACTION.SCREEN_OFF.equals(action)) {
+          recordScreenOffLogOnDb(context, action);
+        }
+        shutdown();
+      }
+    });
   }
 
   protected void recordRebootLogOnDb(Context context,String action) {

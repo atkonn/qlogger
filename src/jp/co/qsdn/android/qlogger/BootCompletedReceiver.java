@@ -47,31 +47,37 @@ import jp.co.qsdn.android.qlogger.view.ActivityRebootLog;
 
 
 public class BootCompletedReceiver
-  extends BroadcastReceiver {
+  extends AbstractExecutableReceiver {
   private final String TAG = getClass().getName();
   private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSSSSSSSS");
 
   @Override
-  public void onReceive(Context context, Intent intent) {
-    String action = intent.getAction();
-    Log.d(TAG, "onReceive:[" + action + "]");
-    if(action.equals("android.intent.action.BOOT_COMPLETED")) {
-      {
-        Intent _intent = new Intent(context, RecordBootCompletedService.class);
-        _intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        context.startService(_intent);
+  public void onReceive(final Context context, final Intent intent) {
+    doExecute(new Runnable() { 
+      @Override
+      public void run() {
+        String action = intent.getAction();
+        Log.d(TAG, "onReceive:[" + action + "]");
+        if(action.equals("android.intent.action.BOOT_COMPLETED")) {
+          {
+            Intent _intent = new Intent(context, RecordBootCompletedService.class);
+            _intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startService(_intent);
+          }
+    
+          if (! Util.isRunning(context, QLoggerReceiverService.SERVICE_NAME)) {
+            Intent _intent = new Intent(context, QLoggerReceiverService.class);
+            _intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startService(_intent);
+          }
+          if (! Util.isRunning(context, LogcatService.SERVICE_NAME)) {
+            Intent _intent = new Intent(context, LogcatService.class);
+            _intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startService(_intent);
+          }
+        }
+        shutdown();
       }
-
-      if (! Util.isRunning(context, QLoggerReceiverService.SERVICE_NAME)) {
-        Intent _intent = new Intent(context, QLoggerReceiverService.class);
-        _intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        context.startService(_intent);
-      }
-      if (! Util.isRunning(context, LogcatService.SERVICE_NAME)) {
-        Intent _intent = new Intent(context, LogcatService.class);
-        _intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        context.startService(_intent);
-      }
-    }
+    });
   }
 }

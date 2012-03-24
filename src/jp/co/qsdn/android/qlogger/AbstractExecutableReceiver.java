@@ -49,23 +49,73 @@ import java.util.concurrent.RejectedExecutionException;
 import java.util.concurrent.TimeUnit;
 
 
-public class BatteryChangedReceiver
-  extends AbstractExecutableReceiver {
+public class AbstractExecutableReceiver
+  extends BroadcastReceiver {
   private final String TAG = getClass().getName();
   private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSSSSSSSS");
 
-  @Override
-  public void onReceive(final Context context, final Intent intent) {
-    doExecute(new Runnable() {
-      @Override
-      public void run() {
-        String action = intent.getAction();
-        Log.d(TAG, "onReceive:[" + action + "]");
-        if(action.equals("android.intent.action.BATTERY_CHANGED")) {
-          Prefs.getInstance(context).setBatteryLog__NowLevel(intent.getIntExtra("level", 0));
-        }
-        shutdown();
+  private ExecutorService executor = null;
+  protected ExecutorService getExecutor() {
+    if (executor == null) {
+      executor = Executors.newSingleThreadExecutor();
+    }
+    return executor;
+  }
+  protected void doExecute(Runnable command) {
+    if (command == null) {
+      return;
+    }
+    while(true) {
+      try {
+        getExecutor().execute(command);
       }
-    });
+      catch (RejectedExecutionException e) {
+        if (getExecutor().isShutdown()) {
+          // ignore
+        }
+        else {
+          Log.e(TAG, "command execute failure", e);
+          waitSecond();
+          System.gc();
+          continue;
+        }
+      }
+      break;
+    }
+  }
+  public void waitSecond() {
+    try {
+      TimeUnit.SECONDS.sleep(1);
+    } catch (InterruptedException e) {
+    }
+  }
+  public void waitMillis(long millis) {
+    try {
+      TimeUnit.MILLISECONDS.sleep(millis);
+    } catch (InterruptedException e) {
+    }
+  }
+  protected void shutdown() {
+    getExecutor().shutdown();
+    try {
+      if (!getExecutor().awaitTermination(60, TimeUnit.SECONDS)) {
+        getExecutor().shutdownNow();
+        if (!getExecutor().awaitTermination(60, TimeUnit.SECONDS)) {
+          Log.d(TAG,"ExecutorService did not terminate....");
+          getExecutor().shutdownNow();
+          Thread.currentThread().interrupt();
+        }
+      }
+    } catch (InterruptedException e) {
+      executor.shutdownNow();
+      Thread.currentThread().interrupt();
+    }
+    executor = null;
+  }
+
+  @Override
+  public void onReceive(Context context, Intent intent) {
+    String action = intent.getAction();
+    Log.d(TAG, "onReceive:[" + action + "]");
   }
 }

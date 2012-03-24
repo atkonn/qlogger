@@ -27,15 +27,21 @@ import android.util.Log;
 import java.util.List;
 
 public class ScreenDailyLoggerReceiver
-  extends BroadcastReceiver {
+  extends AbstractExecutableReceiver {
   private final String TAG = getClass().getName();
 
   @Override
-  public void onReceive(Context context, Intent intent) {
+  public void onReceive(final Context context, final Intent intent) {
     if (Constant.DEBUG) Log.v(TAG, ">>> onReceive");
-    Intent _intent = new Intent(context, RecordScreenDailyLogService.class);
-    _intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);   
-    context.startService(_intent);
+    doExecute(new Runnable() {
+      @Override
+      public void run() {
+        Intent _intent = new Intent(context, RecordScreenDailyLogService.class);
+        _intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);   
+        context.startService(_intent);
+        shutdown();
+      }
+    });
     if (Constant.DEBUG) Log.v(TAG, "<<< onReceive");
   }
 }

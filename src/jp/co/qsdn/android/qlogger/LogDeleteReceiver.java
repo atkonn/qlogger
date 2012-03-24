@@ -47,12 +47,19 @@ import jp.co.qsdn.android.qlogger.util.Util;
 
 
 public class LogDeleteReceiver
-  extends BroadcastReceiver {
+  extends AbstractExecutableReceiver {
   private final String TAG = getClass().getName();
+
   @Override
-  public void onReceive(Context context, Intent intent) {
-    Intent _intent = new Intent(context, DeleteLogService.class);
-    _intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-    context.startService(_intent);
+  public void onReceive(final Context context, final Intent intent) {
+    doExecute(new Runnable() {
+      @Override
+      public void run() {
+        Intent _intent = new Intent(context, DeleteLogService.class);
+        _intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startService(_intent);
+        shutdown();
+      }
+    });
   }
 }
