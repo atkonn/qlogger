@@ -55,14 +55,16 @@ public class BatteryChangedReceiver
   private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSSSSSSSS");
 
   @Override
-  public void onReceive(final Context context, final Intent intent) {
+  public void onReceive(Context context, final Intent intent) {
+
+    final Context _ctx = context.getApplicationContext();
     doExecute(new Runnable() {
       @Override
       public void run() {
         String action = intent.getAction();
         Log.d(TAG, "onReceive:[" + action + "]");
         if(action.equals("android.intent.action.BATTERY_CHANGED")) {
-          Prefs.getInstance(context).setBatteryLog__NowLevel(intent.getIntExtra("level", 0));
+          Prefs.getInstance(_ctx).setBatteryLog__NowLevel(intent.getIntExtra("level", 0));
         }
         shutdown();
       }

@@ -31,14 +31,16 @@ public class ScreenDailyLoggerReceiver
   private final String TAG = getClass().getName();
 
   @Override
-  public void onReceive(final Context context, final Intent intent) {
+  public void onReceive(Context context, final Intent intent) {
     if (Constant.DEBUG) Log.v(TAG, ">>> onReceive");
+
+    final Context _ctx = context.getApplicationContext();
     doExecute(new Runnable() {
       @Override
       public void run() {
-        Intent _intent = new Intent(context, RecordScreenDailyLogService.class);
+        Intent _intent = new Intent(_ctx, RecordScreenDailyLogService.class);
         _intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);   
-        context.startService(_intent);
+        _ctx.startService(_intent);
         shutdown();
       }
     });

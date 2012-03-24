@@ -50,22 +50,24 @@ public class QLoggerReceiver
   private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSSSSSSSS");
 
   @Override
-  public void onReceive(final Context context, final Intent intent) {
+  public void onReceive(Context context, final Intent intent) {
+
+    final Context _ctx = context.getApplicationContext();
     doExecute(new Runnable() {
       @Override
       public void run() {
         String action = intent.getAction();
         if ((action.equals("android.intent.action.ACTION_SHUTDOWN"))||
             (action.equals("android.intent.action.REBOOT"))) {
-          recordRebootLogOnDb(context, action);
+          recordRebootLogOnDb(_ctx, action);
         }
         else
         if (Constant.ACTION.SCREEN_ON.equals(action)) {
-          recordScreenOnLogOnDb(context, action);
+          recordScreenOnLogOnDb(_ctx, action);
         }
         else
         if (Constant.ACTION.SCREEN_OFF.equals(action)) {
-          recordScreenOffLogOnDb(context, action);
+          recordScreenOffLogOnDb(_ctx, action);
         }
         shutdown();
       }

@@ -52,7 +52,9 @@ public class BootCompletedReceiver
   private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSSSSSSSS");
 
   @Override
-  public void onReceive(final Context context, final Intent intent) {
+  public void onReceive(Context context, final Intent intent) {
+
+    final Context _ctx = context.getApplicationContext();
     doExecute(new Runnable() { 
       @Override
       public void run() {
@@ -60,20 +62,20 @@ public class BootCompletedReceiver
         Log.d(TAG, "onReceive:[" + action + "]");
         if(action.equals("android.intent.action.BOOT_COMPLETED")) {
           {
-            Intent _intent = new Intent(context, RecordBootCompletedService.class);
+            Intent _intent = new Intent(_ctx, RecordBootCompletedService.class);
             _intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            context.startService(_intent);
+            _ctx.startService(_intent);
           }
     
-          if (! Util.isRunning(context, QLoggerReceiverService.SERVICE_NAME)) {
-            Intent _intent = new Intent(context, QLoggerReceiverService.class);
+          if (! Util.isRunning(_ctx, QLoggerReceiverService.SERVICE_NAME)) {
+            Intent _intent = new Intent(_ctx, QLoggerReceiverService.class);
             _intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            context.startService(_intent);
+            _ctx.startService(_intent);
           }
-          if (! Util.isRunning(context, LogcatService.SERVICE_NAME)) {
-            Intent _intent = new Intent(context, LogcatService.class);
+          if (! Util.isRunning(_ctx, LogcatService.SERVICE_NAME)) {
+            Intent _intent = new Intent(_ctx, LogcatService.class);
             _intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            context.startService(_intent);
+            _ctx.startService(_intent);
           }
         }
         shutdown();
