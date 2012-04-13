@@ -38,8 +38,6 @@ public class RebootLoggerMenu {
   }
   
   public boolean onCreateOptionsMenu(Menu menu) {
-//    MenuInflater inflater = getMenuInflater();
-//    inflater.inflate(R.menu.main_activity, menu);
     menu.add(Menu.NONE, TOP_MENU_ID,       Menu.NONE, "top");
     menu.add(Menu.NONE, LOGCAT_MENU_ID,    Menu.NONE, "logcat");
     return true;

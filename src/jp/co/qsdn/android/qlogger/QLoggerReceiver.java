@@ -51,6 +51,7 @@ public class QLoggerReceiver
 
   @Override
   public void onReceive(Context context, final Intent intent) {
+    if (Constant.DEBUG)Log.v(TAG, ">>> onReceive");
 
     final Context _ctx = context.getApplicationContext();
     doExecute(new Runnable() {
@@ -72,6 +73,7 @@ public class QLoggerReceiver
         shutdown();
       }
     });
+    if (Constant.DEBUG)Log.v(TAG, "<<< onReceive");
   }
 
   protected void recordRebootLogOnDb(Context context,String action) {

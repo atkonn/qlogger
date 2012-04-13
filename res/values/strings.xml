@@ -599,7 +599,7 @@
   <string name="netstatlog_graph__message_of_be_not_drawn_graph_yet">@string/__message_of_be_not_drawn_graph_yet</string>
   <string name="netstatlog_graph__button_of_be_not_drawn_graph_yet">@string/__button_of_be_not_drawn_graph_yet</string>
 
-  <string name="admob__devices">TEST_EMULATOR,5BFE28B404218D908E6F404836E090E1,B3EEABB8EE11C2BE770B684D95219ECB,D40156E4AA76D5D10C59928F248C1908</string>
+  <string name="admob__devices">TEST_EMULATOR,5BFE28B404218D908E6F404836E090E1,B3EEABB8EE11C2BE770B684D95219ECB,D40156E4AA76D5D10C59928F248C1908,1A99D90F1A05B24FDB007FEF083C893B</string>
 
   <string name="dashboard_item_rebootlog_title">Reboot Log</string>
   <string name="dashboard_item_logcat_title">Logcat</string>

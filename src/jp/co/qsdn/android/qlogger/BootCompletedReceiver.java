@@ -53,6 +53,7 @@ public class BootCompletedReceiver
 
   @Override
   public void onReceive(Context context, final Intent intent) {
+    if (Constant.DEBUG)Log.v(TAG, ">>> onReceive");
 
     final Context _ctx = context.getApplicationContext();
     doExecute(new Runnable() { 
@@ -81,5 +82,6 @@ public class BootCompletedReceiver
         shutdown();
       }
     });
+    if (Constant.DEBUG)Log.v(TAG, "<<< onReceive");
   }
 }

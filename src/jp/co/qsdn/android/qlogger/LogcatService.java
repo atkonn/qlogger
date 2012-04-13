@@ -251,6 +251,7 @@ public class LogcatService
 
   @Override
   public void onCreate() {
+    if (Constant.DEBUG)Log.v(TAG, ">>> onCreate");
     super.onCreate();
 
     registerAlarmService();
@@ -383,17 +384,22 @@ public class LogcatService
         }
       }
     };
+    if (Constant.DEBUG)Log.v(TAG, "<<< onCreate");
   }
   
   public void onStart(Intent intent, int startId) {
+    if (Constant.DEBUG)Log.v(TAG, ">>> onStart");
     super.onStart(intent, startId);
+    if (Constant.DEBUG)Log.v(TAG, "<<< onStart");
   }
 
   @Override
   public int onStartCommand(Intent intent, int flags, int startId) {
+    if (Constant.DEBUG)Log.v(TAG, ">>> onStartCommand");
     Log.i(TAG, "onStartCommand Received start id " + startId + ": " + intent);
     doExecute(setupCommand);
     doExecute(mainCommand);
+    if (Constant.DEBUG)Log.v(TAG, "<<< onStartCommand");
     return START_STICKY;
   }
 
@@ -466,10 +472,12 @@ public class LogcatService
 
   @Override
   public void onDestroy() {
+    if (Constant.DEBUG)Log.v(TAG, ">>> onDestroy");
     unregisterAlarmService();
     doExecute(shutdownCommand);
     shutdown();
     super.onDestroy();
+    if (Constant.DEBUG)Log.v(TAG, "<<< onDestroy");
   }
   
   private class LogcatServiceBinder extends ILogcatService.Stub {
@@ -495,6 +503,7 @@ public class LogcatService
           }
         }
       }
+      int retry = 0;
       while(true) {
         synchronized (logdata) {
           if (logdata.size() != 0) {

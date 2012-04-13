@@ -108,8 +108,9 @@ public class RecordBootCompletedService
         contentValues.put(RebootLogProvider.COLUMN_NAME.CREATED_ON_LONG, nowTime);
         contentValues.put(RebootLogProvider.COLUMN_NAME.CREATED_ON, dateFormat.format(nowTime));
         getContentResolver().insert(RebootLogProvider.CONTENT_URI, contentValues);
-        stopSelf();
         if (Constant.DEBUG) Log.d(TAG, "<<< run()");
+        waitSeconds(2);
+        stopSelf();
       }
     };
 

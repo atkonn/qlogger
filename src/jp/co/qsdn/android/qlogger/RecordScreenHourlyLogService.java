@@ -186,6 +186,7 @@ public class RecordScreenHourlyLogService
         contentValues.put(ScreenHourlyLogProvider.COLUMN_NAME.CREATED_ON,     dateFormat.format(nowTime));
         getContentResolver().insert(ScreenHourlyLogProvider.CONTENT_URI, contentValues);
         if (Constant.DEBUG) Log.d(TAG, "<<< run()");
+        waitSeconds(2);
         stopSelf(); 
       }
     };

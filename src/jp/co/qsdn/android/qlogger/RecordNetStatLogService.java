@@ -196,6 +196,7 @@ public class RecordNetStatLogService
           getContentResolver().insert(NetStatLogProvider.CONTENT_URI, contentValues);
         }
         if (Constant.DEBUG) Log.d(TAG, "<<< run()");
+        waitSeconds(2);
         stopSelf(); 
       }
     };

@@ -87,13 +87,24 @@ public abstract class AbstractExecutableService
     } catch (InterruptedException e) {
     }
   }
+  protected void waitSeconds(int sec) {
+    try {
+      TimeUnit.SECONDS.sleep(sec);
+    } catch (InterruptedException e) {
+    }
+  }
   Runnable command = null;
   
   
   @Override
   public void onDestroy() {
     if (getExecutor() != null) {
-      shutdown();
+      doExecute(new Runnable() {
+        @Override
+        public void run() {
+          shutdown();
+        }
+      });
     }
     super.onDestroy();
   }

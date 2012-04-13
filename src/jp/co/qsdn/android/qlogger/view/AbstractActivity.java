@@ -75,7 +75,7 @@ import jp.co.qsdn.android.qlogger.util.Util;
 public abstract class AbstractActivity
   extends Activity
 {
-  private final String TAG = getClass().getName();
+  private final String TAG = AbstractActivity.class.getName();
   private Handler handler = new Handler();
   private ViewFlipper flipper;
   private int startPos  = 0;
@@ -310,19 +310,32 @@ public abstract class AbstractActivity
 
   @Override
   protected void onPause() {
-    if (Constant.DEBUG)Log.v(TAG, ">>> onPause" + this);
+    if (Constant.DEBUG)Log.v(TAG, ">>> onPause " + this);
     if (getExecutor() != null) {
-      shutdown();
+      doExecute(new Runnable() {
+        @Override
+        public void run() {
+          shutdown();
+        }
+      });
+     
     }
     super.onPause();
-    if (Constant.DEBUG)Log.v(TAG, "<<< onPause" + this);
+    if (Constant.DEBUG)Log.v(TAG, "<<< onPause " + this);
   }
 
   @Override
   protected void onDestroy() {
     if (Constant.DEBUG)Log.v(TAG, ">>> onDestroy" + this);
     if (getExecutor() != null) {
-      shutdown();
+      doExecute(new Runnable() {
+        @Override
+        public void run() {
+          if (Constant.DEBUG)Log.v(TAG, ">>> onDestroyCommand");
+          shutdown();
+          if (Constant.DEBUG)Log.v(TAG, "<<< onDestroyCommand");
+        }
+      });
     }
     stopWatchingExternalStorage();
     super.onDestroy();

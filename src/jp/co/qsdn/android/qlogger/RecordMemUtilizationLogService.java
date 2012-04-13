@@ -105,6 +105,7 @@ public class RecordMemUtilizationLogService
         contentValues.put(MemUtilizationLogProvider.COLUMN_NAME.CREATED_ON,     dateFormat.format(nowTime));
         getContentResolver().insert(MemUtilizationLogProvider.CONTENT_URI, contentValues);
         if (Constant.DEBUG) Log.d(TAG, "<<< run()");
+        waitSeconds(2);
         stopSelf(); 
       }
     };

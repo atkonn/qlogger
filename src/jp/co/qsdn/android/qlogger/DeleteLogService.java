@@ -129,6 +129,7 @@ public class DeleteLogService
             NetStatLogProvider.COLUMN_NAME.CREATED_ON_LONG + " <= " + netStatLogDeleteTime , null);
 
         if (Constant.DEBUG) Log.v(TAG, "<<< run()");
+        waitSeconds(2);
         stopSelf();
       }
     };

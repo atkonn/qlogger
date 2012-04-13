@@ -59,6 +59,7 @@ public class QLoggerReceiverService
   
   @Override
   public void onCreate() {
+    if (Constant.DEBUG)Log.v(TAG, ">>> onCreate");
     super.onCreate();
 
     receiver = new QLoggerReceiver();
@@ -91,15 +92,19 @@ public class QLoggerReceiverService
 
 
     doExecute(command);
+    if (Constant.DEBUG)Log.v(TAG, "<<< onCreate");
   }
   
   public void onStart(Intent intent, int startId) {
+    if (Constant.DEBUG)Log.v(TAG, ">>> onStart");
     super.onStart(intent, startId);
+    if (Constant.DEBUG)Log.v(TAG, "<<< onStart");
   }
 
   
   @Override
   public void onDestroy() {
+    if (Constant.DEBUG)Log.v(TAG, ">>> onDestroy");
     try {
       unregisterReceiver(receiver);
     }
@@ -114,6 +119,7 @@ public class QLoggerReceiverService
     }
     unregisterAlarmService();
     super.onDestroy();
+    if (Constant.DEBUG)Log.v(TAG, "<<< onDestroy");
   }
   
 

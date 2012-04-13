@@ -133,6 +133,7 @@ public class RecordScreenMonthlyLogService
           }
         }
         if (Constant.DEBUG) Log.d(TAG, "<<< run()");
+        waitSeconds(2);
         stopSelf(); 
       }
     };

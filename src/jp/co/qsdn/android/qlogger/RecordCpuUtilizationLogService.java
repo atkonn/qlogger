@@ -121,6 +121,7 @@ public class RecordCpuUtilizationLogService
           getContentResolver().insert(CpuUtilizationLogProvider.CONTENT_URI, contentValues);
         }
         if (Constant.DEBUG) Log.d(TAG, "<<< run()");
+        waitSeconds(2);
         stopSelf(); 
       }
     };

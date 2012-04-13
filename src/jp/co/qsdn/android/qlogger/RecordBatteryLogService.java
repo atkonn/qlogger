@@ -72,8 +72,9 @@ public class RecordBatteryLogService
         contentValues.put(BatteryLogProvider.COLUMN_NAME.TIMESTAMP_LONG, nowTime);
         contentValues.put(BatteryLogProvider.COLUMN_NAME.LEVEL,          Prefs.getInstance(getApplicationContext()).getBatteryLog__NowLevel());
         getContentResolver().insert(BatteryLogProvider.CONTENT_URI, contentValues);
-        stopSelf();
         if (Constant.DEBUG) Log.v(TAG, "<<< run()");
+        waitSeconds(2);
+        stopSelf();
       }
     };
 

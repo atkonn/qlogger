@@ -86,6 +86,7 @@ public class RecordLoadAvgLogService
         contentValues.put(LoadAvgLogProvider.COLUMN_NAME.CREATED_ON,     dateFormat.format(nowTime));
         getContentResolver().insert(LoadAvgLogProvider.CONTENT_URI, contentValues);
         if (Constant.DEBUG) Log.d(TAG, "<<< run()");
+        waitSeconds(2);
         stopSelf(); 
       }
     };

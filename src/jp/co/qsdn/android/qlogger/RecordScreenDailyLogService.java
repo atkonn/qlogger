@@ -131,6 +131,7 @@ public class RecordScreenDailyLogService
           }
         }
         if (Constant.DEBUG) Log.d(TAG, "<<< run()");
+        waitSeconds(2);
         stopSelf(); 
       }
     };

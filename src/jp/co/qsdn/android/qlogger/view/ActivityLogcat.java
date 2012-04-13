@@ -88,6 +88,7 @@ public class ActivityLogcat
   }
   @Override
   public void onCreate(Bundle savedInstanceState) {
+    if (Constant.DEBUG)Log.v(TAG, ">>> onCreate");
     super.onCreate(savedInstanceState);
 
     basePattern = Pattern.compile("^([^\\s]+)\\s([^\\s]+)\\s([VDIWEFS])/.*$");
@@ -182,6 +183,7 @@ public class ActivityLogcat
         if (Constant.DEBUG)Log.v(TAG,"<<< updateViewCommand");
       }
     };
+    if (Constant.DEBUG)Log.v(TAG, "<<< onCreate");
   }
 
   protected List<LogLine> filter(List<LogLine> list) {
@@ -208,29 +210,50 @@ public class ActivityLogcat
 
   @Override
   public void onResume() {
+    if (Constant.DEBUG)Log.v(TAG, ">>> onResume");
     super.onResume();
     switchViewToWait();
     doExecute(updateViewCommand);
+    if (Constant.DEBUG)Log.v(TAG, "<<< onResume");
   }
 
   @Override
   public void onPause() {
-    if (getLogcatService() != null) {
-      disconnectLogcatService();
-    }
+    if (Constant.DEBUG)Log.v(TAG, ">>> onPause");
+    doExecute(new Runnable() {
+      @Override
+      public void run() {
+        if (Constant.DEBUG)Log.v(TAG, ">>> onPauseCommand");
+        if (getLogcatService() != null) {
+          disconnectLogcatService();
+        }
+        if (Constant.DEBUG)Log.v(TAG, "<<< onPauseCommand");
+      }
+    });
     super.onPause();
+    if (Constant.DEBUG)Log.v(TAG, "<<< onPause");
   }
   @Override
   public void onDestroy() {
-    if (getLogcatService() != null) {
-      disconnectLogcatService();
-    }
+    if (Constant.DEBUG)Log.v(TAG, ">>> onDestroy");
+    doExecute(new Runnable() {
+      @Override 
+      public void run() {
+        if (Constant.DEBUG)Log.v(TAG, ">>> onDestroyCommand");
+        if (getLogcatService() != null) {
+          disconnectLogcatService();
+        }
+        if (Constant.DEBUG)Log.v(TAG, "<<< onDestroyCommand");
+      }
+    });
     super.onDestroy();
+    if (Constant.DEBUG)Log.v(TAG, "<<< onDestroy");
   }
 
   protected Object connectLock = new Object(){};
   protected boolean isConnect = false;
   protected void connectLogcatService() {
+    if (Constant.DEBUG)Log.v(TAG, ">>> connectLogcatService");
     synchronized(connectLock) {
       if (! isConnect) {
         Intent intent = new Intent(getApplicationContext(), LogcatService.class);
@@ -238,15 +261,18 @@ public class ActivityLogcat
         isConnect = true;
       }
     }
+    if (Constant.DEBUG)Log.v(TAG, "<<< connectLogcatService");
   }
 
   protected void disconnectLogcatService() {
+    if (Constant.DEBUG)Log.v(TAG, ">>> disconnectLogcatService");
     synchronized(connectLock) {
       if (isConnect) {
         unbindService(serviceConnection);
         setLogcatService(null);
       }
     }
+    if (Constant.DEBUG)Log.v(TAG, "<<< disconnectLogcatService");
   }
 
   public void gotoReload(View v) {
