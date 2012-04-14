@@ -47,28 +47,74 @@ public abstract class AbstractCommand<T> {
   }
   protected abstract List<String> getCommandList();
   protected abstract T filter(String line);
+  protected void waitSeconds(int sec) {
+    try {
+      TimeUnit.SECONDS.sleep(sec);
+    } catch (InterruptedException e) {
+    }
+  }
 
   public void run() {
     if (Constant.DEBUG)Log.v(TAG, ">>> run");
-    BufferedReader reader = null;
     try {
       setProcess(new ProcessBuilder(getCommandList()).start());
-      reader = new BufferedReader(new InputStreamReader(getProcess().getInputStream()), BUFSZ);
-      String line = null;
-      while((line = reader.readLine()) != null) {
-        output.add(filter(line));
-      }
     }
     catch (IOException ex) {
-      Log.e(TAG, "failure", ex);
+      Log.e(TAG, "process build failure", ex);
+      return;
+    }
+    waitSeconds(3);
+
+    final Thread readerThread = new Thread() {
+      @Override
+      public void run() {
+        BufferedReader reader = null;
+        try {
+          reader = new BufferedReader(new InputStreamReader(getProcess().getInputStream()), BUFSZ);
+          String line = null;
+          while((line = reader.readLine()) != null) {
+            synchronized(output) {
+              output.add(filter(line));
+            }
+          }
+        }
+        catch (IOException ex) {
+          Log.e(TAG, "failure", ex);
+        }
+        finally {
+          if (reader != null) {
+            try { reader.close(); } catch (Exception ex) {}
+          }
+        }
+      }
+    };
+    Thread interruptor = new Thread() {
+      @Override
+      public void run() {
+        readerThread.interrupt();
+      }
+    };
+    readerThread.start();
+    try {
+      do {
+        readerThread.join(Constant.BUFFERED_READER.WAIT_MILLISECONDS);
+        if (!readerThread.isAlive()) break;
+        interruptor.start();
+        interruptor.join(Constant.INTERRUPTOR.WAIT_MILLISECONDS);
+        readerThread.join(Constant.INTERRUPTOR.WAIT_MILLISECONDS);
+        if (! readerThread.isAlive())break;
+  
+        throw new RuntimeException("reader interrupt failure");
+      }
+      while(false);
+    }
+    catch (InterruptedException ex) {
+      throw new RuntimeException(ex);
     }
     finally {
-      if (reader != null) {
-        try { reader.close(); } catch (Exception ex) {}
-      }
+      Destroyer destroyer = new Destroyer(getProcess());
+      destroyer.waitAndDestroy();
     }
-    Destroyer destroyer = new Destroyer(getProcess());
-    destroyer.waitAndDestroy();
     if (Constant.DEBUG)Log.v(TAG, "<<< run");
   }
 }

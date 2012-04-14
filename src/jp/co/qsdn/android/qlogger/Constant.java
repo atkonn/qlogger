@@ -82,4 +82,11 @@ public class Constant {
 
   public static final String DATABASE_NAME = "qlogger.db";
   public static final int DATABASE_VERSION = 1;
+
+  public static class BUFFERED_READER {
+    public static final int WAIT_MILLISECONDS = 3000;
+  }
+  public static class INTERRUPTOR {
+    public static final int WAIT_MILLISECONDS = 1000;
+  }
 }
