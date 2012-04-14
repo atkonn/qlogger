@@ -32,7 +32,7 @@ public class LoadAvgLoggerReceiver
   private final String TAG = getClass().getName();
 
   @Override
-  public void onReceive(Context context, final Intent intent) {
+  public void onReceive(Context context, Intent intent) {
     if (Constant.DEBUG) Log.v(TAG, ">>> onReceive");
     final Context _ctx = context.getApplicationContext();
     doExecute(new Runnable() {

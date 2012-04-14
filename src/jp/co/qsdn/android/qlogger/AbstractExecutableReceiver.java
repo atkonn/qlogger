@@ -56,7 +56,7 @@ public class AbstractExecutableReceiver
 
   private ExecutorService executor = null;
   protected ExecutorService getExecutor() {
-    if (executor == null) {
+    if (executor == null || executor.isShutdown()) {
       executor = Executors.newSingleThreadExecutor();
     }
     return executor;
@@ -96,20 +96,7 @@ public class AbstractExecutableReceiver
     }
   }
   protected void shutdown() {
-    getExecutor().shutdown();
-    try {
-      if (!getExecutor().awaitTermination(60, TimeUnit.SECONDS)) {
-        getExecutor().shutdownNow();
-        if (!getExecutor().awaitTermination(60, TimeUnit.SECONDS)) {
-          Log.d(TAG,"ExecutorService did not terminate....");
-          getExecutor().shutdownNow();
-          Thread.currentThread().interrupt();
-        }
-      }
-    } catch (InterruptedException e) {
-      executor.shutdownNow();
-      Thread.currentThread().interrupt();
-    }
+    Util.executorShutdown(TAG, getExecutor(), Thread.currentThread());
     executor = null;
   }
 

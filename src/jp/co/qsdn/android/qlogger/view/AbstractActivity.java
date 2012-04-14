@@ -35,6 +35,7 @@ import android.text.Html;
 
 import android.util.Log;
 
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -60,11 +61,11 @@ import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import jp.co.qsdn.android.qlogger.Constant;
 import jp.co.qsdn.android.qlogger.ILogcatService;
 import jp.co.qsdn.android.qlogger.LogcatService;
 import jp.co.qsdn.android.qlogger.QLoggerReceiverService;
 import jp.co.qsdn.android.qlogger.R;
-import jp.co.qsdn.android.qlogger.Constant;
 import jp.co.qsdn.android.qlogger.RebootLoggerMenu;;
 import jp.co.qsdn.android.qlogger.prefs.Prefs;
 import jp.co.qsdn.android.qlogger.util.Util;
@@ -387,4 +388,19 @@ public abstract class AbstractActivity
     if (Constant.DEBUG)Log.v(TAG, "<<< setStartPos(" + getStartPos() + ")" + this);
   }
   public abstract void changePage(int newStartPos);
+
+  @Override
+  public boolean dispatchKeyEvent(KeyEvent e) {
+    if(e.getKeyCode() == KeyEvent.KEYCODE_BACK) {
+      if(e.getAction() == KeyEvent.ACTION_DOWN) {
+        if (Constant.DEBUG)Log.v(TAG, ">>> dispatchKeyEvent()");
+        setResult(RESULT_OK, getIntent());
+        finish();
+        if (Constant.DEBUG)Log.v(TAG, "<<< dispatchKeyEvent()");
+        return false;
+      }
+      return true;
+    }
+    return super.dispatchKeyEvent(e);
+  }
 }

@@ -57,6 +57,7 @@ public class QLoggerReceiver
     doExecute(new Runnable() {
       @Override
       public void run() {
+        if (Constant.DEBUG)Log.v(TAG, ">>> onReceiveCommand action:[" + intent.getAction() + "]");
         String action = intent.getAction();
         if ((action.equals("android.intent.action.ACTION_SHUTDOWN"))||
             (action.equals("android.intent.action.REBOOT"))) {
@@ -70,6 +71,7 @@ public class QLoggerReceiver
         if (Constant.ACTION.SCREEN_OFF.equals(action)) {
           recordScreenOffLogOnDb(_ctx, action);
         }
+        if (Constant.DEBUG)Log.v(TAG, "<<< onReceiveCommand action:[" + intent.getAction() + "]");
         shutdown();
       }
     });

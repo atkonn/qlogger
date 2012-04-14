@@ -28,6 +28,8 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
 
+import jp.co.qsdn.android.qlogger.Constant;
+
 public abstract class AbstractCommand<T> {
   private Process process;
   private List<T> output = new ArrayList<T>();
@@ -47,6 +49,7 @@ public abstract class AbstractCommand<T> {
   protected abstract T filter(String line);
 
   public void run() {
+    if (Constant.DEBUG)Log.v(TAG, ">>> run");
     BufferedReader reader = null;
     try {
       setProcess(new ProcessBuilder(getCommandList()).start());
@@ -66,5 +69,6 @@ public abstract class AbstractCommand<T> {
     }
     Destroyer destroyer = new Destroyer(getProcess());
     destroyer.waitAndDestroy();
+    if (Constant.DEBUG)Log.v(TAG, "<<< run");
   }
 }

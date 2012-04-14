@@ -327,10 +327,10 @@ public class LogcatService
     restartCommand = new Runnable() {
       @Override
       public void run() {
-        Log.d(TAG,"restart開始");
+        if (Constant.DEBUG)Log.v(TAG, ">>> restartCommand");
         restartFlag = true;
         shutdown(true);
-        Log.d(TAG,"restart終了");
+        if (Constant.DEBUG)Log.v(TAG, "<<< restartCommand");
       }
     };
     resetRestartFlagCommand = new Runnable() {
@@ -408,6 +408,7 @@ public class LogcatService
   }
 
   protected boolean isAliveLogcatProcess() {
+    if (Constant.DEBUG)Log.v(TAG, ">>> isAliveLogcatProcess");
     int pid = android.os.Process.myPid();
     PsCommand psCommand = new PsCommand();
     psCommand.run();
@@ -420,6 +421,7 @@ public class LogcatService
         android.os.Process.killProcess(psResult.getPid());
       }
     }
+    if (Constant.DEBUG)Log.v(TAG, "<<< isAliveLogcatProcess");
     return result;
   }
 
@@ -482,24 +484,26 @@ public class LogcatService
   
   private class LogcatServiceBinder extends ILogcatService.Stub {
     public List<LogLine> getLog() {
-      synchronized (logdata) {
-        if (! getExecutor().isShutdown()) {
-          Log.d(TAG, "executor alive.");
-          if (! isAliveLogcatProcess()) {
-            Log.d(TAG, "ps logcat process is dead or not my child.");
-            Log.d(TAG, "ps logcat process restart now.");
-            doExecute(restartCommand);
-            while(restartFlag) {
-              waitSecond();
-            }
+      if (Constant.DEBUG)Log.v(TAG, ">>> getLog");
+      if (! getExecutor().isShutdown()) {
+        if (Constant.DEBUG)Log.d(TAG, "executor alive.");
+        if (! isAliveLogcatProcess()) {
+          if (Constant.DEBUG)Log.d(TAG, "ps logcat process is dead or not my child.");
+          if (Constant.DEBUG)Log.d(TAG, "ps logcat process restart now.");
+          doExecute(restartCommand);
+          while(restartFlag) {
+            if (Constant.DEBUG)Log.d(TAG, "wait restarting...");
+            waitSecond();
           }
         }
-        else {
-          if (! restartFlag) {
-            doExecute(restartCommand);
-            while(restartFlag) {
-              waitSecond();
-            }
+      }
+      else {
+        if (Constant.DEBUG)Log.d(TAG, "executor dead");
+        if (! restartFlag) {
+          doExecute(restartCommand);
+          while(restartFlag) {
+            if (Constant.DEBUG)Log.d(TAG, "wait restarting...");
+            waitSecond();
           }
         }
       }
@@ -515,9 +519,12 @@ public class LogcatService
           break;
         }
       }
+      ArrayList<LogLine> result = new ArrayList<LogLine>();
       synchronized(logdata) {
-        return new ArrayList<LogLine>(logdata);
+        result = new ArrayList<LogLine>(logdata);
       }
+      if (Constant.DEBUG)Log.v(TAG, "<<< getLog");
+      return result;
     }
   }
 

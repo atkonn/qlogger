@@ -21,14 +21,23 @@ import android.app.ActivityManager;
 
 import android.content.Context;
 
+import android.util.Log;
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
 import java.util.List;
+import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.RejectedExecutionException;
+import java.util.concurrent.TimeUnit;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
+
+import jp.co.qsdn.android.qlogger.Constant;
 
 public class Util {
   public static boolean isRunning(Context context, String serviceName) {
@@ -79,6 +88,23 @@ public class Util {
       if (zipOutputStream != null) {
         zipOutputStream.close();
       }
+    }
+  }
+
+  public static void executorShutdown(String tag, ExecutorService executor, Thread currentThread) {
+    try {
+      executor.shutdown();
+      if (!executor.awaitTermination(Constant.SECONDS.EXECUTOR_TERMINATE, TimeUnit.SECONDS)) {
+        executor.shutdownNow();
+        if (!executor.awaitTermination(Constant.SECONDS.EXECUTOR_TERMINATE, TimeUnit.SECONDS)) {
+          if (Constant.DEBUG)Log.d(tag,"ExecutorService did not terminate....");
+          executor.shutdownNow();
+          currentThread.interrupt();
+        }
+      }
+    } catch (InterruptedException e) {
+      executor.shutdownNow();
+      currentThread.interrupt();
     }
   }
 }

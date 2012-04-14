@@ -28,6 +28,8 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
 
+import jp.co.qsdn.android.qlogger.Constant;
+
 
 public class Destroyer
   extends TimerTask 
@@ -40,6 +42,7 @@ public class Destroyer
   }
 
   public void waitAndDestroy() {
+    if (Constant.DEBUG)Log.v(TAG, ">>> waitAndDestroy");
     Timer timer = new Timer("destroyer timer");
     timer.schedule(this, TimeUnit.SECONDS.toMillis(3));
     for (;;) {
@@ -52,6 +55,7 @@ public class Destroyer
       }
     }
     timer.cancel();
+    if (Constant.DEBUG)Log.v(TAG, "<<< waitAndDestroy");
   }
   
   public Process getProcess() {

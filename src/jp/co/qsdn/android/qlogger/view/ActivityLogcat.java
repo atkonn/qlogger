@@ -114,7 +114,7 @@ public class ActivityLogcat
           waitMillis(200);
           while (getLogcatService() == null) {
             waitSecond();
-            Log.d(TAG, "logcatService接続待ち");
+            if (Constant.DEBUG)Log.d(TAG, "logcatService接続待ち");
             if (++retry >= 10) {
               Log.e(TAG, "logcatServiceに接続できませんでした");
               break;
@@ -125,6 +125,7 @@ public class ActivityLogcat
             return; 
           }
         }
+if (Constant.DEBUG)Log.v(TAG, "1");
         List _list = null;
         try {
           _list = getLogcatService().getLog();
@@ -132,6 +133,7 @@ public class ActivityLogcat
         catch (RemoteException ex) {
           Log.e(TAG, "logcat service(getLog()) failure", ex);
         }
+if (Constant.DEBUG)Log.v(TAG, "2");
         
         if (_list == null) {
           getHandler().post(new Runnable() {
@@ -142,6 +144,7 @@ public class ActivityLogcat
           if (Constant.DEBUG)Log.v(TAG,"<<< updateViewCommand (_list is null)");
           return;
         }
+if (Constant.DEBUG)Log.v(TAG, "3");
 
         final ListView listView = (ListView)findViewById(getMainViewId());
         if (listView == null) {
@@ -153,6 +156,7 @@ public class ActivityLogcat
           if (Constant.DEBUG)Log.v(TAG,"<<< updateViewCommand (listView is null)");
           return;
         }
+if (Constant.DEBUG)Log.v(TAG, "4");
 
         final List<LogLine> list = filter(_list);
         getHandler().post(new Runnable() {
@@ -165,6 +169,7 @@ public class ActivityLogcat
             listView.setSelection(listView.getCount()-1);
           }
         });
+if (Constant.DEBUG)Log.v(TAG, "5");
         if (listView.getCount() == 0) {
           getHandler().post(new Runnable() {
             public void run() {
