@@ -25,6 +25,11 @@ import java.util.regex.Pattern;
 
 import jp.co.qsdn.android.qlogger.Constant;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.StringUtils;
+
 public class PsCommand 
   extends AbstractCommand<PsCommand.PsResult>
 {
@@ -39,18 +44,12 @@ public class PsCommand
   }
 
   protected List<String> getCommandList() {
-    List<String> command = new ArrayList<String>();
-    command.add("/system/bin/toolbox");
-    command.add("ps");
-    if (getFilterString() != null) {
-      command.add(getFilterString());
-    }
-    return command;
+    return new ArrayList<String>();
   }
 
   @Override
   protected PsCommand.PsResult filter(String line) {
-    Matcher matcher = regex.matcher(line);
+    Matcher matcher = regex.matcher(StringUtils.chop(line));
     if (matcher.matches()) {
       PsResult result = new PsResult();
       result.setUser(matcher.group(1));
@@ -67,6 +66,9 @@ public class PsCommand
       }
       catch (Exception ex) {}
       return result;
+    }
+    else {
+     if (Constant.DEBUG) Log.d(TAG, "Unmatch!!!:[" + line + "]");
     }
     return null;
   }
@@ -100,6 +102,36 @@ public class PsCommand
     public void setName(String name) {
       this.name = name;
     }
+  
+    /**
+     * @see java.lang.Object#toString
+     * @see org.apache.commons.lang.builder.ToStringBuilder
+     * @see org.apache.commons.lang.builder.ToStringBuilder#reflectionToString
+     */
+    public String toString() {
+      return ToStringBuilder.reflectionToString(this);
+    }
+  
+    /**
+     * @see java.lang.Object#equals
+     * @see org.apache.commons.lang.builder.EqualsBuilder
+     * @see org.apache.commons.lang.builder.EqualsBuilder#reflectionEquals
+     */
+    public boolean equals(Object object) {
+      if (!(object instanceof PsResult)) {
+        return false;
+      }
+      return EqualsBuilder.reflectionEquals(this, object);
+    }
+  
+    /**
+     * @see java.lang.Object#hashCode
+     * @see org.apache.commons.lang.builder.HashCodeBuilder
+     * @see org.apache.commons.lang.builder.HashCodeBuilder#reflectionHashCode
+     */
+    public int hashCode() {
+      return HashCodeBuilder.reflectionHashCode(17, 37, this);
+    }
   }
   
   public String getFilterString() {
@@ -129,6 +161,11 @@ public class PsCommand
     for (String line: result) {
       synchronized(output) {
         output.add(filter(line));
+      }
+    }
+    if (Constant.DEBUG) {
+      for (String line: result) {
+        Log.d(TAG, line);
       }
     }
 

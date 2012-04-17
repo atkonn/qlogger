@@ -62,6 +62,7 @@ import jp.co.qsdn.android.qlogger.prefs.Prefs;
 import jp.co.qsdn.android.qlogger.provider.ErrorLogProvider;
 
 
+
 public class LogcatService
   extends Service 
 {
@@ -266,6 +267,7 @@ public class LogcatService
           PsCommand psCommand = new PsCommand();
           psCommand.run();
           for (PsCommand.PsResult psResult: psCommand.getOutput()) {
+            if (Constant.DEBUG)Log.d(TAG, "PsResult:[" + psResult + "]");
             if (psResult != null && psResult.getPpid() == 1) {
               Log.d(TAG, "KILL:[" + psResult.getPid() + "]");
               /*===========================================================*/
@@ -418,11 +420,11 @@ public class LogcatService
     for (PsCommand.PsResult psResult: psCommand.getOutput()) {
       if (psResult == null) continue;
       if (Constant.DEBUG)Log.v(TAG, "TEST:[" + psResult.getName() + "]");
-      if (psResult != null && psResult.getPpid() == pid && !"ps".equalsIgnoreCase(psResult.getName())) {
+      if (psResult != null && psResult.getPpid() == pid) {
         if (Constant.DEBUG)Log.v(TAG, "ALIVE:[" + psResult.getName() + "]");
         result = true;
       }
-      if (psResult != null && psResult.getPpid() == 1 && !"ps".equalsIgnoreCase(psResult.getName())) {
+      if (psResult != null && psResult.getPpid() == 1) {
         if (Constant.DEBUG)Log.v(TAG, "KILL:[" + psResult.getName() + "]");
         android.os.Process.killProcess(psResult.getPid());
       }

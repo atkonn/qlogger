@@ -308,14 +308,15 @@ Java_jp_co_qsdn_android_qlogger_commands_Ps_runJni( JNIEnv* env, jobject thiz ,j
   jsize ct = (*obj.env)->GetArrayLength(obj.env, argv);
   const char *_argv[256];
   int ii=0; 
-  for (; ii<ct; ii++) {
-    jobject elemj = (*obj.env)->GetObjectArrayElement(obj.env, argv, ii);
+  _argv[ii++] = "ps";
+  for (; ii<ct+1; ii++) {
+    jobject elemj = (*obj.env)->GetObjectArrayElement(obj.env, argv, ii-1);
     _argv[ii] = (*obj.env)->GetStringUTFChars(obj.env, elemj, 0);
     (*env)->DeleteLocalRef(env, elemj);
   }
   _argv[ii] = NULL;
 
-  ps_main(&obj, (int)ct, (char **)_argv);
+  ps_main(&obj, (int)ct+1, (char **)_argv);
 
 error1:
   LOGV("<<< Java_jp_co_qsdn_android_qlogger_commands_Ps_runJni");
