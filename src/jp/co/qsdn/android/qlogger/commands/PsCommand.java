@@ -38,6 +38,7 @@ public class PsCommand
 
   protected List<String> getCommandList() {
     List<String> command = new ArrayList<String>();
+    command.add("/system/bin/toolbox");
     command.add("ps");
     if (getFilterString() != null) {
       command.add(getFilterString());
@@ -59,6 +60,10 @@ public class PsCommand
         result.setPpid(Integer.parseInt(matcher.group(3)));
       }
       catch (Exception ex) {}
+      try {
+        result.setName(matcher.group(9));
+      }
+      catch (Exception ex) {}
       return result;
     }
     return null;
@@ -68,6 +73,7 @@ public class PsCommand
     private String user;
     private int pid;
     private int ppid;
+    private String name;
     public String getUser() {
       return user;
     }
@@ -85,6 +91,12 @@ public class PsCommand
     }
     public void setPpid(int ppid) {
       this.ppid = ppid;
+    }
+    public String getName() {
+      return this.name;
+    }
+    public void setName(String name) {
+      this.name = name;
     }
   }
   

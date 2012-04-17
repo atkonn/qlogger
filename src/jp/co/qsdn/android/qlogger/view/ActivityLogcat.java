@@ -121,7 +121,12 @@ public class ActivityLogcat
             }
           }
           if (++retryConn >= 10) {
-            Log.e(TAG, "logcatServiceに接続できませんでした2");
+            getHandler().post(new Runnable() {
+              public void run() {
+                switchViewToNotFound();
+              }
+            });
+            if (Constant.DEBUG)Log.v(TAG,"<<< updateViewCommand (unable connect logcatService)");
             return; 
           }
         }
@@ -241,16 +246,9 @@ if (Constant.DEBUG)Log.v(TAG, "5");
   @Override
   public void onDestroy() {
     if (Constant.DEBUG)Log.v(TAG, ">>> onDestroy");
-    doExecute(new Runnable() {
-      @Override 
-      public void run() {
-        if (Constant.DEBUG)Log.v(TAG, ">>> onDestroyCommand");
-        if (getLogcatService() != null) {
-          disconnectLogcatService();
-        }
-        if (Constant.DEBUG)Log.v(TAG, "<<< onDestroyCommand");
-      }
-    });
+    if (getLogcatService() != null) {
+      disconnectLogcatService();
+    }
     super.onDestroy();
     if (Constant.DEBUG)Log.v(TAG, "<<< onDestroy");
   }

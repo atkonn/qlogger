@@ -44,7 +44,7 @@ public class Destroyer
   public void waitAndDestroy() {
     if (Constant.DEBUG)Log.v(TAG, ">>> waitAndDestroy");
     Timer timer = new Timer("destroyer timer");
-    timer.schedule(this, TimeUnit.SECONDS.toMillis(3));
+    timer.schedule(this, 5000L);
     for (;;) {
       try {
         getProcess().waitFor();

@@ -259,7 +259,7 @@ public class LogcatService
     setupCommand = new Runnable() {
       @Override
       public void run() {
-        Log.d(TAG, "セットアップ開始");
+        if(Constant.DEBUG)Log.d(TAG, "セットアップ開始");
         try {
           int uid = android.os.Process.myUid();
           Log.d(TAG, "uid:[" + uid + "]");
@@ -365,12 +365,14 @@ public class LogcatService
             }
           }
           else {
+            if (Constant.DEBUG)Log.d(TAG, "main");
             if (! isAliveLogcatProcess()) {
               Log.d(TAG, "ps logcat process is dead or not my child.");
               Log.d(TAG, "ps logcat process restart now.");
               doExecute(restartCommand);
               return;
             }
+            waitSecond();
           }
         }
         catch (IOException ex) {
@@ -414,10 +416,14 @@ public class LogcatService
     psCommand.run();
     boolean result = false;
     for (PsCommand.PsResult psResult: psCommand.getOutput()) {
-      if (psResult != null && psResult.getPpid() == pid) {
+      if (psResult == null) continue;
+      if (Constant.DEBUG)Log.v(TAG, "TEST:[" + psResult.getName() + "]");
+      if (psResult != null && psResult.getPpid() == pid && !"ps".equalsIgnoreCase(psResult.getName())) {
+        if (Constant.DEBUG)Log.v(TAG, "ALIVE:[" + psResult.getName() + "]");
         result = true;
       }
-      if (psResult != null && psResult.getPpid() == 1) {
+      if (psResult != null && psResult.getPpid() == 1 && !"ps".equalsIgnoreCase(psResult.getName())) {
+        if (Constant.DEBUG)Log.v(TAG, "KILL:[" + psResult.getName() + "]");
         android.os.Process.killProcess(psResult.getPid());
       }
     }
@@ -487,6 +493,7 @@ public class LogcatService
       if (Constant.DEBUG)Log.v(TAG, ">>> getLog");
       if (! getExecutor().isShutdown()) {
         if (Constant.DEBUG)Log.d(TAG, "executor alive.");
+        if (Constant.DEBUG)Log.d(TAG, "getLog");
         if (! isAliveLogcatProcess()) {
           if (Constant.DEBUG)Log.d(TAG, "ps logcat process is dead or not my child.");
           if (Constant.DEBUG)Log.d(TAG, "ps logcat process restart now.");

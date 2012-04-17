@@ -19,6 +19,7 @@ package jp.co.qsdn.android.qlogger.commands;
 import android.util.Log;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
@@ -43,7 +44,11 @@ public abstract class AbstractCommand<T> {
     this.process = process;
   }
   public List<T> getOutput() {
-    return output;
+    ArrayList<T> result = null;
+    synchronized(output) {
+      result = new ArrayList<T>(output);
+    }
+    return result;
   }
   protected abstract List<String> getCommandList();
   protected abstract T filter(String line);
@@ -57,21 +62,32 @@ public abstract class AbstractCommand<T> {
   public void run() {
     if (Constant.DEBUG)Log.v(TAG, ">>> run");
     try {
-      setProcess(new ProcessBuilder(getCommandList()).start());
+      Ps ps = new Ps();
+      if (Constant.DEBUG)try {Log.v(TAG, ps.runJni(new String[] {"logcat"}));}catch (Exception ex) { Log.e(TAG, "AAA", ex);};
+      ProcessBuilder builder = new ProcessBuilder(getCommandList());
+      if (Constant.DEBUG)Log.v(TAG, "done newInstance of ProcessBuilder");
+      builder
+        .directory(new File("/"))
+        .redirectErrorStream(false);
+      if (Constant.DEBUG)Log.v(TAG, "done setup env");
+      setProcess(builder.start());
+      if (Constant.DEBUG)Log.v(TAG, "done start process");
     }
     catch (IOException ex) {
       Log.e(TAG, "process build failure", ex);
       return;
     }
-    waitSeconds(3);
+if (Constant.DEBUG)Log.v(TAG, "run 1");
+//    waitSeconds(3);
 
     final Thread readerThread = new Thread() {
       @Override
       public void run() {
+        if (Constant.DEBUG)Log.v(TAG, "read!!!");
         BufferedReader reader = null;
         try {
           reader = new BufferedReader(new InputStreamReader(getProcess().getInputStream()), BUFSZ);
-          String line = null;
+          String line;
           while((line = reader.readLine()) != null) {
             synchronized(output) {
               output.add(filter(line));
@@ -91,14 +107,16 @@ public abstract class AbstractCommand<T> {
     Thread interruptor = new Thread() {
       @Override
       public void run() {
+        if (Constant.DEBUG)Log.v(TAG, "interrupt!!!");
         readerThread.interrupt();
       }
     };
     readerThread.start();
+if (Constant.DEBUG)Log.v(TAG, "run 2(readerThread start done");
     try {
       do {
         readerThread.join(Constant.BUFFERED_READER.WAIT_MILLISECONDS);
-        if (!readerThread.isAlive()) break;
+        if (! readerThread.isAlive()) break;
         interruptor.start();
         interruptor.join(Constant.INTERRUPTOR.WAIT_MILLISECONDS);
         readerThread.join(Constant.INTERRUPTOR.WAIT_MILLISECONDS);

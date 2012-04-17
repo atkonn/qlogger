@@ -129,7 +129,7 @@ public abstract class AbstractActivity
 
   private ExecutorService executor = null;
   protected ExecutorService getExecutor() {
-    if (executor == null) {
+    if (executor == null || executor.isShutdown()) {
       executor = Executors.newSingleThreadExecutor();
     }
     return executor;
@@ -319,7 +319,6 @@ public abstract class AbstractActivity
           shutdown();
         }
       });
-     
     }
     super.onPause();
     if (Constant.DEBUG)Log.v(TAG, "<<< onPause " + this);
