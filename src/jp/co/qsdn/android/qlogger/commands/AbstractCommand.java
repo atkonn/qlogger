@@ -63,7 +63,14 @@ public abstract class AbstractCommand<T> {
     if (Constant.DEBUG)Log.v(TAG, ">>> run");
     try {
       Ps ps = new Ps();
-      if (Constant.DEBUG)try {Log.v(TAG, ps.runJni(new String[] {"logcat"}));}catch (Exception ex) { Log.e(TAG, "AAA", ex);};
+      ArrayList<String> result = new ArrayList<String>();
+      try {
+        ps.runJni(new String[] {"logcat"}, result);
+      }
+      catch (Exception ex) {
+        Log.e(TAG, "error", ex);
+      }
+
       ProcessBuilder builder = new ProcessBuilder(getCommandList());
       if (Constant.DEBUG)Log.v(TAG, "done newInstance of ProcessBuilder");
       builder

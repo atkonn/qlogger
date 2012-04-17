@@ -45,5 +45,5 @@ public class Ps
     this.pidfilter = pidfilter;
   }
 
-  public native String runJni(String[] argv) throws Exception;
+  public native void runJni(String[] argv, ArrayList result) throws Exception;
 }
