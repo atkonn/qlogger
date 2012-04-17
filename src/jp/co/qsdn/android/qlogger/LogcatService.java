@@ -280,8 +280,11 @@ public class LogcatService
           }
 
           if (logcatProcess == null) {
+            if (Constant.DEBUG)Log.d(TAG, "start logcat process");
             logcatProcess = Runtime.getRuntime().exec(new String[] { "logcat", "-v", "time", "*:V"});
+            if (Constant.DEBUG)Log.d(TAG, "done logcat process");
             logcatReader = new BufferedReader(new InputStreamReader(logcatProcess.getInputStream()), BUFSZ);
+            if (Constant.DEBUG)Log.d(TAG, "got reader from logcat");
           }
         }
         catch (IOException ex) {

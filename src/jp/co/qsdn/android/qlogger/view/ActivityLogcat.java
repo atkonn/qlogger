@@ -111,12 +111,12 @@ public class ActivityLogcat
         waitMillis(200);
         while(getLogcatService() == null) {
           connectLogcatService();
-          waitMillis(200);
+          waitMillis(1000);
           while (getLogcatService() == null) {
             waitSecond();
-            if (Constant.DEBUG)Log.d(TAG, "logcatService接続待ち");
-            if (++retry >= 10) {
-              Log.e(TAG, "logcatServiceに接続できませんでした");
+            if (Constant.DEBUG)Log.d(TAG, "waiting logcatService");
+            if (++retry >= 30) {
+              Log.e(TAG, "Unable to connect logcatService");
               break;
             }
           }
@@ -126,11 +126,10 @@ public class ActivityLogcat
                 switchViewToNotFound();
               }
             });
-            if (Constant.DEBUG)Log.v(TAG,"<<< updateViewCommand (unable connect logcatService)");
+            if (Constant.DEBUG)Log.v(TAG,"<<< updateViewCommand (unable to connect logcatService)");
             return; 
           }
         }
-if (Constant.DEBUG)Log.v(TAG, "1");
         List _list = null;
         try {
           _list = getLogcatService().getLog();
@@ -138,7 +137,6 @@ if (Constant.DEBUG)Log.v(TAG, "1");
         catch (RemoteException ex) {
           Log.e(TAG, "logcat service(getLog()) failure", ex);
         }
-if (Constant.DEBUG)Log.v(TAG, "2");
         
         if (_list == null) {
           getHandler().post(new Runnable() {
@@ -149,7 +147,6 @@ if (Constant.DEBUG)Log.v(TAG, "2");
           if (Constant.DEBUG)Log.v(TAG,"<<< updateViewCommand (_list is null)");
           return;
         }
-if (Constant.DEBUG)Log.v(TAG, "3");
 
         final ListView listView = (ListView)findViewById(getMainViewId());
         if (listView == null) {
@@ -161,7 +158,6 @@ if (Constant.DEBUG)Log.v(TAG, "3");
           if (Constant.DEBUG)Log.v(TAG,"<<< updateViewCommand (listView is null)");
           return;
         }
-if (Constant.DEBUG)Log.v(TAG, "4");
 
         final List<LogLine> list = filter(_list);
         getHandler().post(new Runnable() {
@@ -174,8 +170,7 @@ if (Constant.DEBUG)Log.v(TAG, "4");
             listView.setSelection(listView.getCount()-1);
           }
         });
-if (Constant.DEBUG)Log.v(TAG, "5");
-        if (listView.getCount() == 0) {
+        if (list.size() == 0) {
           getHandler().post(new Runnable() {
             public void run() {
               switchViewToNotFound();
@@ -273,6 +268,7 @@ if (Constant.DEBUG)Log.v(TAG, "5");
       if (isConnect) {
         unbindService(serviceConnection);
         setLogcatService(null);
+        isConnect = false;
       }
     }
     if (Constant.DEBUG)Log.v(TAG, "<<< disconnectLogcatService");
