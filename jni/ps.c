@@ -17,6 +17,14 @@
 #define LOGD(...) __android_log_print(ANDROID_LOG_DEBUG, LOG_TAG, __VA_ARGS__)
 #define LOGE(...) __android_log_print(ANDROID_LOG_ERROR, LOG_TAG, __VA_ARGS__)
 
+#define PRINTF(...) \
+  do { \
+    char __buf[256]; \
+    snprintf(__buf, 256, __VA_ARGS__); \
+    jstring jstr = (*(obj->env))->NewStringUTF(obj->env, __buf); \
+    (*(obj->env))->CallBooleanMethod(obj->env, obj->result, obj->listAddMethod, jstr); \
+  } while(0)
+
 #include <pwd.h>
 
 
@@ -47,7 +55,7 @@ static char *nexttok(char **strp)
 static int display_flags = 0;
 
 static int 
-ps_line(int pid, int tid, char *namefilter)
+ps_line(OBJ *obj, int pid, int tid, char *namefilter)
 {
   char statline[1024];
   char cmdline[1024];
@@ -157,22 +165,23 @@ ps_line(int pid, int tid, char *namefilter)
     strcpy(user,pw->pw_name);
   }
   
+  char buf[256];
   if(!namefilter || !strncmp(name, namefilter, strlen(namefilter))) {
-    printf("%-9s %-5d %-5d %-6d %-5d", user, pid, ppid, vss / 1024, rss * 4);
+    snprintf(buf, 256, "%-9s %-5d %-5d %-6d %-5d", user, pid, ppid, vss / 1024, rss * 4);
     if(display_flags&SHOW_PRIO)
-      printf(" %-5d %-5d %-5d %-5d", prio, nice, rtprio, sched);
-    printf(" %08x %08x %s %s", wchan, eip, state, cmdline[0] ? cmdline : name);
+      snprintf(buf, 256,"%s %-5d %-5d %-5d %-5d", buf,prio, nice, rtprio, sched);
+    snprintf(buf, 256,"%s %08x %08x %s %s", buf, wchan, eip, state, cmdline[0] ? cmdline : name);
     if(display_flags&SHOW_TIME)
-      printf(" (u:%d, s:%d)", utime, stime);
+      snprintf(buf, 256, "%s (u:%d, s:%d)", buf, utime, stime);
 
-    printf("\n");
+    PRINTF("%s\n", buf);
   }
   return 0;
 }
 
 
 static void 
-ps_threads(int pid, char *namefilter)
+ps_threads(OBJ *obj, int pid, char *namefilter)
 {
   char tmp[128];
   DIR *d;
@@ -186,19 +195,12 @@ ps_threads(int pid, char *namefilter)
     if(isdigit(de->d_name[0])){
       int tid = atoi(de->d_name);
       if(tid == pid) continue;
-      ps_line(pid, tid, namefilter);
+      ps_line(obj, pid, tid, namefilter);
     }
   }
   closedir(d);  
 }
 
-#define PRINTF(...) \
-  do { \
-    char buf[256]; \
-    snprintf(buf, 256, __VA_ARGS__); \
-    jstring jstr = (*(obj->env))->NewStringUTF(obj->env, buf); \
-    (*(obj->env))->CallBooleanMethod(obj->env, obj->result, obj->listAddMethod, jstr); \
-  } while(0)
 
 
 static int 
@@ -237,8 +239,8 @@ ps_main(OBJ *obj, int argc, char **argv)
     if(isdigit(de->d_name[0])){
       int pid = atoi(de->d_name);
       if(!pidfilter || (pidfilter == pid)) {
-        ps_line(pid, 0, namefilter);
-        if(threads) ps_threads(pid, namefilter);
+        ps_line(obj, pid, 0, namefilter);
+        if(threads) ps_threads(obj, pid, namefilter);
       }
     }
   }
@@ -257,76 +259,63 @@ Java_jp_co_qsdn_android_qlogger_commands_Ps_runJni( JNIEnv* env, jobject thiz ,j
   obj.env = env;
   obj.result = result;
   obj.runtimeExceptionClass = (*obj.env)->FindClass(obj.env, "java/lang/RuntimeException");
-  if (obj.runtimeExceptionClass == NULL) goto error1;
+  if (obj.runtimeExceptionClass == NULL) {
+    goto error1;
+  }
+  if((*obj.env)->ExceptionOccurred(obj.env)) {
+    goto error1;
+  }
   LOGD("runtimeExceptionClass found.");
 
   obj.stringClass = (*obj.env)->FindClass(obj.env, "java.lang.String");
   if (obj.stringClass == NULL) {
     (*obj.env)->ThrowNew(obj.env, obj.runtimeExceptionClass, "unable to find java/lang/String");
-    goto error2;
+    goto error1;
+  }
+  if((*obj.env)->ExceptionOccurred(obj.env)) {
+    goto error1;
   }
   LOGD("stringClass found.");
   obj.listClass = (*obj.env)->FindClass(obj.env, "java/util/ArrayList");
   if (obj.listClass == NULL) {
     (*obj.env)->ThrowNew(obj.env, obj.runtimeExceptionClass, "unable to find java/util/ArrayList");
-    goto error3;
+    goto error1;
+  }
+  if((*obj.env)->ExceptionOccurred(obj.env)) {
+    goto error1;
   }
   LOGD("listClass found.");
   obj.listConstructorMethod = (*obj.env)->GetMethodID(obj.env, obj.listClass, "<init>", "()V");
   if (obj.listConstructorMethod == NULL) {
     (*obj.env)->ThrowNew(obj.env, obj.runtimeExceptionClass, "GetMethodID (listClass.<init>) failure");
-    goto error4;
+    goto error1;
+  }
+  if((*obj.env)->ExceptionOccurred(obj.env)) {
+    goto error1;
   }
   LOGD("listClass's constructor found.");
   obj.listAddMethod = (*obj.env)->GetMethodID(obj.env, obj.listClass, "add", "(Ljava/lang/Object;)Z");
   if (obj.listAddMethod == NULL) {
     (*obj.env)->ThrowNew(obj.env, obj.runtimeExceptionClass, "GetMethodID (listClass.add) failure");
-    goto error5;
+    goto error1;
+  }
+  if((*obj.env)->ExceptionOccurred(obj.env)) {
+    goto error1;
   }
   LOGD("listClass's add method found.");
 
 
   jsize ct = (*obj.env)->GetArrayLength(obj.env, argv);
-LOGD("%s:%d",__FILE__,__LINE__);
   const char *_argv[256];
-LOGD("%s:%d",__FILE__,__LINE__);
   int ii=0; 
-LOGD("%s:%d",__FILE__,__LINE__);
   for (; ii<ct; ii++) {
-LOGD("%s:%d",__FILE__,__LINE__);
     jobject elemj = (*obj.env)->GetObjectArrayElement(obj.env, argv, ii);
-LOGD("%s:%d",__FILE__,__LINE__);
     _argv[ii] = (*obj.env)->GetStringUTFChars(obj.env, elemj, 0);
-LOGD("%s:%d",__FILE__,__LINE__);
     (*env)->DeleteLocalRef(env, elemj);
-LOGD("%s:%d",__FILE__,__LINE__);
   }
-LOGD("%s:%d",__FILE__,__LINE__);
   _argv[ii] = NULL;
-LOGD("%s:%d",__FILE__,__LINE__);
 
   ps_main(&obj, (int)ct, (char **)_argv);
-LOGD("%s:%d",__FILE__,__LINE__);
-
-error7:
-//  for (ii=0; ii<ct; ii++) {
-//    jobject elemj = (*obj.env)->GetObjectArrayElement(obj.env, argv, ii);
-//    (*obj.env)->ReleaseStringUTFChars(obj.env, (char *)_argv[ii], elemj);
-//    (*obj.env)->DeleteLocalRef(obj.env, elemj);
-//  }
-
-
-error5:
-//  (*obj.env)->DeleteLocalRef(obj.env, obj.listAddMethod);
-
-error4:
-//  (*obj.env)->DeleteLocalRef(obj.env, obj.listClass);
-
-error3:
-//  (*obj.env)->DeleteLocalRef(obj.env, obj.stringClass);
-
-error2:
-//  (*obj.env)->DeleteLocalRef(obj.env, obj.runtimeExceptionClass);
 
 error1:
   LOGV("<<< Java_jp_co_qsdn_android_qlogger_commands_Ps_runJni");

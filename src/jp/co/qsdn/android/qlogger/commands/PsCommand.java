@@ -23,6 +23,8 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import jp.co.qsdn.android.qlogger.Constant;
+
 public class PsCommand 
   extends AbstractCommand<PsCommand.PsResult>
 {
@@ -106,5 +108,30 @@ public class PsCommand
   
   public void setFilterString(String filterString) {
     this.filterString = filterString;
+  }
+
+
+  @Override
+  public void run() {
+    if (Constant.DEBUG)Log.v(TAG, ">>> run");
+
+    Ps ps = new Ps();
+    ArrayList<String> result = new ArrayList<String>();
+    try {
+      ps.runJni(new String[] {"logcat"}, result);
+    }
+    catch (Exception ex) {
+      Log.e(TAG, "error", ex);
+      throw new RuntimeException(ex);
+    }
+
+    output.clear();
+    for (String line: result) {
+      synchronized(output) {
+        output.add(filter(line));
+      }
+    }
+
+    if (Constant.DEBUG)Log.v(TAG, "<<< run");
   }
 }

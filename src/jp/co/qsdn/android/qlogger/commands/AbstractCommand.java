@@ -33,7 +33,7 @@ import jp.co.qsdn.android.qlogger.Constant;
 
 public abstract class AbstractCommand<T> {
   private Process process;
-  private List<T> output = new ArrayList<T>();
+  protected List<T> output = new ArrayList<T>();
   public final String TAG = getClass().getName();
   public static final int BUFSZ = 4*1024;
 
@@ -62,6 +62,7 @@ public abstract class AbstractCommand<T> {
   public void run() {
     if (Constant.DEBUG)Log.v(TAG, ">>> run");
     try {
+/*
       Ps ps = new Ps();
       ArrayList<String> result = new ArrayList<String>();
       try {
@@ -70,6 +71,10 @@ public abstract class AbstractCommand<T> {
       catch (Exception ex) {
         Log.e(TAG, "error", ex);
       }
+      for (String line: result) {
+        Log.d(TAG, line);
+      }
+*/
 
       ProcessBuilder builder = new ProcessBuilder(getCommandList());
       if (Constant.DEBUG)Log.v(TAG, "done newInstance of ProcessBuilder");
