@@ -7,68 +7,48 @@
   android:paddingRight="5dip"
   style="@style/CustomWindowTitleBackground"
   >
-  <ImageView
-    android:src="@drawable/vertical_line"
-    android:layout_width="wrap_content"
-    android:layout_marginRight="5dip"
-    android:layout_height="fill_parent" />
-  <ImageView
+  <LinearLayout
     android:id="@+id/action_bar_prev"
-    android:layout_width="fill_parent"
-    android:layout_height="40dip"
-    android:layout_weight="1"
-    android:gravity="center_vertical"
-    android:layout_gravity="center"
-    android:layout_marginRight="5dip"
     android:onClick="gotoPrev"
-    />
-  <ImageView
-    android:src="@drawable/vertical_line"
-    android:layout_width="wrap_content"
-    android:layout_marginRight="5dip"
-    android:layout_height="fill_parent" />
-  <ImageView
+    style="@style/FooterBarLinearLayout">
+    <TextView
+      android:id="@+id/action_bar_prev"
+      android:gravity="center"
+      android:text="@string/menu_prev"
+      android:drawableTop="@drawable/action_bar_prev"
+      style="@style/FooterBarNavigation" />
+  </LinearLayout>
+  <LinearLayout
     android:id="@+id/action_bar_next"
-    android:layout_width="fill_parent"
-    android:layout_height="40dip"
-    android:layout_weight="1"
-    android:gravity="center_vertical"
-    android:layout_gravity="center"
-    android:layout_marginRight="5dip"
     android:onClick="gotoNext"
-    />
-  <ImageView
-    android:src="@drawable/vertical_line"
-    android:layout_width="wrap_content"
-    android:layout_marginRight="5dip"
-    android:layout_height="fill_parent" />
-  <ImageView
+    style="@style/FooterBarLinearLayout">
+    <TextView
+      android:id="@+id/action_bar_next"
+      android:gravity="center"
+      android:text="@string/menu_next"
+      android:drawableTop="@drawable/action_bar_next"
+      style="@style/FooterBarNavigation" />
+  </LinearLayout>
+  <LinearLayout
     android:id="@+id/action_bar_clear"
-    android:layout_width="fill_parent"
-    android:layout_height="40dip"
-    android:layout_weight="1"
-    android:gravity="center_vertical"
-    android:layout_gravity="center"
-    android:layout_marginRight="5dip"
     android:onClick="gotoClear"
-    />
-  <ImageView
-    android:src="@drawable/vertical_line"
-    android:layout_width="wrap_content"
-    android:layout_marginRight="5dip"
-    android:layout_height="fill_parent" />
-  <ImageView
+    style="@style/FooterBarLinearLayout">
+    <TextView
+      android:id="@+id/action_bar_clear"
+      android:gravity="center"
+      android:text="@string/menu_clear"
+      android:drawableTop="@drawable/action_bar_clear"
+      style="@style/FooterBarNavigation" />
+  </LinearLayout>
+  <LinearLayout
     android:id="@+id/action_bar_setting"
-    android:layout_width="fill_parent"
-    android:layout_height="40dip"
-    android:layout_weight="1"
-    android:gravity="center_vertical"
-    android:layout_gravity="center"
-    android:layout_marginRight="5dip"
     android:onClick="gotoSetting"
-    />
-  <ImageView
-    android:src="@drawable/vertical_line"
-    android:layout_width="wrap_content"
-    android:layout_height="fill_parent" />
+    style="@style/FooterBarLinearLayout">
+    <TextView
+      android:id="@+id/action_bar_setting"
+      android:gravity="center"
+      android:text="@string/menu_setting"
+      android:drawableTop="@drawable/action_bar_setting"
+      style="@style/FooterBarNavigation" />
+  </LinearLayout>
 </LinearLayout>

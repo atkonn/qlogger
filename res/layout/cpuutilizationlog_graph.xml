@@ -70,6 +70,6 @@
       </LinearLayout>
     </jp.co.qsdn.android.qlogger.view.flipper.ViewFlipper>
   </LinearLayout>
-  <include layout="@layout/loadavglog__footer_bar" />
+  <include layout="@layout/cpuutilizationlog__footer_bar" />
 </LinearLayout>
 

@@ -80,6 +80,7 @@ public abstract class AbstractActivity
   private Handler handler = new Handler();
   private ViewFlipper flipper;
   private int startPos  = 0;
+  private int pageCount = 0;
 
   BroadcastReceiver externalStorageReceiver;
   boolean externalStorageAvailable = false;
@@ -207,6 +208,46 @@ public abstract class AbstractActivity
   }
   protected void onCreateBottomHalf() {
   }
+  protected void setupPagerAndClearButton() {
+    View view;
+
+    view = findViewById(R.id.action_bar_prev);
+    if (view != null) {
+      if (getStartPos() == 0) {
+        view.setEnabled(false);
+      }
+      else {
+        view.setEnabled(true);
+      }
+    }
+    view = findViewById(R.id.action_bar_next);
+    if (view  != null) {
+      if (getStartPos() + 1 >= getPageCount()) {
+        view.setEnabled(false);
+      }
+      else {
+        view.setEnabled(true);
+      }
+    }
+    view = findViewById(R.id.action_bar_clear);
+    if (view != null) {
+      if (getPageCount() == 0) {
+        view.setEnabled(false);
+      }
+      else {
+        view.setEnabled(true);
+      }
+    }
+    view = findViewById(R.id.action_bar_send);
+    if (view != null) {
+      if (getPageCount() == 0) {
+        view.setEnabled(false);
+      }
+      else {
+        view.setEnabled(true);
+      }
+    }
+  }
 
   protected int getWaitViewId() {
     return R.id.wait_view;
@@ -253,27 +294,14 @@ public abstract class AbstractActivity
   }
   protected void setupActionBar() {
     getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, getTitleViewResourceId());
-
     TextView textView = (TextView)findViewById(R.id.title_text);
     if (textView != null) {
       textView.setText(getTitleText());
     }
-
     ImageView imageView = (ImageView)findViewById(R.id.title_icon);
     if (imageView != null) {
       imageView.setImageResource(R.drawable.icon);
     }
-
-    imageView = (ImageView)findViewById(R.id.action_bar_reload);
-    if (imageView != null) {
-      imageView.setImageResource(R.drawable.action_bar_reload);
-    }
-
-    imageView = (ImageView)findViewById(R.id.action_bar_setting);
-    if (imageView != null) {
-      imageView.setImageResource(R.drawable.action_bar_setting);
-    }
-
     setupActionBarBottomHalf();
   }
   protected void setupActionBarBottomHalf() {
@@ -401,5 +429,13 @@ public abstract class AbstractActivity
       return true;
     }
     return super.dispatchKeyEvent(e);
+  }
+  
+  public int getPageCount() {
+    return pageCount;
+  }
+  
+  public void setPageCount(int pageCount) {
+    this.pageCount = pageCount;
   }
 }

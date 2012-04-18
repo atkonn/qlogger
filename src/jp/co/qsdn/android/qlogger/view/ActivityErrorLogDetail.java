@@ -81,15 +81,6 @@ public class ActivityErrorLogDetail
 
   @Override
   protected void onCreateBottomHalf() {
-    ImageView imageView;
-    imageView = (ImageView)findViewById(R.id.action_bar_send);
-    if (imageView  != null) {
-      imageView.setImageResource(R.drawable.action_bar_send);
-    }
-    imageView = (ImageView)findViewById(R.id.action_bar_clear);
-    if (imageView != null) {
-      imageView.setImageResource(R.drawable.action_bar_clear);
-    }
   }
 
   @Override

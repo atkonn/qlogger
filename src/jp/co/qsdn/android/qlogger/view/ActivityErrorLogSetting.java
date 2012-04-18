@@ -90,31 +90,6 @@ public class ActivityErrorLogSetting
     if (pref != null) {
       pref.setSummary(String.format(getResources().getString(R.string.errorlog_setting__summary_pref_retention_period), prefs.getErrorLogSetting__RetentionPeriod()));
     }
-
-
-    /* タイトルバーが変わらないため、別画面として作成 */
-/*
-    Preference pref = findPreference("key_color_setting_activity");  
-    if (pref != null) {
-      pref.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {  
-        @Override  
-        public boolean onPreferenceClick(final Preference preference) {  
-          startActivity(new Intent(ActivityErrorLogSetting.this,  ActivityErrorLogSetting_Color.class));  
-          return true;  
-        }  
-      });
-    }
-    pref = findPreference("key_filter_setting_activity");  
-    if (pref != null) {
-      pref.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {  
-        @Override  
-        public boolean onPreferenceClick(final Preference preference) {  
-          startActivity(new Intent(ActivityErrorLogSetting.this,  ActivityErrorLogSetting_Filter.class));  
-          return true;  
-        }  
-      });
-    }
-*/
   }
 
   protected void setupActionBar() {

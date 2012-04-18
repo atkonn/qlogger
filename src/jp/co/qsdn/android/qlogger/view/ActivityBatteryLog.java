@@ -81,7 +81,6 @@ public class ActivityBatteryLog
   final String TAG = getClass().getName();
   private int limitCount = 144;
   private int listCount = 0;
-  private int pageCount = 0;
   private List dateList = new ArrayList();
 
   private GestureDetector gestureDetector;
@@ -108,7 +107,7 @@ public class ActivityBatteryLog
     getHandler().post(new Runnable() {
       @Override
       public void run() {
-        if (getStartPos() < pageCount - 1) {
+        if (getStartPos() < getPageCount() - 1) {
           pagerFlipper.setInAnimation(animationInFromRight);
           pagerFlipper.setOutAnimation(animationOutToLeft);
           pagerFlipper.showNext();
@@ -209,7 +208,7 @@ Log.d(TAG, date);
     inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
     pagerFlipper = (ViewFlipper)findViewById(R.id.pagerFlipper);
-    for (int ii=0; ii<pageCount; ii++) {
+    for (int ii=0; ii<getPageCount(); ii++) {
       View view = inflater.inflate(R.layout.batterylog__list, null);
       pagerFlipper.addView(view);
       if (ii == 0) {
@@ -225,8 +224,8 @@ Log.d(TAG, date);
     textView.setText(getResources().getString(R.string.dashboard_item_batterylog_title));
 
     textView = (TextView)findViewById(R.id.page_text);
-    if (pageCount > 0) {
-      textView.setText("1/" + pageCount);
+    if (getPageCount() > 0) {
+      textView.setText("1/" + getPageCount());
     }
     else {
       textView.setText("0/0");
@@ -236,7 +235,7 @@ Log.d(TAG, date);
     imageView.setImageResource(R.drawable.icon);
 
     setupPagerAndClearButton();
-    if (pageCount > 0) {
+    if (getPageCount() > 0) {
       switchViewToMain();
     }
     else {
@@ -244,55 +243,14 @@ Log.d(TAG, date);
     }
   }
   protected void setupPagerAndClearButton() {
-    ImageView imageView;
-
-    imageView = (ImageView)findViewById(R.id.action_bar_prev);
-    if (imageView != null) {
-      imageView.setImageResource(R.drawable.action_bar_prev);
-      if (getStartPos() == 0) {
-        imageView.setEnabled(false);
-      }
-      else {
-        imageView.setEnabled(true);
-      }
-    }
-    imageView = (ImageView)findViewById(R.id.action_bar_next);
-    if (imageView  != null) {
-      imageView.setImageResource(R.drawable.action_bar_next);
-      if (getStartPos() + 1 >= pageCount) {
-        imageView.setEnabled(false);
-      }
-      else {
-        imageView.setEnabled(true);
-      }
-    }
-    imageView = (ImageView)findViewById(R.id.action_bar_clear);
-    if (imageView != null) {
-      imageView.setImageResource(R.drawable.action_bar_clear);
-      if (pageCount == 0) {
-        imageView.setEnabled(false);
-      }
-      else {
-        imageView.setEnabled(true);
-      }
-    }
-    imageView = (ImageView)findViewById(R.id.action_bar_send);
-    if (imageView != null) {
-      imageView.setImageResource(R.drawable.action_bar_send);
-      if (pageCount == 0) {
-        imageView.setEnabled(false);
-      }
-      else {
-        imageView.setEnabled(true);
-      }
-    }
+    super.setupPagerAndClearButton();
 
     TextView textView = (TextView)findViewById(R.id.page_text);
-    if (pageCount == 0) {
+    if (getPageCount() == 0) {
       textView.setText("0/0");
     }
     else {
-      textView.setText((getStartPos() + 1) + "/" + pageCount);
+      textView.setText((getStartPos() + 1) + "/" + getPageCount());
     }
   }
 
@@ -387,7 +345,7 @@ Log.d(TAG, date);
         cur = null;
       }
     }
-    pageCount = dateList.size();
+    setPageCount(dateList.size());
     Log.d(TAG, "listCount:[" + listCount + "]");
 
     gestureDetector = new GestureDetector(this, gestureListener);

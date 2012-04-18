@@ -82,4 +82,29 @@
     <item name="android:textColor">@color/text_color_sub</item>
   </style>
 
+  <style name="FooterBarLinearLayout">
+    <item name="android:gravity">center</item>
+    <item name="android:background">@drawable/footer_bar</item>
+    <item name="android:layout_gravity">center</item>
+    <item name="android:orientation">vertical</item>
+    <item name="android:paddingTop">2.0sp</item>
+    <item name="android:layout_width">fill_parent</item>
+    <item name="android:layout_height">wrap_content</item>
+    <item name="android:layout_marginLeft">2.0sp</item>
+    <item name="android:layout_marginTop">2.0sp</item>
+    <item name="android:layout_marginRight">2.0sp</item>
+    <item name="android:layout_marginBottom">1.0sp</item>
+    <item name="android:layout_weight">1.0</item>
+  </style>
+
+  <style name="FooterBarNavigation">
+    <item name="android:textSize">11.0sp</item>
+    <item name="android:typeface">monospace</item>
+    <item name="android:textStyle">bold</item>
+    <item name="android:textColor">#ff888888</item>
+    <item name="android:layout_gravity">center</item>
+    <item name="android:layout_width">wrap_content</item>
+    <item name="android:layout_height">wrap_content</item>
+  </style>
+
 </resources>

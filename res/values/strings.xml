@@ -7,6 +7,13 @@
 
 
   <string name="menu_logcat">Logcat</string>
+  <string name="menu_prev">Previous Page</string>
+  <string name="menu_next">Next Page</string>
+  <string name="menu_send">Send</string>
+  <string name="menu_clear">Clear</string>
+  <string name="menu_setting">Settings</string>
+  <string name="menu_reload">Reload</string>
+
   <string name="copyright">\nCopyright(C) 2012 QSDN,Inc. \nCopyright(C) 2012 A.Konno\nAll rights reserved.</string>
   <string name="about__description">This is an useless, simple, stupid, and a little log viewer, so typical.
   If you want more detailed or more powerful log viewer, please use the other.

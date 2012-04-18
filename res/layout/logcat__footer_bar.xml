@@ -8,36 +8,26 @@
   android:paddingRight="5dip"
   style="@style/CustomWindowTitleBackground"
   >
-  <ImageView
-    android:src="@drawable/vertical_line"
-    android:layout_width="wrap_content"
-    android:layout_marginRight="5dip"
-    android:layout_height="fill_parent" />
-  <ImageView
+  <LinearLayout
     android:id="@+id/action_bar_reload"
-    android:layout_width="wrap_content"
-    android:layout_height="fill_parent"
-    android:layout_weight="1"
-    android:gravity="center_vertical"
-    android:layout_marginRight="5dip"
     android:onClick="gotoReload"
-    />
-  <ImageView
-    android:src="@drawable/vertical_line"
-    android:layout_width="wrap_content"
-    android:layout_marginRight="5dip"
-    android:layout_height="fill_parent" />
-  <ImageView
+    style="@style/FooterBarLinearLayout">
+    <TextView
+      android:id="@+id/action_bar_reload"
+      android:gravity="center"
+      android:text="@string/menu_reload"
+      android:drawableTop="@drawable/action_bar_reload"
+      style="@style/FooterBarNavigation" />
+  </LinearLayout>
+  <LinearLayout
     android:id="@+id/action_bar_setting"
-    android:layout_width="wrap_content"
-    android:layout_height="fill_parent"
-    android:layout_weight="1"
-    android:gravity="center_vertical"
-    android:layout_marginRight="5dip"
     android:onClick="gotoSetting"
-    />
-  <ImageView
-    android:src="@drawable/vertical_line"
-    android:layout_width="wrap_content"
-    android:layout_height="fill_parent" />
+    style="@style/FooterBarLinearLayout">
+    <TextView
+      android:id="@+id/action_bar_setting"
+      android:gravity="center"
+      android:text="@string/menu_setting"
+      android:drawableTop="@drawable/action_bar_setting"
+      style="@style/FooterBarNavigation" />
+  </LinearLayout>
 </LinearLayout>
