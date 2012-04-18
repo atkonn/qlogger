@@ -12,7 +12,7 @@
     android:onClick="gotoClear"
     style="@style/FooterBarLinearLayout">
     <TextView
-      android:id="@+id/action_bar_clear"
+      android:id="@+id/action_bar_clear_textview"
       android:gravity="center"
       android:text="@string/menu_clear"
       android:drawableTop="@drawable/action_bar_clear"
@@ -23,7 +23,7 @@
     android:onClick="gotoSend"
     style="@style/FooterBarLinearLayout">
     <TextView
-      android:id="@+id/action_bar_send"
+      android:id="@+id/action_bar_send_textview"
       android:gravity="center"
       android:text="@string/menu_send"
       android:drawableTop="@drawable/action_bar_send"

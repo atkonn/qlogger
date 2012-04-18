@@ -191,7 +191,6 @@ public class ActivityBatteryLog
 
     TextView textView = (TextView)view.findViewById(R.id.date);
     String date = (String)dateList.get(index);
-Log.d(TAG, date);
     textView.setText(String.format(getResources().getString(R.string.batterylog__column_title), date.substring(0,4), date.substring(4,6), date.substring(6,8)));
 
     final ArrayAdapter adapter = new BatteryLogListAdapter(this, 0, getCurrentList(index));
@@ -346,7 +345,7 @@ Log.d(TAG, date);
       }
     }
     setPageCount(dateList.size());
-    Log.d(TAG, "listCount:[" + listCount + "]");
+    if (Constant.DEBUG)Log.d(TAG, "listCount:[" + listCount + "]");
 
     gestureDetector = new GestureDetector(this, gestureListener);
     animationInFromLeft  = AnimationUtils.loadAnimation(this, R.anim.in_from_left);

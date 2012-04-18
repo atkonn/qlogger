@@ -165,7 +165,7 @@ public class PsCommand
     }
     if (Constant.DEBUG) {
       for (String line: result) {
-        Log.d(TAG, line);
+        if (Constant.DEBUG)Log.d(TAG, line);
       }
     }
 

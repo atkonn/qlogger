@@ -352,7 +352,7 @@ public class ActivityErrorLog
     if (listCount % limitCount > 0) {
       setPageCount(getPageCount() + 1);
     }
-    Log.d(TAG, "listCount:[" + listCount + "]");
+    if (Constant.DEBUG)Log.d(TAG, "listCount:[" + listCount + "]");
 
     gestureDetector = new GestureDetector(this, gestureListener);
     animationInFromLeft  = AnimationUtils.loadAnimation(this, R.anim.in_from_left);
@@ -399,9 +399,9 @@ public class ActivityErrorLog
   @Override
   protected void onActivityResult(int requestCode, int resultCode,Intent data){
     super.onActivityResult(requestCode, resultCode, data);
-    Log.d(TAG, "start onActivityResult(" + requestCode + "," + resultCode + ")");
-    Log.d(TAG, "RESULT_OK:[" + RESULT_OK + "]");
-    Log.d(TAG, "Constant.REQUEST.ERRORLOG_DETAIL:[" + Constant.REQUEST.ERRORLOG_DETAIL + "]");
+    if (Constant.DEBUG)Log.d(TAG, "start onActivityResult(" + requestCode + "," + resultCode + ")");
+    if (Constant.DEBUG)Log.d(TAG, "RESULT_OK:[" + RESULT_OK + "]");
+    if (Constant.DEBUG)Log.d(TAG, "Constant.REQUEST.ERRORLOG_DETAIL:[" + Constant.REQUEST.ERRORLOG_DETAIL + "]");
     if (requestCode == Constant.REQUEST.ERRORLOG_DETAIL) {
       if (resultCode == RESULT_OK){
         switchViewToWait();

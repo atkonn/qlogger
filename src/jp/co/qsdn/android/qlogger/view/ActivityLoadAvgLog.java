@@ -341,7 +341,7 @@ public class ActivityLoadAvgLog
       }
     }
     setPageCount(dateList.size());
-    Log.d(TAG, "listCount:[" + listCount + "]");
+    if (Constant.DEBUG)Log.d(TAG, "listCount:[" + listCount + "]");
 
     gestureDetector = new GestureDetector(this, gestureListener);
     animationInFromLeft  = AnimationUtils.loadAnimation(this, R.anim.in_from_left);

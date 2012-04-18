@@ -96,7 +96,6 @@ public class ActivityMemUtilizationLogGraph
   final String TAG = getClass().getName();
   private int limitCount = 144;
   private int listCount = 0;
-  private int pageCount = 0;
   private List dateList = new ArrayList();
 
   private GestureDetector gestureDetector;
@@ -123,7 +122,7 @@ public class ActivityMemUtilizationLogGraph
     getHandler().post(new Runnable() {
       @Override
       public void run() {
-        if (getStartPos() < pageCount - 1) {
+        if (getStartPos() < getPageCount() - 1) {
           pagerFlipper.setInAnimation(animationInFromRight);
           pagerFlipper.setOutAnimation(animationOutToLeft);
           pagerFlipper.showNext();
@@ -200,7 +199,7 @@ public class ActivityMemUtilizationLogGraph
 
   protected XYMultipleSeriesDataset getCurrentData(int startpos) {
     String yyyymmdd = (String)dateList.get(startpos);
-    Log.d(TAG, "yyyymmdd:[" + yyyymmdd + "]");
+    if (Constant.DEBUG)Log.d(TAG, "yyyymmdd:[" + yyyymmdd + "]");
 
     Cursor cur = null;
     List<MemUtilizationLog> list = new ArrayList<MemUtilizationLog>();
@@ -362,8 +361,8 @@ public class ActivityMemUtilizationLogGraph
   protected void onResumeBottomHalf() {
     pagerFlipper = (ViewFlipper)findViewById(R.id.pagerFlipper);
     pagerFlipper.removeAllViews();
-    Log.d(TAG, "startPos:[" + getStartPos() + "]");
-    for (int ii=0; ii<pageCount; ii++) {
+    if (Constant.DEBUG)Log.d(TAG, "startPos:[" + getStartPos() + "]");
+    for (int ii=0; ii<getPageCount(); ii++) {
       View view = inflater.inflate(R.layout.memutilizationlog_graph__main, null);
       pagerFlipper.addView(view);
       if (ii == getStartPos()) {
@@ -376,8 +375,8 @@ public class ActivityMemUtilizationLogGraph
     textView.setText(getResources().getString(R.string.dashboard_item_memutilization_title));
 
     textView = (TextView)findViewById(R.id.page_text);
-    if (pageCount > 0) {
-      textView.setText("1/" + pageCount);
+    if (getPageCount() > 0) {
+      textView.setText("1/" + getPageCount());
     }
     else {
       textView.setText("0/0");
@@ -387,7 +386,7 @@ public class ActivityMemUtilizationLogGraph
     imageView.setImageResource(R.drawable.icon);
 
     setupPagerAndClearButton();
-    if (pageCount > 0) {
+    if (getPageCount() > 0) {
       switchViewToMain();
     }
     else {
@@ -395,55 +394,14 @@ public class ActivityMemUtilizationLogGraph
     }
   }
   protected void setupPagerAndClearButton() {
-    ImageView imageView;
-
-    imageView = (ImageView)findViewById(R.id.action_bar_prev);
-    if (imageView != null) {
-      imageView.setImageResource(R.drawable.action_bar_prev);
-      if (getStartPos() == 0) {
-        imageView.setEnabled(false);
-      }
-      else {
-        imageView.setEnabled(true);
-      }
-    }
-    imageView = (ImageView)findViewById(R.id.action_bar_next);
-    if (imageView  != null) {
-      imageView.setImageResource(R.drawable.action_bar_next);
-      if (getStartPos() + 1 >= pageCount) {
-        imageView.setEnabled(false);
-      }
-      else {
-        imageView.setEnabled(true);
-      }
-    }
-    imageView = (ImageView)findViewById(R.id.action_bar_clear);
-    if (imageView != null) {
-      imageView.setImageResource(R.drawable.action_bar_clear);
-      if (pageCount == 0) {
-        imageView.setEnabled(false);
-      }
-      else {
-        imageView.setEnabled(true);
-      }
-    }
-    imageView = (ImageView)findViewById(R.id.action_bar_send);
-    if (imageView != null) {
-      imageView.setImageResource(R.drawable.action_bar_send);
-      if (pageCount == 0) {
-        imageView.setEnabled(false);
-      }
-      else {
-        imageView.setEnabled(true);
-      }
-    }
+    super.setupPagerAndClearButton();
 
     TextView textView = (TextView)findViewById(R.id.page_text);
-    if (pageCount == 0) {
+    if (getPageCount() == 0) {
       textView.setText("0/0");
     }
     else {
-      textView.setText((getStartPos() + 1) + "/" + pageCount);
+      textView.setText((getStartPos() + 1) + "/" + getPageCount());
     }
   }
 
@@ -488,8 +446,8 @@ public class ActivityMemUtilizationLogGraph
         cur = null;
       }
     }
-    pageCount = dateList.size();
-    Log.d(TAG, "listCount:[" + listCount + "]");
+    setPageCount(dateList.size());
+    if (Constant.DEBUG)Log.d(TAG, "listCount:[" + listCount + "]");
 
     gestureDetector = new GestureDetector(this, gestureListener);
     animationInFromLeft  = AnimationUtils.loadAnimation(this, R.anim.in_from_left);

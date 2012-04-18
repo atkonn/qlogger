@@ -103,7 +103,6 @@ public class ActivityScreenDailyLogGraph
   }
   private int limitCount = 24;
   private int listCount = 0;
-  private int pageCount = 0;
   private List dateList = new ArrayList();
 
   private GestureDetector gestureDetector;
@@ -130,7 +129,7 @@ public class ActivityScreenDailyLogGraph
     getHandler().post(new Runnable() {
       @Override
       public void run() {
-        if (getStartPos() < pageCount - 1) {
+        if (getStartPos() < getPageCount() - 1) {
           pagerFlipper.setInAnimation(animationInFromRight);
           pagerFlipper.setOutAnimation(animationOutToLeft);
           pagerFlipper.showNext();
@@ -208,7 +207,7 @@ public class ActivityScreenDailyLogGraph
   protected XYMultipleSeriesDataset getCurrentData(int startpos) {
     if (Constant.DEBUG) Log.v(TAG, ">>> getCurrentData");
     String yyyymm = (String)dateList.get(startpos);
-    Log.d(TAG, "yyyymm:[" + yyyymm + "]");
+    if (Constant.DEBUG)Log.d(TAG, "yyyymm:[" + yyyymm + "]");
 
     Cursor cur = null;
     List<ScreenDailyLog> list = new ArrayList<ScreenDailyLog>();
@@ -349,7 +348,7 @@ public class ActivityScreenDailyLogGraph
 
     pagerFlipper = (ViewFlipper)findViewById(R.id.pagerFlipper);
     pagerFlipper.removeAllViews();
-    for (int ii=0; ii<pageCount; ii++) {
+    for (int ii=0; ii<getPageCount(); ii++) {
       View view = inflater.inflate(R.layout.screendailylog_graph__main, null);
       pagerFlipper.addView(view);
       if (ii == getStartPos()) {
@@ -367,15 +366,15 @@ public class ActivityScreenDailyLogGraph
     }
 
     textView = (TextView)findViewById(R.id.page_text);
-    if (pageCount > 0) {
-      textView.setText("1/" + pageCount);
+    if (getPageCount() > 0) {
+      textView.setText("1/" + getPageCount());
     }
     else {
       textView.setText("0/0");
     }
 
     setupPagerAndClearButton();
-    if (pageCount > 0) {
+    if (getPageCount() > 0) {
       switchViewToMain();
     }
     else {
@@ -388,55 +387,14 @@ public class ActivityScreenDailyLogGraph
     return false;
   }
   protected void setupPagerAndClearButton() {
-    ImageView imageView;
-
-    imageView = (ImageView)findViewById(R.id.action_bar_prev);
-    if (imageView != null) {
-      imageView.setImageResource(R.drawable.action_bar_prev);
-      if (getStartPos() == 0) {
-        imageView.setEnabled(false);
-      }
-      else {
-        imageView.setEnabled(true);
-      }
-    }
-    imageView = (ImageView)findViewById(R.id.action_bar_next);
-    if (imageView  != null) {
-      imageView.setImageResource(R.drawable.action_bar_next);
-      if (getStartPos() + 1 >= pageCount) {
-        imageView.setEnabled(false);
-      }
-      else {
-        imageView.setEnabled(true);
-      }
-    }
-    imageView = (ImageView)findViewById(R.id.action_bar_clear);
-    if (imageView != null) {
-      imageView.setImageResource(R.drawable.action_bar_clear);
-      if (pageCount == 0) {
-        imageView.setEnabled(false);
-      }
-      else {
-        imageView.setEnabled(true);
-      }
-    }
-    imageView = (ImageView)findViewById(R.id.action_bar_send);
-    if (imageView != null) {
-      imageView.setImageResource(R.drawable.action_bar_send);
-      if (pageCount == 0) {
-        imageView.setEnabled(false);
-      }
-      else {
-        imageView.setEnabled(true);
-      }
-    }
+    super.setupPagerAndClearButton();
 
     TextView textView = (TextView)findViewById(R.id.page_text);
-    if (pageCount == 0) {
+    if (getPageCount() == 0) {
       textView.setText("0/0");
     }
     else {
-      textView.setText((getStartPos() + 1) + "/" + pageCount);
+      textView.setText((getStartPos() + 1) + "/" + getPageCount());
     }
 
     textView = (TextView)findViewById(R.id.date);
@@ -489,8 +447,8 @@ public class ActivityScreenDailyLogGraph
         cur = null;
       }
     }
-    pageCount = dateList.size();
-    Log.d(TAG, "pageCount:[" + pageCount + "]");
+    setPageCount(dateList.size());
+    if (Constant.DEBUG)Log.d(TAG, "getPageCount():[" + getPageCount() + "]");
 
     gestureDetector = new GestureDetector(this, gestureListener);
     animationInFromLeft  = AnimationUtils.loadAnimation(this, R.anim.in_from_left);
@@ -653,7 +611,7 @@ public class ActivityScreenDailyLogGraph
   public void changePage(final int newStartPos) {
     if (Constant.DEBUG)Log.v(TAG, ">>> changePage:(" + newStartPos + ")");
     if (Constant.DEBUG)Log.d(TAG, "now startPos:[" + getStartPos() + "]");
-    if (newStartPos < pageCount && newStartPos >= 0) {
+    if (newStartPos < getPageCount() && newStartPos >= 0) {
       pagerFlipper.setDisplayedChild(newStartPos);
       setStartPos(newStartPos);
       View view = pagerFlipper.getCurrentView();

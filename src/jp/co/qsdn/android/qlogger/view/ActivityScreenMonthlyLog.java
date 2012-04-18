@@ -83,7 +83,6 @@ public class ActivityScreenMonthlyLog
   final String TAG = getClass().getName();
   private int limitCount = 12;
   private int listCount = 0;
-  private int pageCount = 0;
   private List dateList = new ArrayList();
 
   public static class EXTRA_PARAM {
@@ -115,7 +114,7 @@ public class ActivityScreenMonthlyLog
     getHandler().post(new Runnable() {
       @Override
       public void run() {
-        if (getStartPos() < pageCount - 1) {
+        if (getStartPos() < getPageCount() - 1) {
           pagerFlipper.setInAnimation(animationInFromRight);
           pagerFlipper.setOutAnimation(animationOutToLeft);
           pagerFlipper.showNext();
@@ -216,7 +215,7 @@ public class ActivityScreenMonthlyLog
     inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
     pagerFlipper = (ViewFlipper)findViewById(R.id.pagerFlipper);
-    for (int ii=0; ii<pageCount; ii++) {
+    for (int ii=0; ii<getPageCount(); ii++) {
       View view = inflater.inflate(R.layout.screenmonthlylog__list, null);
       pagerFlipper.addView(view);
       if (ii == 0 || ii == getStartPos()) {
@@ -231,15 +230,15 @@ public class ActivityScreenMonthlyLog
 
 
     TextView textView = (TextView)findViewById(R.id.page_text);
-    if (pageCount > 0) {
-      textView.setText("1/" + pageCount);
+    if (getPageCount() > 0) {
+      textView.setText("1/" + getPageCount());
     }
     else {
       textView.setText("0/0");
     }
 
     setupPagerAndClearButton();
-    if (pageCount > 0) {
+    if (getPageCount() > 0) {
       switchViewToMain();
     }
     else {
@@ -248,48 +247,8 @@ public class ActivityScreenMonthlyLog
     if (Constant.DEBUG)Log.v(TAG, "<<< onCreateBottomHalf(" + getStartPos() + ")");
   }
   protected void setupPagerAndClearButton() {
-    ImageView imageView;
+    super.setupPagerAndClearButton();
 
-    imageView = (ImageView)findViewById(R.id.action_bar_prev);
-    if (imageView != null) {
-      imageView.setImageResource(R.drawable.action_bar_prev);
-      if (getStartPos() == 0) {
-        imageView.setEnabled(false);
-      }
-      else {
-        imageView.setEnabled(true);
-      }
-    }
-    imageView = (ImageView)findViewById(R.id.action_bar_next);
-    if (imageView  != null) {
-      imageView.setImageResource(R.drawable.action_bar_next);
-      if (getStartPos() + 1 >= pageCount) {
-        imageView.setEnabled(false);
-      }
-      else {
-        imageView.setEnabled(true);
-      }
-    }
-    imageView = (ImageView)findViewById(R.id.action_bar_clear);
-    if (imageView != null) {
-      imageView.setImageResource(R.drawable.action_bar_clear);
-      if (pageCount == 0) {
-        imageView.setEnabled(false);
-      }
-      else {
-        imageView.setEnabled(true);
-      }
-    }
-    imageView = (ImageView)findViewById(R.id.action_bar_send);
-    if (imageView != null) {
-      imageView.setImageResource(R.drawable.action_bar_send);
-      if (pageCount == 0) {
-        imageView.setEnabled(false);
-      }
-      else {
-        imageView.setEnabled(true);
-      }
-    }
     TextView textView = (TextView)findViewById(R.id.date);
     if (dateList.size() > 0) {
       String date = (String)dateList.get(getStartPos());
@@ -299,11 +258,11 @@ public class ActivityScreenMonthlyLog
     }
 
     textView = (TextView)findViewById(R.id.page_text);
-    if (pageCount == 0) {
+    if (getPageCount() == 0) {
       textView.setText("0/0");
     }
     else {
-      textView.setText((getStartPos() + 1) + "/" + pageCount);
+      textView.setText((getStartPos() + 1) + "/" + getPageCount());
     }
   }
 
@@ -392,8 +351,8 @@ public class ActivityScreenMonthlyLog
         cur = null;
       }
     }
-    pageCount = dateList.size();
-    Log.d(TAG, "listCount:[" + listCount + "]");
+    setPageCount(dateList.size());
+    if (Constant.DEBUG)Log.d(TAG, "listCount:[" + listCount + "]");
 
     gestureDetector = new GestureDetector(this, gestureListener);
     animationInFromLeft  = AnimationUtils.loadAnimation(this, R.anim.in_from_left);
@@ -556,8 +515,8 @@ public class ActivityScreenMonthlyLog
   public void changePage(final int newStartPos) {
     if (Constant.DEBUG)Log.v(TAG, ">>> changePage:(" + newStartPos + ")");
     if (Constant.DEBUG)Log.d(TAG, "now startPos:[" + getStartPos() + "]");
-    if (Constant.DEBUG)Log.v(TAG, "pageCount:[" + pageCount + "]" + this);
-    if (newStartPos < pageCount && newStartPos >= 0) {
+    if (Constant.DEBUG)Log.v(TAG, "getPageCount():[" + getPageCount() + "]" + this);
+    if (newStartPos < getPageCount() && newStartPos >= 0) {
       pagerFlipper.setDisplayedChild(newStartPos);
       setStartPos(newStartPos);
       View view = pagerFlipper.getCurrentView();

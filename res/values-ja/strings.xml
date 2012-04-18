@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <resources>
+  <string name="menu_logcat">ログ</string>
+  <string name="menu_prev">前のページ</string>
+  <string name="menu_next">次のページ</string>
+  <string name="menu_send">送信</string>
+  <string name="menu_clear">クリア</string>
+  <string name="menu_setting">設定</string>
+  <string name="menu_reload">リロード</string>
+
   <string name="copyright">\nCopyright(C) 2012 株式会社QSDN\nCopyright(C) 2012 A.Konno\nAll rights reserved.</string>
   <string name="about__description">このアプリケーションは、既によくある、そしてあまり使えない、logcatビューワーです。
      もし、より詳細な、そしてよりパワフルなログビューワーが欲しいのであれば、既に良いアプリがあるかと思いますのでそちらをご使用ください。

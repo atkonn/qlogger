@@ -60,7 +60,7 @@ public class BootCompletedReceiver
       @Override
       public void run() {
         String action = intent.getAction();
-        Log.d(TAG, "onReceive:[" + action + "]");
+        if (Constant.DEBUG)Log.d(TAG, "onReceive:[" + action + "]");
         if(action.equals("android.intent.action.BOOT_COMPLETED")) {
           {
             Intent _intent = new Intent(_ctx, RecordBootCompletedService.class);

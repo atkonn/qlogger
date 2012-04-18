@@ -12,7 +12,7 @@
     android:onClick="gotoPrev"
     style="@style/FooterBarLinearLayout">
     <TextView
-      android:id="@+id/action_bar_prev"
+      android:id="@+id/action_bar_prev_textview"
       android:gravity="center"
       android:text="@string/menu_prev"
       android:drawableTop="@drawable/action_bar_prev"
@@ -23,7 +23,7 @@
     android:onClick="gotoNext"
     style="@style/FooterBarLinearLayout">
     <TextView
-      android:id="@+id/action_bar_next"
+      android:id="@+id/action_bar_next_textview"
       android:gravity="center"
       android:text="@string/menu_next"
       android:drawableTop="@drawable/action_bar_next"
@@ -34,7 +34,7 @@
     android:onClick="gotoClear"
     style="@style/FooterBarLinearLayout">
     <TextView
-      android:id="@+id/action_bar_clear"
+      android:id="@+id/action_bar_clear_textview"
       android:gravity="center"
       android:text="@string/menu_clear"
       android:drawableTop="@drawable/action_bar_clear"
@@ -45,7 +45,7 @@
     android:onClick="gotoSetting"
     style="@style/FooterBarLinearLayout">
     <TextView
-      android:id="@+id/action_bar_setting"
+      android:id="@+id/action_bar_setting_textview"
       android:gravity="center"
       android:text="@string/menu_setting"
       android:drawableTop="@drawable/action_bar_setting"

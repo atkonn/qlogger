@@ -247,6 +247,42 @@ public abstract class AbstractActivity
         view.setEnabled(true);
       }
     }
+    view = findViewById(R.id.action_bar_prev_textview);
+    if (view != null) {
+      if (getStartPos() == 0) {
+        view.setEnabled(false);
+      }
+      else {
+        view.setEnabled(true);
+      }
+    }
+    view = findViewById(R.id.action_bar_next_textview);
+    if (view  != null) {
+      if (getStartPos() + 1 >= getPageCount()) {
+        view.setEnabled(false);
+      }
+      else {
+        view.setEnabled(true);
+      }
+    }
+    view = findViewById(R.id.action_bar_clear_textview);
+    if (view != null) {
+      if (getPageCount() == 0) {
+        view.setEnabled(false);
+      }
+      else {
+        view.setEnabled(true);
+      }
+    }
+    view = findViewById(R.id.action_bar_send_textview);
+    if (view != null) {
+      if (getPageCount() == 0) {
+        view.setEnabled(false);
+      }
+      else {
+        view.setEnabled(true);
+      }
+    }
   }
 
   protected int getWaitViewId() {
@@ -325,7 +361,7 @@ public abstract class AbstractActivity
       if (!getExecutor().awaitTermination(60, TimeUnit.SECONDS)) {
         getExecutor().shutdownNow();
         if (!getExecutor().awaitTermination(60, TimeUnit.SECONDS)) {
-          Log.d(TAG,"ExecutorService did not terminate....");
+          if (Constant.DEBUG)Log.d(TAG,"ExecutorService did not terminate....");
           getExecutor().shutdownNow();
           Thread.currentThread().interrupt();
         }

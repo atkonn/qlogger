@@ -115,7 +115,7 @@ public abstract class AbstractExecutableService
       if (!getExecutor().awaitTermination(Constant.SECONDS.EXECUTOR_TERMINATE, TimeUnit.SECONDS)) {
         getExecutor().shutdownNow();
         if (!getExecutor().awaitTermination(Constant.SECONDS.EXECUTOR_TERMINATE,TimeUnit.SECONDS)) {
-          Log.d(TAG,"ExecutorService did not terminate....");
+          if (Constant.DEBUG)Log.d(TAG,"ExecutorService did not terminate....");
           getExecutor().shutdownNow();
           Thread.currentThread().interrupt();
         }

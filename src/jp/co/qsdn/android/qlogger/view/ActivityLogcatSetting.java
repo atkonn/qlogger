@@ -92,7 +92,6 @@ public class ActivityLogcatSetting
     setupFooterButton();
     addPreferencesFromResource(R.xml.logcat_setting);
 
-    /* タイトルバーが変わらないため、別画面として作成 */
     Preference pref = findPreference("key_color_setting_activity");  
     if (pref != null) {
       pref.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {  

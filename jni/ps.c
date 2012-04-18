@@ -17,6 +17,8 @@
 #define LOGD(...) __android_log_print(ANDROID_LOG_DEBUG, LOG_TAG, __VA_ARGS__)
 #define LOGE(...) __android_log_print(ANDROID_LOG_ERROR, LOG_TAG, __VA_ARGS__)
 
+#define DEBUG 0
+
 #define PRINTF(...) \
   do { \
     char __buf[256]; \
@@ -254,7 +256,7 @@ jobjectArray
 Java_jp_co_qsdn_android_qlogger_commands_Ps_runJni( JNIEnv* env, jobject thiz ,jobjectArray argv, jobject result)
 {
   OBJ obj;
-  LOGV(">>> Java_jp_co_qsdn_android_qlogger_commands_Ps_runJni");
+  if (DEBUG) LOGV(">>> Java_jp_co_qsdn_android_qlogger_commands_Ps_runJni");
 
   obj.env = env;
   obj.result = result;
@@ -265,7 +267,7 @@ Java_jp_co_qsdn_android_qlogger_commands_Ps_runJni( JNIEnv* env, jobject thiz ,j
   if((*obj.env)->ExceptionOccurred(obj.env)) {
     goto error1;
   }
-  LOGD("runtimeExceptionClass found.");
+  if (DEBUG) LOGD("runtimeExceptionClass found.");
 
   obj.stringClass = (*obj.env)->FindClass(obj.env, "java.lang.String");
   if (obj.stringClass == NULL) {
@@ -275,7 +277,7 @@ Java_jp_co_qsdn_android_qlogger_commands_Ps_runJni( JNIEnv* env, jobject thiz ,j
   if((*obj.env)->ExceptionOccurred(obj.env)) {
     goto error1;
   }
-  LOGD("stringClass found.");
+  if (DEBUG) LOGD("stringClass found.");
   obj.listClass = (*obj.env)->FindClass(obj.env, "java/util/ArrayList");
   if (obj.listClass == NULL) {
     (*obj.env)->ThrowNew(obj.env, obj.runtimeExceptionClass, "unable to find java/util/ArrayList");
@@ -284,7 +286,7 @@ Java_jp_co_qsdn_android_qlogger_commands_Ps_runJni( JNIEnv* env, jobject thiz ,j
   if((*obj.env)->ExceptionOccurred(obj.env)) {
     goto error1;
   }
-  LOGD("listClass found.");
+  if (DEBUG) LOGD("listClass found.");
   obj.listConstructorMethod = (*obj.env)->GetMethodID(obj.env, obj.listClass, "<init>", "()V");
   if (obj.listConstructorMethod == NULL) {
     (*obj.env)->ThrowNew(obj.env, obj.runtimeExceptionClass, "GetMethodID (listClass.<init>) failure");
@@ -293,7 +295,7 @@ Java_jp_co_qsdn_android_qlogger_commands_Ps_runJni( JNIEnv* env, jobject thiz ,j
   if((*obj.env)->ExceptionOccurred(obj.env)) {
     goto error1;
   }
-  LOGD("listClass's constructor found.");
+  if (DEBUG) LOGD("listClass's constructor found.");
   obj.listAddMethod = (*obj.env)->GetMethodID(obj.env, obj.listClass, "add", "(Ljava/lang/Object;)Z");
   if (obj.listAddMethod == NULL) {
     (*obj.env)->ThrowNew(obj.env, obj.runtimeExceptionClass, "GetMethodID (listClass.add) failure");
@@ -302,7 +304,7 @@ Java_jp_co_qsdn_android_qlogger_commands_Ps_runJni( JNIEnv* env, jobject thiz ,j
   if((*obj.env)->ExceptionOccurred(obj.env)) {
     goto error1;
   }
-  LOGD("listClass's add method found.");
+  if (DEBUG) LOGD("listClass's add method found.");
 
 
   jsize ct = (*obj.env)->GetArrayLength(obj.env, argv);
@@ -319,7 +321,7 @@ Java_jp_co_qsdn_android_qlogger_commands_Ps_runJni( JNIEnv* env, jobject thiz ,j
   ps_main(&obj, (int)ct+1, (char **)_argv);
 
 error1:
-  LOGV("<<< Java_jp_co_qsdn_android_qlogger_commands_Ps_runJni");
+  if (DEBUG) LOGV("<<< Java_jp_co_qsdn_android_qlogger_commands_Ps_runJni");
   return;
 }
 

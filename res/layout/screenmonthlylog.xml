@@ -99,6 +99,6 @@
       </LinearLayout>
     </jp.co.qsdn.android.qlogger.view.flipper.ViewFlipper>
   </LinearLayout>
-  <include layout="@layout/screenhourlylog__footer_bar" />
+  <include layout="@layout/screenmonthlylog__footer_bar" />
 </LinearLayout>
 

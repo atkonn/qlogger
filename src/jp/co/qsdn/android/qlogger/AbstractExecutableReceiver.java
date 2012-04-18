@@ -103,6 +103,6 @@ public class AbstractExecutableReceiver
   @Override
   public void onReceive(Context context, Intent intent) {
     String action = intent.getAction();
-    Log.d(TAG, "onReceive:[" + action + "]");
+    if (Constant.DEBUG)Log.d(TAG, "onReceive:[" + action + "]");
   }
 }

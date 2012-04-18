@@ -263,13 +263,13 @@ public class LogcatService
         if(Constant.DEBUG)Log.d(TAG, "セットアップ開始");
         try {
           int uid = android.os.Process.myUid();
-          Log.d(TAG, "uid:[" + uid + "]");
+          if (Constant.DEBUG)Log.d(TAG, "uid:[" + uid + "]");
           PsCommand psCommand = new PsCommand();
           psCommand.run();
           for (PsCommand.PsResult psResult: psCommand.getOutput()) {
             if (Constant.DEBUG)Log.d(TAG, "PsResult:[" + psResult + "]");
             if (psResult != null && psResult.getPpid() == 1) {
-              Log.d(TAG, "KILL:[" + psResult.getPid() + "]");
+              if (Constant.DEBUG)Log.d(TAG, "KILL:[" + psResult.getPid() + "]");
               /*===========================================================*/
               /* 親のいないlogcatプロセスで同一UIDのプロセスをkillする.    */
               /* 同一UIDのプロセス以外は殺せないはずなので何も考えずにkill */
@@ -316,16 +316,16 @@ public class LogcatService
             cursor = null;
           }
         }
-        Log.d(TAG, "セットアップ終了");
+        if (Constant.DEBUG)Log.d(TAG, "セットアップ終了");
       }
     };
 
     shutdownCommand = new Runnable() {
       @Override
       public void run() {
-        Log.d(TAG,"シャットダウン開始");
+        if (Constant.DEBUG)Log.d(TAG,"シャットダウン開始");
         shutdown();
-        Log.d(TAG,"シャットダウン終了");
+        if (Constant.DEBUG)Log.d(TAG,"シャットダウン終了");
       }
     };
 
@@ -351,14 +351,14 @@ public class LogcatService
       @Override
       public void run() {
         if (getExecutor().isShutdown()) {
-          Log.d(TAG, "logcat主処理 終了中につき終了");
+          if (Constant.DEBUG)Log.d(TAG, "logcat主処理 終了中につき終了");
           return;
         }
         try {
           if (logcatReader.ready()) {
             String line = logcatReader.readLine();
             if (line == null) {
-              Log.d(TAG, "readLine returned null");
+              if (Constant.DEBUG)Log.d(TAG, "readLine returned null");
               doExecute(restartCommand);
               return;
             }
@@ -372,8 +372,8 @@ public class LogcatService
           else {
             if (Constant.DEBUG)Log.d(TAG, "main");
             if (! isAliveLogcatProcess()) {
-              Log.d(TAG, "ps logcat process is dead or not my child.");
-              Log.d(TAG, "ps logcat process restart now.");
+              if (Constant.DEBUG)Log.d(TAG, "ps logcat process is dead or not my child.");
+              if (Constant.DEBUG)Log.d(TAG, "ps logcat process restart now.");
               doExecute(restartCommand);
               return;
             }
@@ -383,7 +383,7 @@ public class LogcatService
         catch (IOException ex) {
           Log.e(TAG, "read failure.", ex);
           doExecute(shutdownCommand);
-          Log.d(TAG, "logcat主処理異常終了");
+          if (Constant.DEBUG)Log.d(TAG, "logcat主処理異常終了");
           return;
         }
         if (! getExecutor().isShutdown()) {

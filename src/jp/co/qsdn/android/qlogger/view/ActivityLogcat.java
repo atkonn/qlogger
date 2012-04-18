@@ -200,7 +200,7 @@ public class ActivityLogcat
     Pattern filterKeywordPattern = Pattern.compile(filterKeyword);
     for (LogLine line: list) {
       if (line.getMessage() == null) {
-        Log.d(TAG, line.getRawLine());
+        if (Constant.DEBUG)Log.d(TAG, line.getRawLine());
         continue;
       }
       Matcher keywordMatcher = filterKeywordPattern.matcher(line.getMessage());
@@ -276,12 +276,12 @@ public class ActivityLogcat
 
   public void gotoReload(View v) {
     switchViewToWait();
-    Log.d(TAG,"gotoReload");
+    if (Constant.DEBUG)Log.d(TAG,"gotoReload");
     doExecute(updateViewCommand);
   }
 
   public void gotoSetting(View v) {
-    Log.d(TAG,"gotoSetting");
+    if (Constant.DEBUG)Log.d(TAG,"gotoSetting");
     Intent intent = new Intent(this, ActivityLogcatSetting.class);
     startActivity(intent);
   }

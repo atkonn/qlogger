@@ -259,19 +259,19 @@ public class ActivityScreenLogHistory
 
   @Override
   protected void onPause() {
-    Log.d(TAG,"start onPause()");
+    if (Constant.DEBUG)Log.v(TAG,">>> onPause()");
     super.onPause();
-    Log.d(TAG,"end onPause()");
+    if (Constant.DEBUG)Log.v(TAG,"<<< onPause()");
   }
 
   @Override
   public boolean dispatchKeyEvent(KeyEvent e) {
     if(e.getKeyCode() == KeyEvent.KEYCODE_BACK) {
       if(e.getAction() == KeyEvent.ACTION_DOWN) {
-        Log.d(TAG, "start dispatchKeyEvent()");
+        if (Constant.DEBUG)Log.v(TAG, ">>> dispatchKeyEvent()");
         setResult(RESULT_OK, getIntent());
         finish();
-        Log.d(TAG, "end dispatchKeyEvent()");
+        if (Constant.DEBUG)Log.v(TAG, "<<< dispatchKeyEvent()");
         return false;
       }
       return true;
@@ -288,7 +288,7 @@ public class ActivityScreenLogHistory
     String nowTag = getTabHost().getCurrentTabTag();
     AbstractActivity childActivity = (AbstractActivity)getCurrentActivity();
 
-    Log.d(TAG, "childActivity.startPos:[" + childActivity.getStartPos() + "]");
+    if (Constant.DEBUG)Log.d(TAG, "childActivity.startPos:[" + childActivity.getStartPos() + "]");
     Intent intent = new Intent(this, ActivityScreenLogHistoryGraph.class);
     intent.putExtra(ActivityScreenLogHistoryGraph.EXTRA_PARAM.TAB,            nowTag);
     intent.putExtra(ActivityScreenLogHistoryGraph.EXTRA_PARAM.START_POS,      childActivity.getStartPos());

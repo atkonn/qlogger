@@ -256,16 +256,16 @@ public class ActivityScreenLogHistoryGraph
 
   @Override
   protected void onPause() {
-    Log.d(TAG,"start onPause()");
+    if (Constant.DEBUG)Log.v(TAG,">>> onPause()");
     super.onPause();
-    Log.d(TAG,"end onPause()");
+    if (Constant.DEBUG)Log.v(TAG,"<<< onPause()");
   }
 
   @Override
   public boolean dispatchKeyEvent(KeyEvent e) {
     if(e.getKeyCode() == KeyEvent.KEYCODE_BACK) {
       if(e.getAction() == KeyEvent.ACTION_DOWN) {
-        Log.d(TAG, "start dispatchKeyEvent()");
+        if (Constant.DEBUG)Log.d(TAG, "start dispatchKeyEvent()");
         String nowTag = getTabHost().getCurrentTabTag();
         AbstractActivity childActivity = (AbstractActivity)getCurrentActivity();
 
@@ -275,7 +275,7 @@ public class ActivityScreenLogHistoryGraph
         intent.putExtra(EXTRA_PARAM.START_POS, childActivity.getStartPos());
         setResult(RESULT_OK, intent);
         finish();
-        Log.d(TAG, "end dispatchKeyEvent()");
+        if (Constant.DEBUG)Log.d(TAG, "end dispatchKeyEvent()");
         return false;
       }
       return true;

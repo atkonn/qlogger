@@ -199,7 +199,7 @@ public class ActivityLoadAvgLogGraph
 
   protected XYMultipleSeriesDataset getCurrentData(int startpos) {
     String yyyymmdd = (String)dateList.get(startpos);
-    Log.d(TAG, "yyyymmdd:[" + yyyymmdd + "]");
+    if (Constant.DEBUG)Log.d(TAG, "yyyymmdd:[" + yyyymmdd + "]");
 
     Cursor cur = null;
     List<LoadAvgLog> list = new ArrayList<LoadAvgLog>();
@@ -376,7 +376,7 @@ public class ActivityLoadAvgLogGraph
   protected void onResumeBottomHalf() {
     pagerFlipper = (ViewFlipper)findViewById(R.id.pagerFlipper);
     pagerFlipper.removeAllViews();
-    Log.d(TAG, "startPos:[" + getStartPos() + "]");
+    if (Constant.DEBUG)Log.d(TAG, "startPos:[" + getStartPos() + "]");
     for (int ii=0; ii<getPageCount(); ii++) {
       View view = inflater.inflate(R.layout.loadavglog_graph__main, null);
       pagerFlipper.addView(view);
@@ -462,7 +462,7 @@ public class ActivityLoadAvgLogGraph
       }
     }
     setPageCount(dateList.size());
-    Log.d(TAG, "listCount:[" + listCount + "]");
+    if (Constant.DEBUG)Log.d(TAG, "listCount:[" + listCount + "]");
 
     gestureDetector = new GestureDetector(this, gestureListener);
     animationInFromLeft  = AnimationUtils.loadAnimation(this, R.anim.in_from_left);

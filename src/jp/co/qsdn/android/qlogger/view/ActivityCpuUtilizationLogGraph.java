@@ -199,7 +199,7 @@ public class ActivityCpuUtilizationLogGraph
 
   protected XYMultipleSeriesDataset getCurrentData(int startpos) {
     String yyyymmdd = (String)dateList.get(startpos);
-    Log.d(TAG, "yyyymmdd:[" + yyyymmdd + "]");
+    if (Constant.DEBUG)Log.d(TAG, "yyyymmdd:[" + yyyymmdd + "]");
 
     Cursor cur = null;
     List<CpuUtilizationLog> list = new ArrayList<CpuUtilizationLog>();
@@ -385,7 +385,7 @@ public class ActivityCpuUtilizationLogGraph
   protected void onResumeBottomHalf() {
     pagerFlipper = (ViewFlipper)findViewById(R.id.pagerFlipper);
     pagerFlipper.removeAllViews();
-    Log.d(TAG, "startPos:[" + getStartPos() + "]");
+    if (Constant.DEBUG)Log.d(TAG, "startPos:[" + getStartPos() + "]");
     for (int ii=0; ii<getPageCount(); ii++) {
       View view = inflater.inflate(R.layout.cpuutilizationlog_graph__main, null);
       pagerFlipper.addView(view);
@@ -471,7 +471,7 @@ public class ActivityCpuUtilizationLogGraph
       }
     }
     setPageCount(dateList.size());
-    Log.d(TAG, "listCount:[" + listCount + "]");
+    if (Constant.DEBUG)Log.d(TAG, "listCount:[" + listCount + "]");
 
     gestureDetector = new GestureDetector(this, gestureListener);
     animationInFromLeft  = AnimationUtils.loadAnimation(this, R.anim.in_from_left);

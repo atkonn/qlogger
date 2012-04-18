@@ -62,7 +62,7 @@ public class BatteryChangedReceiver
       @Override
       public void run() {
         String action = intent.getAction();
-        Log.d(TAG, "onReceive:[" + action + "]");
+        if (Constant.DEBUG)Log.d(TAG, "onReceive:[" + action + "]");
         if(action.equals("android.intent.action.BATTERY_CHANGED")) {
           Prefs.getInstance(_ctx).setBatteryLog__NowLevel(intent.getIntExtra("level", 0));
         }
