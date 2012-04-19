@@ -68,18 +68,6 @@ public class ActivityDashboard
     setContentView(R.layout.dashboard);
 
     setupTitle();
-
-    if (! Util.isRunning(getApplicationContext(), LogcatService.SERVICE_NAME)) {
-      Intent _intent = new Intent(getApplicationContext(), LogcatService.class);
-      _intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-      startService(_intent);
-    }
-    if (! Util.isRunning(getApplicationContext(), QLoggerReceiverService.SERVICE_NAME)) {
-      Intent _intent = new Intent(getApplicationContext(), QLoggerReceiverService.class);
-      _intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-      startService(_intent);
-    }
-
     setupAd();
   }
 
