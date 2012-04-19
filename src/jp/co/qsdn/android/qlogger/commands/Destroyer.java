@@ -47,7 +47,8 @@ public class Destroyer
     timer.schedule(this, 5000L);
     for (;;) {
       try {
-        getProcess().waitFor();
+        int exitValue = getProcess().waitFor();
+        if (Constant.DEBUG)Log.d(TAG, "exitValue:[" + exitValue + "]");
         break;
       }
       catch (InterruptedException ex) {

@@ -74,6 +74,7 @@ public class LogcatService
   private List<LogLine> logdata = new ArrayList<LogLine>();
   private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSSSSSSSS");
   
+  static final Object logcatProcessMutex = new Object();
   Process logcatProcess = null;
   BufferedReader logcatReader = null;
   Runnable setupCommand = null;
@@ -113,11 +114,14 @@ public class LogcatService
       break;
     }
   }
-  private void waitSecond() {
+  private void waitSeconds(long sec) {
     try {
-      TimeUnit.SECONDS.sleep(1);
+      TimeUnit.SECONDS.sleep(sec);
     } catch (InterruptedException e) {
     }
+  }
+  private void waitSecond() {
+    waitSeconds(1);
   }
 
   private Uri lastErrorLog = null;
@@ -264,27 +268,29 @@ public class LogcatService
         try {
           int uid = android.os.Process.myUid();
           if (Constant.DEBUG)Log.d(TAG, "uid:[" + uid + "]");
-          PsCommand psCommand = new PsCommand();
-          psCommand.run();
-          for (PsCommand.PsResult psResult: psCommand.getOutput()) {
-            if (Constant.DEBUG)Log.d(TAG, "PsResult:[" + psResult + "]");
-            if (psResult != null && psResult.getPpid() == 1) {
-              if (Constant.DEBUG)Log.d(TAG, "KILL:[" + psResult.getPid() + "]");
-              /*===========================================================*/
-              /* 親のいないlogcatプロセスで同一UIDのプロセスをkillする.    */
-              /* 同一UIDのプロセス以外は殺せないはずなので何も考えずにkill */
-              /* adb install -r だと確実に残る:<                           */
-              /*===========================================================*/
-              android.os.Process.killProcess(psResult.getPid());
+          synchronized (logcatProcessMutex) {
+            PsCommand psCommand = new PsCommand();
+            psCommand.run();
+            for (PsCommand.PsResult psResult: psCommand.getOutput()) {
+              if (Constant.DEBUG)Log.d(TAG, "PsResult:[" + psResult + "]");
+              if (psResult != null && psResult.getPpid() == 1) {
+                if (Constant.DEBUG)Log.d(TAG, "KILL:[" + psResult.getPid() + "]");
+                /*===========================================================*/
+                /* 親のいないlogcatプロセスで同一UIDのプロセスをkillする.    */
+                /* 同一UIDのプロセス以外は殺せないはずなので何も考えずにkill */
+                /* adb install -r だと確実に残る:<                           */
+                /*===========================================================*/
+                android.os.Process.killProcess(psResult.getPid());
+              }
             }
-          }
 
-          if (logcatProcess == null) {
-            if (Constant.DEBUG)Log.d(TAG, "start logcat process");
-            logcatProcess = Runtime.getRuntime().exec(new String[] { "logcat", "-v", "time", "*:V"});
-            if (Constant.DEBUG)Log.d(TAG, "done logcat process");
-            logcatReader = new BufferedReader(new InputStreamReader(logcatProcess.getInputStream()), BUFSZ);
-            if (Constant.DEBUG)Log.d(TAG, "got reader from logcat");
+            if (logcatProcess == null) {
+              if (Constant.DEBUG)Log.d(TAG, "start logcat process");
+              logcatProcess = Runtime.getRuntime().exec(new String[] { "logcat", "-v", "time", "*:V"});
+              if (Constant.DEBUG)Log.d(TAG, "done logcat process");
+              logcatReader = new BufferedReader(new InputStreamReader(logcatProcess.getInputStream()), BUFSZ);
+              if (Constant.DEBUG)Log.d(TAG, "got reader from logcat");
+            }
           }
         }
         catch (IOException ex) {
@@ -377,7 +383,7 @@ public class LogcatService
               doExecute(restartCommand);
               return;
             }
-            waitSecond();
+            waitSeconds(5);
           }
         }
         catch (IOException ex) {
@@ -437,6 +443,12 @@ public class LogcatService
   }
 
   protected void shutdown(boolean restart) {
+    synchronized(logcatProcessMutex) {
+      if (logcatProcess != null) {
+        new Destroyer(logcatProcess).waitAndDestroy();
+        logcatProcess = null;
+      }
+    }
     ExecutorService executor = getExecutor();
     if (executor != null) {
       executor.shutdown();
@@ -463,10 +475,6 @@ public class LogcatService
         Log.e(TAG, "logcat reader close failure.", ex);
       }
       logcatReader = null;
-    }
-    if (logcatProcess != null) {
-      new Destroyer(logcatProcess).waitAndDestroy();
-      logcatProcess = null;
     }
     if (restart) {
       doExecute(setupCommand);

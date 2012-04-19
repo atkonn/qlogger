@@ -266,7 +266,12 @@ public class ActivityLogcat
     if (Constant.DEBUG)Log.v(TAG, ">>> disconnectLogcatService");
     synchronized(connectLock) {
       if (isConnect) {
-        unbindService(serviceConnection);
+        try {
+          unbindService(serviceConnection);
+        }
+        catch (IllegalArgumentException ex) {
+          Log.w(TAG, "", ex);
+        }
         setLogcatService(null);
         isConnect = false;
       }

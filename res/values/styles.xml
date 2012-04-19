@@ -98,7 +98,7 @@
   </style>
 
   <style name="FooterBarNavigation">
-    <item name="android:textSize">11.0sp</item>
+    <item name="android:textSize">9.0sp</item>
     <item name="android:typeface">monospace</item>
     <item name="android:textStyle">bold</item>
     <item name="android:textColor">#ff888888</item>
