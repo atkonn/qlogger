@@ -347,11 +347,6 @@ public abstract class AbstractActivity
   public void onResume() {
     if (Constant.DEBUG)Log.v(TAG, ">>> onResume(" + getStartPos() + ")" + this);
     super.onResume();
-    if (! Util.isRunning(getApplicationContext(), LogcatService.SERVICE_NAME)) {
-      Intent _intent = new Intent(getApplicationContext(), LogcatService.class);
-      _intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-      startService(_intent);
-    }
     if (Constant.DEBUG)Log.v(TAG, "<<< onResume(" + getStartPos() + ")" + this);
   }
 
