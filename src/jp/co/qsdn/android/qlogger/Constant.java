@@ -18,7 +18,7 @@ package jp.co.qsdn.android.qlogger;
 
 
 public class Constant {
-  public static boolean DEBUG = true;
+  public static boolean DEBUG = false;
   public static class REQUEST {
     public final static int ERRORLOG_DETAIL = 1;
 

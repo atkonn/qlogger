@@ -12,6 +12,9 @@
 #include <android/log.h>
 
 #define LOG_TAG "libps"
+
+#define DL_CLASSNAME "jp/co/qsdn/android/qlogger/commands/Ps"
+
 #define LOGI(...) __android_log_print(ANDROID_LOG_INFO, LOG_TAG, __VA_ARGS__)
 #define LOGV(...) __android_log_print(ANDROID_LOG_VERBOSE, LOG_TAG, __VA_ARGS__)
 #define LOGD(...) __android_log_print(ANDROID_LOG_DEBUG, LOG_TAG, __VA_ARGS__)
@@ -252,8 +255,8 @@ ps_main(OBJ *obj, int argc, char **argv)
 
 
 
-jobjectArray
-Java_jp_co_qsdn_android_qlogger_commands_Ps_runJni( JNIEnv* env, jobject thiz ,jobjectArray argv, jobject result)
+JNIEXPORT jobjectArray JNICALL
+s_runJni( JNIEnv* env, jobject thiz ,jobjectArray argv, jobject result)
 {
   OBJ obj;
   if (DEBUG) LOGV(">>> Java_jp_co_qsdn_android_qlogger_commands_Ps_runJni");
@@ -325,11 +328,41 @@ error1:
   return;
 }
 
-jint
+
+static JNINativeMethod v_methods[] = {
+  {"runJni", "([Ljava/lang/String;Ljava/util/ArrayList;)V", (void *)&s_runJni},
+};
+
+int
+jniRegisterNativeMethods(JNIEnv *env, const char *className, JNINativeMethod *methods, int numMethods)
+{
+  jclass cls;
+
+  cls = (*env)->FindClass(env, className);
+  if (cls == NULL) {
+    LOGE("unable to find class %s", className);
+    return -1;
+  }
+
+  if ((*env)->RegisterNatives(env, cls, methods, numMethods) < 0) {
+    LOGE("Registeration failed for %s", className);
+    return -1;
+  }
+
+  return 0;
+}
+
+
+__attribute__((visibility("default"))) jint
 JNI_OnLoad(JavaVM* vm, void* reserved)
 {
   JNIEnv* env;
-  if ((*vm)->GetEnv(vm, (void**) &env, JNI_VERSION_1_6) != JNI_OK)
+  if ((*vm)->GetEnv(vm, (void**) &env, JNI_VERSION_1_6) != JNI_OK) {
+    LOGE("GetEnv failed(%s:%d)", __FILE__,__LINE__);
     return -1;
+  }
+
+  jniRegisterNativeMethods(env, DL_CLASSNAME, v_methods, sizeof(v_methods)/sizeof(v_methods[0]));
+
   return JNI_VERSION_1_6;
 }
