@@ -4,6 +4,7 @@
   package="jp.co.qsdn.android.qlogger"
   android:versionCode="1"
   android:versionName="@string/version"
+  android:installLocation="auto"
   >
   <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
   <uses-permission android:name="android.permission.READ_LOGS" />
